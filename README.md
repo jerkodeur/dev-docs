@@ -1,5 +1,5 @@
-# js-features
-Some exercices, tests functions, js function tips, examples of using functions
+# dev-docs
+Some exercices, tests functions, function tips, examples of using functions, language documentations
 
 ### Require
 ##### VSCODE extensions:
