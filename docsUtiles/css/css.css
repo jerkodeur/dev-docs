@@ -1,0 +1,1827 @@
+/*  Les feuilles de style sont définis par 3 valeurs: Sélecteur, propriété et valeur  
+	 	Le bloc de déclaration contient une ou plusieurs déclarations, séparées par des points-virgules.   */ 
+
+/* ==============================================
+==========|-->>>  GENERALITES  <<<--|========== 
+   ============================================== */
+
+/*	Unités de mesures à utiliser: 
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+/*
+		On utilise en général le [px] en CSS, car il s'adapte sur tous les supports.
+		L'unité [em] est simplement la taille de la police de caractères. Exprimer des tailles, comme les margins et les paddings, en [em] signifie qu'elles sont relatives à la taille de la police, 
+		et si l'utilisateur a une large police de caractères (sur un grand écran par exemple) ou au contraire une petite police (sur un smartphone), les tailles seront proportionnelles. 
+		Les déclarations telles que text-indent: 1.5em et margin: 1em sont très courantes en CSS. 
+
+/*	Utiliser Calc() pour calculer une valeur:
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+/*
+		calc() est une méthode CSS native permettant de faire des calculs simples en CSS, en remplacement de toute valeur de longueur (ou de toute valeur numérique)
+		Il comporte quatre opérateurs mathématiques simples: ajouter (+), soustraire (-), multiplier (*) et diviser (/).
+      
+      --> Exemples d'utilisation:   width: calc(100% - 3em)
+
+ -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-  */
+
+	*   { }   /* A toutes les balises de la page ...   */
+	body { }  /* A un attribut de manière générale   */
+	div > p   /* Cible tous les éléments <p> qui sont directement enfants de <div>   */
+	div p     /* Cible tous les éléments <p> qu'ils soient enfants ou petits-enfants de <div>   */
+	p + span  /* Cible chaque élément <span> directement frère de <p>   */
+	p ~ span  /* Cible tous les éléments <span> frères de <p>   */
+
+	[src]     					 /* Modifie toutes les balises qui contiennent un attribut 'src'   */
+	a[title]  					 /* A tous les liens qui possèdent un attribut "title"   */
+	a[title="Suivre"]    /* Idem mais doit avoir la valeur exacte contenue entre guillemets   */
+	a[title*="ici"]      /* Cible tous les liens contenant "ici" dans "title"   */
+	a[hreflang |= "en"]	 /* Eléments avec l'attribut 'hreflang', d'une valeur strictement égale à 'en' ou començant par 'en-'   */
+	a[href~="top"]       /* Liens possédant un attribut 'href' dont le valeur contient "top", délimité par des espaces   */
+	[class$="foo"]       /* Cible les éléments dont la classe se termine par "foo".   */
+	[class!="foo"]       /* Cible les éléments dont la classe n'est pas "foo"i   */
+	[class^="foo"]       /* Cible les éléments dont la classe commence par "foo".   */
+	a.menu      		 /* Cible tous les liens ayant pour nom de classe "menu"   */
+	.classe      		 /* Modifie toutes les classes ayant pour nom "classe"   */
+	#identifiant     /* Modifie tous les ID ayant pour nom 'identifiant' (une ID est unique sur chaque page)   */
+
+	p:empty          		/* Cible les paragraphes qui n'ont pas d'enfants   */
+	ul li:first-child    /* Cible tous les éléments <li> 1er enfant d'un élément <ul>   */
+	ol li:last-child      /* Cible tous les éléments <li> dernier enfant d'un élément <ol>   */
+	p > a:first-of-type  		/* Cible le premier élément <p>   */
+	ul li:nth-child(2)    			/* Cible le 2ème <li> enfant de <ul>   */
+	ul li:nth-child(2n+1)   		/* Cible les éléments <li> enfant de <ul> à partir du 1er et toutes les 2 occurences (soit les nombres impairs)   */
+	ul li:nth-child(2n+0)   		/* Cible les éléments <li> enfant de <ul> qui sont pairs (les 2,4,6 etc...)   */
+	ul li:nth-child(-n+3)   		/* Cible les 3 premiers éléments <li> enfant de <ul>   */
+	ul li:nth-last-child(2)    	/* Cible le 2ème <li> enfant de <ul> en partant de la fin   */
+	p + span:nth-of-type(5)			/* Cible le 5ème élément <span> frère de <p>   */
+	p + span:nth-last-of-type(2)   /* Cible l'avant-dernier élément <span> frère de <p>   */
+	p img:only-child     		/* Cible les images qui sont enfants uniques de <p>   */
+	div + p:only-of-type	 /* Cible les éléments <p> frères uniques de <div>   */
+
+	p:even, p:odd      /* Cible les paragraphes pairs, impairs   */
+	p:eq(2)     /* Cible les paragraphes dont l'index est 2   */
+	p:gt(1)     /* Cible les paragraphes dont l'index est supérieur à (greater than) 1   */
+	p:lt(3)     /* Cible les paragraphes dont l'index est inférieur à (lower than) 3 [0,1,2]   */
+
+	:header     		/* Cible les tous les titres <h1> à <h6>   */
+	:hidden     		/* Cible les éléments cachés   */
+	:visible    		/* Cible les éléments visibles   */
+	:not()      		/* Cible les éléments qui ne correspondent pas au sélecteur spécifié   */
+	:header:not(h1) /* Cible les tous les titres sauf les <h1>   */
+
+	/* Cible les eléments de formulaire
+	>>>>>>>>>>>>>>>>>>>>>>>>> */
+	:input         /* Cible les tous les éléments de type 'input','textarea', 'select' et 'button'   */
+	:button        /* Cible les éléments de type 'button'   */
+	:checkbox      /* Cible les éléments de type 'checkbox'   */
+	:checked       /* Cible les éléments qui sont cochés   */
+	:radio         /* Cible les eléments de type 'radio'   */
+	:reset         /* Cible les eléments de type 'reset'   */
+	:image         /* Cible les tous les boutons de type 'image'   */
+	:submit        /* Cible les eléments de type 'submit'   */
+	:text          /* Cible les elements de type 'text'   */
+	:password      /* Cible les eléments de type 'password'   */
+	:selected      /* Cible les eléments sélectionnés   */
+	:focus         /* Cible les sélectionne l'élément s'il a le focus   */
+	:enabled       /* Cible les eléments validés   */
+	:valid         /* Si la valeur saisie est valide   */
+	:invalid       /* si la valeur saisie est invalide:   */
+
+	/* Exemple de sélection d'éléments sur des tableaux 																																								
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>	*/ 
+	td:first          /* Cible la première cellule   */
+	td:empty          /* Cible les cellules vides   */
+	tr:even           /* Cible les lignes paires   */
+	tr:gt(0):lt(4)    /* Cible les lignes d'index > 1, et, dans le sous-ensemble correspondant, des lignes d'index < 5   */
+	tr:not(tr:last)   /* Cible toutes les lignes à l'exception de la dernière   */
+
+
+/* =====i===============================================
+==========|-->>>  MENU DE NAVIGATION  <<<--|========== 
+   ===================================================== */
+
+
+nav 
+{
+	min-width: 500px;
+	text-align:center;
+}
+
+nav ul 
+{
+	background: linear-gradient(90deg, 
+	 	rgba(255, 255, 255, 0) 0%,   /* La 4ème valeur indique la transparence (0 à 1)   */
+	 	rgba(255, 255, 255, 0.2) 25%, 
+	 	rgba(255, 255, 255, 0.2) 75%, 
+	 	rgba(255, 255, 255, 0) 100%);
+ 	box-shadow: 0 0 25px rgba(0, 0, 0, 0.1),
+	 	inset 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+nav ul li 
+{
+	display: inline-block; /* Mets tous les puces sur la même ligne   */
+}
+
+nav ul li a 
+{
+	padding: 10px; 
+	color: #FFFFFF;
+	font-size: 18px;
+	font-family: Arial;
+	text-decoration: none;
+	display: block;
+}
+
+/* ============================================================
+==========|-->>>  EXEMPLES DE MISE EN FORME  <<<--|========== 
+   ============================================================ */
+
+
+.first 
+{ /* stylise une CLASS --> peut être appliqué sur plusieurs balises HTML..   */
+	text-align:center;
+	color:#995098;
+	background-color:orange;
+	padding:1px;
+	width:50%;
+	margin:auto;
+	border:3pt double black;
+}
+
+#intro 
+{ /* Stylise une ID --> est unique dans une page !   */
+	color: #591515;
+	background-color: #8E7777;
+	text-align:center;
+	width:50%;
+	padding:1px;
+	border:3pt double black;
+}
+
+/* ==================================================================
+==========|-->>>  AFFICHAGE DU FORMATAGE DU TEXTE  <<<--|========== 
+   ================================================================== */
+
+#formatTexte 
+{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin:auto;
+}
+
+.tr 
+{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width:70%;
+  border:2pt ridge #848484;
+  background-color: #2E2E2E;
+  margin: auto;
+}
+
+#formatTexte div:nth-child(19) div:nth-child(1)
+{
+  justify-content: center;
+}
+
+#formatTexte div:nth-child(19) div:nth-child(1n+1),
+#formatTexte div:nth-child(21) div:nth-child(1n+1)
+{
+  flex-direction: column;
+}
+
+#formatTexte div:nth-child(20) div:nth-child(1n+1)
+{
+  justify-content: center;
+  word-break: break-all;
+}
+
+#formatTexte div:nth-child(22) div:nth-child(1n+1)
+{
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+ol, ul 
+{
+  display: flex;
+  margin: auto;
+}
+
+.attributs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0A0A0A; color: lightgrey;
+  min-width:125px;
+  font-variant: small-caps;
+  font-size: 85%; font-weight:900;
+  border:double 3pt #848484;
+  padding:1pt; margin:1pt 3pt 1pt 1pt;
+}
+
+.valeur 
+{
+  display: flex;
+  flex: 1;
+  flex-wrap: nowrap;
+  background-color:grey;
+  padding:1pt; margin: 2pt 2pt 2pt 0;
+  border:ridge 2pt black;
+}
+
+.valeur div:nth-child(2) 
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex:1;
+}
+
+.valeur div[class="textAlignLeft"] 
+{
+  margin-left:10pt;
+	justify-content: flex-start;
+}
+
+.valeur div[class="textAlignRight"] 
+{
+  margin-right:10pt;
+	justify-content: flex-end;
+}
+
+.valeur div[class="superAlign"] 
+{
+  align-items: flex-end;
+}
+
+.valeur div[class="subAlign"] 
+{
+  align-items: flex-start;
+}
+
+.valeur div[class="pixelAlign"] 
+{
+  font-size: 80%;
+}
+
+.code 
+{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #8A0808;
+  font-weight: bold;
+  font-size: 90%;
+  margin-left:5pt;
+}
+
+
+/* =====================================================
+==========|-->>>  FORMATAGE DU TEXTE  <<<--|========== 
+   ===================================================== */
+
+/* TEXTES EN COULEURS
+>>>>>>>>>>>>>>>>>>>>>> */
+
+.fontColor 
+{ 
+	color: blue;
+	font-weight: bold;
+}
+
+.fontColorHex 
+{ 
+	color: #FFFFFF;
+	font-weight: bold; 
+}
+
+.fontColorRgb 
+{ 
+	color: rgb(255,0,0);
+	font-weight: bold; 
+}
+
+/* TYPES DE POLICE
+>>>>>>>>>>>>>>>>>>> */
+
+.serif 
+{ 
+	font-family: Times, "Times New Roman", serif;
+}    /* Si le nom de la police est composé de plusieurs mots, il faut utiliser les guillemets "" */
+
+.sansserif 
+{ 
+	font-family: Arial, Helvetica, sans-serif;
+}   /* Les polices après les virgules sont utiles si la première police n'est pas reconnue */
+
+.monospace 
+{ 
+	font-family: Courier, "Courier New", monospace;
+}  /* Arial, Arial Black, Comic Sans MS, Courier New, Georgia, Impact, Times New Roman, */
+
+.cursive 
+{ 
+	font-family: Florence, cursive;
+	text-align:center;
+}                    /* Trebuchet MS, Verdana sont les polices les mieux reconnues par tous les navigateurs  */
+
+.fantasy 
+{ 
+	font-family: Blippo, fantasy;
+}
+
+/* POLICES IMPORTEES SUR LA PAGE
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+
+	La règle @ font-face permet aux polices personnalisées d'être chargées dans une page Web.
+	Avec l'aide de cette règle, les conceptions ne sont plus limitées aux polices installées sur l'ordinateur de l'utilisateur.
+	Dans Internet Explorer 8 et les versions antérieures, l’URL doit pointer vers un fichier Embedded OpenType (eot), tandis que Firefox, Chrome, etc.
+	prennent en charge les polices True Type Fonts (ttf) et OpenType Fonts (otf).  
+	Chaque forme de la famille de polices doit être déclarée à l'aide de la règle @ font-face. 
+*/
+
+@font-face {
+  font-family: Antonellie; /* Vous devez d'abord définir un nom pour la police (par exemple, myFirstFont), puis pointer vers le fichier de police. */
+  src: url('Polices/Antonellie Callygraphy Demo.otf');
+  src: url('Polices/Antonellie Callygraphy Demo.ttf');
+  /* Internet Explorer a un bogue intégré lorsque plusieurs règles @ font-face sont définies. 
+  Utiliser #iefix corrige le problème. Le point d'interrogation trompe Internet Explorer en pensant que le reste de la chaîne est une chaîne de requête et ne charge que le fichier EOT. 
+  Les autres navigateurs suivent les spécifications et sélectionnent le format dont ils ont besoin, en fonction de la cascade src.*/
+}
+.fontFace{ font-family: Antonellie, sans-serif; }
+
+/* TAILLES DE POLICES
+>>>>>>>>>>>>>>>>>>>>> */
+.smallSize { font-size: small;}        /*          Les mots clés sont utiles si vous ne souhaitez pas          */
+.mediumSize { font-size: medium;}      /*       que l'utilisateur puisse augmenter la taille de la police,     */
+.largeSize { font-size: large;}        /*               car cela aurait une incidence négative                 */
+.xLargeSize { font-size: x-large; }    /*                    sur l'apparence de votre site.                    */
+.pxSize { font-size: 12px;}            /* x-small, xx-small, x-large, xx-large sont d'autres valeurs possibles */
+.ptSize { font-size:13pt;}
+.emSize { font-size:1.15em;}            /*                      Taille relative --> 1em = 16 pixels !           */
+.pourcSize { font-size:150%;}
+
+/* STYLES DE POLICES
+----------------------> */
+.italic { font-style: italic; }     /* On peut aussi utliser la valeur "oblique" à FONT-STYLE, mais elle est moins reconnue. */
+.normalStyle {font-style: normal; text-indent: 100px;   }
+
+/* EPAISSEUR DE POLICES 
+-------------------------> */
+.light { font-weight: lighter; /* ou 100 */ }   /*  Vous pouvez également définir l’épaisseur de la police avec un nombre   */
+.bold { font-weight: 700; /* ou bold */ }       /*   compris entre 100 (mince) et 900 (épais), en fonction de l’épaisseur   */
+.bolder {font-weight: bolder; /* ou 900 */ }    /*       souhaitée du texte. 400 correspond à la normale et 700 à gras.     */
+
+/* STYLES DE VARIANTES DE POLICE 
+---------------------------------->
+> Toutes les polices ne prennent pas en charge les variantes de police CSS. Assurez-vous donc de tester avant de publier.) */
+.normalVariant {  font-variant: normal; }
+.smallVariant { font-variant: small-caps; }
+.inheritVariant { font-variant: inherit; /* Hérite de l'élément parent */ }
+
+/* TRANSFORMATION DU TEXTE
+---------------------------> */
+.capitalize { text-transform: capitalize; }
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+
+/* DECORATION DE TEXTE
+------------------------> */
+.overline { text-decoration: overline; }    /* Autres valeurs: none, inherit (hérite des propriétés de son élément parent) */
+.underline { text-decoration: underline; } 
+.lineThrough { text-decoration: line-through; } 
+
+/* ESPACEMENTS DE TEXTE
+-------------------------> */
+.letterSpacing { letter-spacing: 8px; }
+.worldSpacing { word-spacing: 1cm; }
+
+/* DECALAGE DU TEXTE
+----------------------> */ 
+.textIndent {text-indent:100px; }
+
+/* ALIGNEMENT VERTICAL
+------------------------> */
+.alignTop { color:yellow; vertical-align: top; }
+.alignMiddle { color:yellow; vertical-align: middle; }
+.alignBottom { color:yellow; vertical-align: bottom; }
+.subAlign { vertical-align: sub; }
+.superAlign { vertical-align: super; }
+.pixelAlign { vertical-align: -10px; }
+
+/* ALIGNEMENT DE TEXTE
+-----------------------> */
+.textAlignLeft { text-align:left; }
+.textAlignCenter { text-align:center; }
+.textAlignRight { text-align:right; }
+
+/* PERSONNALISER LE FORMATAGE DES LIENS
+----------------------------------------> */                      
+a:link , .aLink {color:#0000FF; font-weight:700;}                               /*  Lors de la définition du style pour plusieurs états de lien     */     
+a:visited , .aVisited {color:purple; font-weight:700;}                          /*                 il existe certaines règles d'ordre:              */
+a:hover , .aHover {text-decoration:overline underline; font-weight:700;}        /*        - a: hover DOIT venir après a: lien et a: visited         */
+a:active, .aActive {color:white; font-weight:700;}                              /*        - a: active DOIT venir après a: hover                     */
+a:focus, .aFocus {color:brown; font-weight:700; font-style:italic; }    /* Sous Chrome et Safari, l'effet ne se voit que si l'on appuie sur la touche TAB */
+/* :hover et :focus peuvent être utilisées pour d'autres balises HTML */
+
+/* FORMATAGE DE LIGNE DE TEXTE
+--------------------------------> */
+.nowrap { white-space: nowrap; }
+.pre { white-space: pre; }
+.preline { white-space: pre-line; }
+.prewrap { white-space: pre-wrap; }
+.wordWrap { word-wrap:break-word; } /* autre valeur possible: 'normal' */
+
+/* STYLISATION DES LISTES DE PUCE 
+----------------------------------> */
+.OLlowerAlpha { list-style-type: lower-alpha; }
+.OLupperAlpha { list-style-type: upper-alpha; }
+.OLdecimalAlpha { list-style-type: decimal; }
+.OLupperRoman { list-style-type: upper-roman; }
+.ULcircle { list-style-type: circle; }
+.ULsquare { list-style-type: square; }
+.ULdisc { list-style-type: disc; }
+.ULimage { list-style-image: url("https://www.developpez.com/template/kit/kitebooks.png"); }
+.pucePositionInt { list-style-position: inside; } /* spécifie la position de la boîte de marqueur (intérieur,extérieur), outside est la postion par défaut. */
+.pucePerso { list-style: square outside none; color:brown;} /* type de puce, position de la puce, url de l'image de la puce si définit */
+
+/* MODIFICATION DU CURSEUR 
+---------------------------> */
+.cursorHelp         { cursor:help; }
+.cursorHand         { cursor:pointer; }
+.cursorMove         { cursor:move; }
+.cursorText         { cursor:text; }
+.cursorCrosshair    { cursor:crosshair; }
+.cursorNotAllowed   { cursor: not-allowed; } /* OU no-drop */
+.cursorProgress     { cursor: progress; }
+.cursorWait         { cursor: wait; }
+.cursorAuto         { cursor: auto; }                     /*      Généralement, l'apparence du curseur de la souris       */
+.cursorDefault      { cursor: default; }                  /*   est modifiée pour offrir une expérience plus intéressante  */
+.cursorNone         { cursor: none; }                     /*   aux visiteurs du site. Cependant, choisir le mauvais style */
+.cursorCell         { cursor: cell; }                     /*            de curseur peut également être trompeur.          */
+.cursorVerticalText { cursor: vertical-text; }            /*      Choisissez vos styles de curseur de souris avec soin.   */
+.cursorAlias        { cursor: alias; }
+.cursorCopy         { cursor: copy; }
+.cursorNoDrop       { cursor: no-drop; }
+.cursorAllScroll    { cursor: all-scroll; }
+.cursorColResize    { cursor: col-resize; }
+.cursorRowResize    { cursor: row-resize; }
+.CnResize           { cursor: n-resize; } /* OU s-resize */
+.CeResize           { cursor: e-resize; } /* OU w-resize */
+.CnsResize          { cursor: ns-resize; }
+.CewResize          { cursor: ew-resize; }
+.CneResize          { cursor: ne-resize; } /* OU sw-resize */
+.CnwResize          { cursor: nw-resize; } /* OU se-resize */
+
+
+/* ============================================================================
+==========|-->>>  AFFICHAGE DES TECHNIQUES DE MISE EN FORME  <<<--|========== 
+   ============================================================================ */
+
+.centrageFlex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: auto;
+  width:80%;
+}
+.formatTech {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  margin:auto;
+  border:3pt double #1E1E1E;
+  padding:10pt;
+  padding-right: 0;
+  background-color: #0A0A0A;
+  margin-bottom:25px;
+}
+.formatTech:nth-of-type(2n+1)
+{
+  background:#0C0C0C;
+}
+.formatTech:nth-of-type(4)
+{
+  border-bottom:1pt solid black;
+  margin-bottom: 0;
+}
+.formatTech:nth-of-type(1n+5)
+{
+  border-bottom:1pt solid black;
+  border-top:none;  
+  margin-bottom: 0;
+}
+.formatTech:nth-of-type(11)
+{
+  border-bottom:3pt double #1E1E1E;
+  margin-bottom:25px;
+}
+.formatTech:nth-of-type(1n+12)
+{
+  border:3pt double #1E1E1E;
+}
+.centrageBloc {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-right:0;
+}
+
+.titreFormat{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width:15px; height: 100%
+  color:orange; font-weight: 900;
+  text-shadow: 1pt 1pt 3pt #E8CDA3, 2pt 0pt 3pt #E8CDA3, 2pt 2pt 3pt brown,-3pt 0pt 3pt orange;
+  word-wrap: break-word;
+  text-align: center;
+  padding-right: 10px;
+}
+.formatTech .titreFormat:last-child { padding-left:10px; }
+
+
+/* ==============================================================
+==========|-->>>  TECHNIQUES DE MISE EN FORME  <<<--|========== 
+   ==============================================================
+
+
+FLOAT & OVERFLOW
+---------------->
+ Avec CSS float, un élément peut être déplacé vers la gauche ou la droite, ce qui permet à d’autres éléments de s’enrouler autour de lui.
+Float est souvent utilisé avec des images, mais il est également utile lorsque vous travaillez avec des mises en page.
+Les valeurs de la propriété {float} sont left, right et none. 
+Les valeurs de la propriété {overflow} sont: visible (Defaut), scroll, hidden, and auto 
+*/
+
+.floatLeft { float:left; margin-right: 20px;}
+.overflowVisible { 
+  display:block; overflow:visible;/* Valeur par défaut */
+  color:#E8CDA3; 
+  min-width:180px;
+  max-width: 275px;
+}  
+.overflowScroll { 
+  float:left; 
+  display:block; overflow:scroll; /* affiche une barre de défilement si nécessaire */
+  color: #BA7713; 
+  padding-right:5px;
+  height:140px; max-width:225px;  
+} 
+.overflowHidden {  
+  overflow:hidden; /* Le contenu qui dépasse n'est pas affiché */
+  color:#E8CDA3;  
+  height:140px;  max-width:150px; 
+} 
+.overflowAuto { 
+  display:block; overflow:auto; /* Définit automatiquement le comportement de l'affichage */
+  color:#B24A28; 
+  height:140px; max-width:175px; 
+  padding-right:5px;  } 
+
+div[class*="overflow"],span[class*="overflow"]{ text-align: justify; margin-right:20px; }
+
+/* DISPLAY
+------------>
+Propriété capable de transformer n'importe quel élément de votre page d'un type vers un autre. 
+Avec cette propriété magique, je peux par exemple imposer à mes liens (originellement de type inline) d'apparaître sous forme de blocs
+*/
+
+.displayInline { 
+  display:inline; /* Se placent les uns à côté des autres. Un élément en ligne ne prend que la largeur nécessaire et ne force pas les sauts de ligne. */
+  color:#B24A28;
+} 
+
+.displayBlock { 
+  display:block; /* Se placent les uns en-dessous des autres et peuvent être redimensionnés. Elements occupant toute la largeur disponible, avec des sauts de ligne avant et après. */ 
+  color:#E8CDA3; 
+  height:35px; max-width: 500px; overflow: auto;
+  margin: 10px 20px 10px 0;
+  border:1pt #333232 dotted;  
+} 
+
+.displayInlineBlock { 
+  display:inline-block; /* Eléments positionnés les uns à côté des autres (comme les inlines) mais qui peuvent être redimensionnés (comme les blocs). */
+  color:#DA9E6D; 
+  height:65px;  max-width:44%; overflow: auto;
+  margin: auto; 
+  vertical-align: middle; 
+} 
+
+.displayNone { display:none;} /* L'élément sera masqué et la page sera affichée comme si l'élément n'était pas là. */
+.visibilityHidden { display:block; height:50%; visibility:hidden; } /* La propriété de visibilité spécifie si un élément est visible ou masqué. Autre option: "visible" */
+
+.borderSpan { 
+  display:inline-block;
+  text-align:center;
+  border:1pt dotted #333232; 
+  max-width: 513px;
+}
+
+.borderHidden { max-width:30%; }
+
+.borderHidden .displayBlock {
+  height:40%;  overflow: auto; 
+  color:#BA7713; 
+  margin:0 0 0px 10px;
+}
+
+span[class*="display"] { padding:5pt; text-align: justify; }
+
+/* POSITION
+------------->
+Les éléments peuvent être positionnés à l'aide des propriétés haut, bas, gauche et droite. 
+Cependant, ces propriétés ne fonctionneront que si la propriété position est définie en premier. 
+Ils fonctionnent également différemment selon la méthode de positionnement. */
+
+.sansPosition { 
+  display: inline-block; overflow: auto;
+  color:#BA7713; 
+  max-width:40%;
+  margin: auto; 
+  vertical-align:top;
+}
+
+.positionStatic { 
+  position:static;        /*  Un élément positionné statique est toujours positionné selon le flux normal de la page. (option par défaut)  */
+  display: inline-block;   /*   Les éléments positionnés statiques ne sont pas affectés par les propriétés top, bottom, left et right.    */
+  color:#E8CDA3;
+  max-width: 40%; overflow: auto;
+}   
+
+.positionFixed { 
+  position:fixed;         /* Un élément avec une position fixe est positionné par rapport à la fenêtre du navigateur et ne se déplacera pas même si la fenêtre est défilée. */
+  color:white;             /*          Ils sont supprimés du flux normal. Le document et les autres éléments se comportent comme si l'élément  fixe n'existait pas.        */
+  top:10px; left:10px;      /*                                                 Ils peuvent chevaucher d'autres éléments.                                                  */    
+  visibility: hidden;
+}   
+
+.positionRelative { 
+  position:relative;      /* Element positionné par rapport à sa position normale. Le contenu des éléments relatifs positionnés peut être déplacé  */
+  color:#B24A28;           /* et chevaucher d'autres éléments, mais l'espace réservé pour l'élément est toujours préservé dans le flux normal.    */
+  left:260px; top: -10px; 
+  max-width:200px; height:80px; 
+  overflow: auto;
+}  
+
+.positionAbsolute { 
+  position:absolute;      /* Un élément de position absolue est positionné par rapport au premier élément parent ayant une position autre que statique. */
+  color:#DA9E6D;           /*                         Si aucun élément de ce type n'est trouvé, le bloc conteneur est <html>.                          */                
+  height: 80px;
+  left: 30px; top:55px; 
+  width:200px;
+}  
+
+.relative { position:relative; text-align: center; width:100%;}
+
+.relative div[class*="sition"],span[class*="sition"]{ 
+  text-align: justify; 
+  padding:5pt; 
+  border:1pt #333232 dotted; 
+  overflow: auto;
+}
+
+.clearBoth { clear:both;} /* Clear permet d'effacer les attibuts float qui précède et ainsi reprendre le flux normal de la page. */
+
+
+/* ==========================================
+==========|-->>>  FLEXBOX  <<<--|==========
+   ==========================================
+
+	Le principe de la mise en page avec Flexbox est simple : vous définissez un conteneur, et à l'intérieur vous placez plusieurs éléments.
+  Sur une même page web, vous pouvez sans problème avoir plusieurs conteneurs. 
+	Ce sera à vous d'en créer autant que nécessaire pour obtenir la mise en page que vous voulez.
+  Le conteneur est une balise HTML, et les éléments sont d'autres balises HTML à l'intérieur.
+  Grâce à la propriété "display: flex;" alors les blocs se placent par défaut côte à côte. Magique !
+
+ */
+
+.miseEnFormeFlex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+}
+.miseEnFormeFlex div[class*="flex"]
+{
+  border:1px dotted #333232;
+  margin:0 10px 10px 0;
+  display: flex;
+}
+.carreBordeaux {
+  width:50px; height:50px;
+  background-color: #712323;
+}
+.carreOrange {
+  width:50px; height:50px;
+  background-color: #BA7713;
+}
+.carreBeige {
+  width:50px; height:50px;
+  background-color: #E8CDA3;
+}
+
+/*  Direction d'affichage avec "flex-direction" :    
+--------------------------------------------------- */
+.flexDirectionRow {
+  flex-direction: row;              /* Disposés en ligne (par défaut) */
+}
+.flexDirectionRowReverse {
+  flex-direction: row-reverse;      /* Disposés sur une ligne, mais en ordre inversé */
+}
+.flexDirectionColumn {
+  flex-direction: column;           /* Disposés sur une colonne */
+}
+.flexDirectionColumnReverse {
+  flex-direction: column-reverse;   /* Disposés sur une colonne, mais en ordre inversé */
+}
+
+/*  Gestion du retour à la ligne avec "flex-wrap" :        
+----------------------------------------------------- */
+.miseEnFormeFlex div[class*="Wrap"]
+{
+  width: 100px;
+}
+.flexNoWrap {
+  flex-wrap:nowrap;                 /* Pas de retour à la ligne (par défaut)  */
+}
+.flexWrap {
+  flex-wrap:wrap;                   /* Les éléments vont à la ligne lorsqu'il n'y a plus la place */
+}
+.flexWrapReverse {
+  flex-wrap:wrap-reverse;           /* Les éléments vont à la ligne lorsqu'il n'y a plus la place en sens inverse */
+}
+
+/* Forme abrégée de "flex-direction" et "flex-wrap":
+------------------------------------------------------ */
+.flexFlowRowWrap {
+  flex-flow: row wrap;
+}
+
+
+/* Alignement des éléments sur l'axe principal avec "justify-content" :
+------------------------------------------------------------------------- 
+  Pour des éléments alignés sur un axe horizontal / Vertical -->           */
+
+.miseEnFormeFlex div[class*="JustifyContent"]
+{
+  width: 200px;
+}
+.flexJustifyContentStart {
+  justify-content: flex-start;      /*  Alignés à gauche / haut */
+}
+.flexJustifyContentEnd {
+  justify-content: flex-end;        /*  Alignés à droite / bas */
+}
+.flexJustifyContentCenter {
+  justify-content: center;          /*  Alignée au centre  */     
+}
+.flexJustifyContentBetween {
+  justify-content: space-between;   /*  Etirés sur tout l'axe (Espace entre les éléments)  */
+}
+.flexJustifyContentAround {
+  justify-content: space-around;    /*  Etirés sur tout l'axe (espace entre eux et sur les bords)  */       
+}
+
+/* Alignement des éléments sur l'axe secondaire avec "align-items" :
+------------------------------------------------------------------------- 
+  Valeur par défaut: stretch
+  Pour des éléments alignés sur un axe horizontal / Vertical -->           */
+
+.miseEnFormeFlex div[class*="AlignItems"]
+{
+  width: 200px; height:75px;
+  justify-content: center;
+}
+.flexAlignItemsStart {
+  align-items: flex-start;          /*  Alignés en haut / gauche  */      
+}
+.flexAlignItemsCenter { 
+  align-items: center;              /*  Alignés au centre */
+}
+.flexAlignItemsEnd {
+  align-items: flex-end;            /*  Alignés en bas / droite */ 
+}
+
+/* Alignement sur plusieurs lignes avec "align-content":
+---------------------------------------------------------- 
+  Valeur par défaut: stretch                                */
+
+.miseEnFormeFlex div[class*="AlignContent"]
+{
+  width: 200px; height:200px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.flexAlignContentStart {
+  align-content: flex-start;        /* Les éléments sont placés au début  */
+}
+.flexAlignContentEnd {
+  align-content: flex-end;           /* Les éléments sont placés à la fin  */
+}
+.flexAlignContentCenter {
+  align-content: center;             /* Les éléments sont placés au centre  */
+}
+.flexAlignContentBetween {
+  align-content: space-between;     /* les éléments sont séparés avec de l'espace entre eux */
+}
+.flexAlignContentAround {
+  align-content: space-around;      /* Espaces entre les éléments mais aussi en début et fin */
+}
+
+/* Alignement d'un seul élément avec "align-self" :
+------------------------------------------------------ */
+.flexAlignSelf {
+  width: 200px; height:100px;
+  justify-content: center;
+  align-items: flex-start;          
+}
+.flexAlignSelf div:nth-child(2) {
+  align-self: flex-end;             /* Seul le 2ème bloc est déplacé */
+}
+
+/* Modifier l'ordre des éléments avec "order" :
+------------------------------------------------- */
+.flexOrder {}
+.flexOrder div:nth-child(1n)
+{
+  text-align: center;
+  font-weight: lighter;
+  font-size: 35px;
+  color:transparent;
+}
+.flexOrder div:nth-child(1) {
+  order:3;                          /* Sera déplacé au 3ème rang */
+  text-shadow: 0px 8px 1px orange;
+}
+.flexOrder div:nth-child(2) {
+  order:1;                          /* Sera déplacé au 1er rang */
+  text-shadow: 0px 8px 1px white;
+}
+.flexOrder div:nth-child(3) {
+  order:2;                          /* Sera déplacé au 2ème rang */
+  text-shadow: 0px 8px 1px #712323;
+}
+
+/* Faire grossir ou maigrir des éléments avec "flex" :
+-------------------------------------------------------- */
+div[class*="flexFlex"]
+{
+  width: 200px;
+}
+.flexFlex1, .flexFlex2, .flexFlex3 {}
+
+.flexFlex1 div:nth-child(2) {
+  flex:1;                           /* Le 2ème div prendra tout l'espace restant */
+}
+
+.flexFlex2 div:nth-child(1) {
+  flex:3;                           /* Le premier élément peut grossir 3 fois plus que le 3ème élément et 2 fois plus que le 2ème */                       
+}
+.flexFlex2 div:nth-child(2) {
+  flex:1.5;
+}
+.flexFlex2 div:nth-child(3) {
+  flex:1;
+}
+
+.flexFlex3 div:nth-child(1) {
+  flex:2;                           /* Le premier élément peut grossir 2 fois plus que le 1er élément et sera aussi gros que le 3ème */                       
+}
+.flexFlex3 div:nth-child(2) {
+  flex:1;
+}
+.flexFlex3 div:nth-child(3) {      
+  flex:2;
+}
+/* 
+  Il est également possible de définir une valeur minimale dans la valeur Flex (flex: 2 200px) 
+  En gros, cela dit : « Chaque élément flex reçoit d'abord 200px de l'espace disponible quand c'est possible.
+  Ensuite, le reste de l'espace disponible est réparti selon les unités de proportion ». Note : quand ce n'est pas possible, ce sont les unités de proportions qui sont prises en compte.
+*/
+
+/* ===========================================
+==========|-->>>  TABLEAUX  <<<--|==========
+   =========================================== */
+
+table[class*="table"]
+{
+  color:#E8CDA3;
+  text-align: center;
+  background-color: black;
+  border:1px dotted #333232;
+}
+caption {
+  caption-side: top;
+  color:#747373;
+  margin: 5px;
+  font-size: 85%;
+}
+th {
+  font-weight: normal;
+}
+.tableauBase {
+  width:150px; height:110px;
+  border-spacing: 5px;
+  border-width: 1px;
+  border-color: #BA7713;
+}
+.tableauBase td, .tableauBase th
+{
+  border-width: 1px;
+  border-color: #BA7713;
+}
+
+/* STYLES DE BORDURES
+-----------------------> */
+.tableauNomBordure {
+  width:225px; height:120px;
+  border-collapse: separate;
+  border-spacing: 5px;
+}
+.tableauNomBordure td, .tableauNomBordure th
+{
+  border-width: 6px;
+  border-color: #BA7713;
+}
+.borderSolid {border-style: solid; }
+.borderDotted {border-style: dotted; }
+.borderDashed {border-style: dashed; }
+.borderDouble {border-style: double; }
+.borderGroove {border-style: groove; }
+.borderRidge {border-style: ridge; }
+.borderInset {border-style: inset; }
+.borderOutset {border-style: outset; }
+.borderHidden {border-style: hidden; }
+
+/* La propriété {border-collapse} spécifie si les bordures du tableau sont réduites en une seule bordure (collapse) ou séparées par défaut.  */
+.tableauBase:nth-of-type(1) 
+{ 
+  border-collapse: separate; 
+  border-spacing:5px;        /* Si les bordures sont séparées, la propriété {border-spacing} peut être utilisée pour modifier l'espacement. */
+  empty-cells: hide;    /* Les cellules vides ne seront pas affichées (par défaut:"show") */
+}
+.tableauBase:nth-of-type(2) { border-collapse: collapse; }  
+
+/*  {table-layout} spécifie comment la largeur des colonnes de la table est calculée. Les valeurs possibles sont:
+    auto - lorsque la largeur de la colonne ou des cellules n'est pas explicitement définie, la largeur de la colonne sera proportionnelle à la quantité de contenu des cellules constituant la colonne
+    fixed - lorsque la largeur de colonne ou de cellule n'est pas explicitement définie, la largeur de colonne ne sera pas affectée par la quantité de contenu      des cellules constituant la colonne. */
+.tableauBase:nth-of-type(4) { table-layout: auto; }
+.tableauBase:nth-of-type(5) { table-layout: fixed; }
+
+.tableauBase:nth-of-type(5) tr th:first-child { text-align: left; padding-left: 5px; }
+.tableauBase:nth-of-type(5) tr th:last-child { text-align: right; padding-right: 5px;}
+.tableauBase:nth-of-type(5) tr:nth-of-type(2) td:nth-of-type(1) {vertical-align: top; padding-top: 1px;}
+.tableauBase:nth-of-type(5) tr:nth-of-type(2) td:nth-of-type(2) {vertical-align: bottom; padding-bottom: 1px;}
+
+/* TAILLE DES ELEMENTS
+------------------------> */
+.height { height:100px; }
+.width { width:100%; }
+.minHeight { min-height:100px; } /* Hauteur minimale de l'élément */
+.minWidth { min-width:100px; } /* Longueur minimale de l'élément */
+.maxHeight { max-height:100px; } /* Hauteur maximale de l'élément */
+.maxWidth { max-width:25px; } /* Longueur maximale de l'élément */
+
+/* REMPLISSAGE DES ELEMENTS
+-----------------------------> */
+.bgColor { background-color: #C0C0C0; }
+.bgImage { background-image: url("css_logo.png"); }
+.bgRepeatX { background-repeat: repeat-x; }             /*  Autres Options:         */
+.bgRepeatY { background-repeat: repeat-y; }             /*  - inhérit               */
+.bgRepeatNone { background-repeat: no-repeat; }         /*  - repeat (par défaut)   */
+.bgImgFixed { background-attachment: fixed; }   /* Arrière-plan "fixe", ne bouge pas avec l'élément. */
+.bgImgScroll { background-attachment: scroll; } /* L'arrière plan défile avec l'élément */
+
+/* PSEUDOS CLASSES
+--------------------> */
+.parent {
+    position:relative;
+    float:left;
+    width: 48%;
+    padding-left:2%;
+}
+.parent p:first-child {
+   color: green;
+   text-decoration: underline;   
+}
+.parent p:last-child {
+   color: red;
+   text-decoration: overline;   
+}
+.element ::first-line { color:blue; } /* Modifier le style de la première ligne */
+.element ::first-letter { font-weight:900; font-size:200%; } /* Modifie le style de la première lettre */
+.element ::-moz-selection { background:blue; color:black;} /* Modifie le style de la sélection de l'utilisateur pour Mozilla */
+.element ::-webkit-selection { background:blue; color:black;} /* Modifie le style de la sélection de l'utilisateur pour Safari et Chrome */
+.element ::-o-selection { background:blue; color:black;} /* Modifie le style de la sélection de l'utilisateur pour Opéra */
+.element ::-msselection { background:blue; color:black;} /* Modifie le style de la sélection de l'utilisateur pour Internet explorer */
+.element ::selection { background:blue; color:black;}
+.element ::before { content: url("https://paris.onvasortir.com/chat/e/rolleyes.gif"); padding-right:5px;} /* Ajoute une image avant l'élément */
+.element ::after { content: url("https://paris.onvasortir.com/chat/e/rolleyes.gif"); padding-left:5px;} /* Ajoute une image après l'élément */
+
+/* Ombrage de texte
+---------------------> */
+.titre {
+    color: #723E3E;
+    text-align: center;
+    font-size: 26pt;
+    text-shadow: -2px 2px 10px #B73434; /* X,Y, flou et couleur de l'ombre */ }
+.formatageTexte {
+    color: orange;
+    font-size: 16pt;   
+    text-shadow: red -3px -1px 2px, orange 1px 3px 2px; /* La 1ère valeur sera celle affiché si plusieurs valeurs se chevauchent (CSS3) */
+    text-align:center;
+    letter-spacing: 4px; }
+/* Pour rendre une ombre de texte réaliste, rappelez-vous ces quelques caractéristiques d'ombre:
+    - Une ombre proche du texte n'est généralement pas aussi floue qu'une ombre éloignée du texte. Une ombre éloignée du texte implique généralement une source
+        de lumière également éloignée du texte. ?
+    - Une ombre proche du texte implique généralement que la surface sous-jacente est proche, que la lumière est proche ou les deux. 
+        Une ombre rapprochée est souvent plus sombre qu'une ombre distante, car moins de lumière peut pénétrer entre la forme et la surface sous-jacente.    */
+
+/* AFFICHAGE DES FORMES, ORDRE D'AFFICHAGE 
+-------------------------------------------->
+Lorsque des éléments sont positionnés en dehors du flux normal, ils peuvent chevaucher d'autres éléments.
+La propriété z-index spécifie l'ordre de pile d'un élément (lequel élément doit être placé devant ou derrière les autres). 
+z-index ne fonctionne que sur les éléments positionnés (position: absolue, position: relative ou position: fixe). */
+.blue { 
+   margin-top:15px;
+   background-color: #8EC4D0;
+   margin-bottom: 15px;
+   margin-left:38px;
+   width: 76px;
+   height: 76px;
+   color: #FFF;
+   border-radius:38px; /* Arrondi les coin du carré */
+}
+.red {
+   background-color: #FF4D4D;
+   position: relative;
+   width: 76px;
+   height: 76px;
+   color: #FFF;
+   margin-top: -53px;
+}
+.blue2 { 
+    position: relative;
+    z-index:3; /* z-index est plus grand que la zone bleue, donc sera affiché au premier plan */
+    background-color: #8EC4D0;
+    margin-top: 38px;
+    margin-left:38px;
+    width: 76px;
+    height: 76px;
+    border-radius:38px;} /* Avec pour valeur la moitié de la taille du carré, border-radius va arrondir les angles de manière à créer un cercle */
+.red2 {
+    z-index:2;
+    background-color: Brown;
+    position: relative;
+    width: 76px;
+    height: 76px;
+    margin-top: -114px; }
+
+.boxShadow {
+    position: relative;
+    margin-left:95px;
+    margin-top:-95px;
+    width: 100px;
+    height: 50px;
+    background-color: #190B07;
+    box-shadow: -1px -1px 25px 5px brown; /* Ombre verticale / Horizontale / Flou / Elargissement (valeur - possible) / Couleur de l'ombre */
+}
+.shadowInset {
+    position: relative;
+    margin-left:220px;
+    margin-top:-120px;
+    width: 75px;
+    height: 75px;
+    background-color: #9ACD32;
+    border-radius: 25px 25px 25px 25px;
+    box-shadow: inset -1px -1px 20px 10px #0A2A12; /* Le mot clé "inset" permet de dessiner une ombre interne dans la case */
+    border:5pt dotted #5E610B;
+}
+.shadowMulti {
+    position: relative;
+    margin-left:220px;
+    margin-top:20px;
+    width: 75px;
+    height: 75px;
+    background-color: #9ACD32;
+    border-radius: 25px / 10px ; /*  Il est possible d'affiner l'arrondi de nos angles en créant des courbes elliptiques */
+    box-shadow: inset 10px 10px 10px #0A2A12, inset -10px -10px 10px #0A2A12; /* Vous pouvez définir autant d'ombres pour la même zone que vous le souhaitez en les écrivant toutes séparées par des virgules dans le même attribut. */
+    border:5pt dashed #5E610B;
+}
+.shadowMulti2 {
+    position: relative;
+    margin-left:345px;
+    margin-top:-170px;
+    margin-bottom:40px;
+    width: 100px;
+    height: 150px;
+    background: black;
+    box-shadow: 0 0 10px 5px red, 0 0 15px 20px orange, 0px 0px 1px 20px white; /* Les ombres apparraissent dans l'ordre écrit dans box-shadow */
+    border-radius: 90%;
+}
+.gradientLinear {
+    float:right;
+    position:relative;
+    padding:8px;
+    margin-top: -240px;
+    margin-right:10px;
+    width:53px; height: 53px;
+    background:-moz-linear-gradient(lightblue, blue); /* Dégradé linéaire de haut en bas */
+    background-clip:content-box; /* l'arrière-plan est peint dans la zone de contenu */
+    border:3pt outset deepskyblue; 
+}
+
+.colorStop 
+{
+	float:right;
+	position:relative;
+	margin-top: -160px;
+	margin-right:10px;
+	width:53px; height: 53px;
+	padding:8px;
+	border:3pt outset deepskyblue;
+	background-clip:padding-box; /* Le fond est peint sur le bord extérieur de la marge intérieure */
+	background:linear-gradient(blue, deepskyblue, black , deepskyblue , blue); 
+	/* 
+		Les couleurs peuvent être ajoutées les unes après les autres, séparées par une virgule.
+		Le navigateur déterminera ensuite chaque position d’arrêt de couleur. 
+	*/
+}
+
+.colorStop2 
+{
+	float:right;
+	position:relative;
+	padding:8px;
+	margin-top: -80px;
+	margin-right:10px;
+	margin-bottom:10px;
+	width:53px; height: 53px;
+	background-clip:border-box; /* Le fond est peint sur le bord extérieur de la bordure (Valeur par défaut) */
+	border:3pt outset deepskyblue; 
+	background:linear-gradient(bottom left, deepskyblue 25%, #0404B4 50%,  deepskyblue 100%);
+	/* 
+		Outre les pourcentages, vous pouvez également utiliser les formats px, em, etc., pour spécifier les arrêts de couleur.
+		Si vous utilisez la même position d'arrêt de couleur pour deux couleurs, une ligne nette sera créée entre elles.
+			
+		Au lieu de directions prédéfinies (bas, haut, droite, gauche, bas droite, etc.), vous pouvez contrôler la direction du dégradé en spécifiant un angle.
+		L'angle est défini comme un angle s'étendant entre une ligne horizontale et la ligne de dégradé. En d'autres termes, 0deg crée un dégradé de gauche à 
+		droite, tandis que 90deg génère un dégradé de bas en haut. 
+	*/
+}
+
+.gradientRepeat 
+{
+	float:right;
+	position:relative;
+	margin-top: -240px;
+	margin-right:5px;
+	width:75px; height: 75px;
+	background:repeating-linear-gradient(135deg, deepskyblue, blue 20px); 
+	/* 
+	 	Répète le dégradé tous les 20 pixels 
+		Pour créer un dégradé radial, vous devez définir au moins deux arrêts de couleur. Le dégradé radial est défini par son centre. 
+	*/
+}
+
+.radialGradient 
+{
+	float:right;
+	position:relative;
+	margin-top: -160px;
+	margin-right:5px;
+	width:75px; height: 75px;
+	background:-moz-radial-gradient(ellipse, darkblue, deepskyblue, blue); 
+	/* 
+	 	Ellipse est la forme par défaut 
+	*/
+}
+
+.radialGradient2 
+{
+	float:right;
+	position:relative;
+	margin-top: -80px;
+	margin-right:5px;
+	width:75px; height: 75px;
+	background:-moz-radial-gradient(top left, circle, darkblue 25%, deepskyblue 50%, blue 75%); 
+	/* 
+	 	position, forme ou taille, stops couleurs
+	*/
+}
+
+.backgroundSize 
+{
+	float:right;
+	position:relative;
+	margin-top: -240px;
+	margin-right:85px;
+	width:75px; height: 75px;
+	border: 1px solid deepskyblue;
+	background: url("https://particuliers.secure.lcl.fr/v_1.0/img/decouvrezLCL/responsive-lcl.jpg") no-repeat 50% 50%;
+	background-size: 50px 50px; /* Définit la taille de l'image */
+}
+
+.backgroundContain 
+{
+	float:right;
+	position:relative;
+	margin-top: -160px;
+	margin-right:85px;
+	width:75px; height: 75px;
+	border: 1px solid deepskyblue;
+	background: url("https://particuliers.secure.lcl.fr/v_1.0/img/decouvrezLCL/responsive-lcl.jpg") no-repeat 50% 50%;
+	background-size: contain; 
+	/* 
+	 	Redimensionne l'image pour l'adapter au conteneur. En d'autres termes, l'image s'agrandit ou se contracte proportionnellement, mais la largeur et la hauteur ne dépassent pas les dimensions du conteneur.     
+	*/
+}
+
+.backgroundCover 
+{
+	float:right;
+	position:relative;
+	margin-top: -80px;
+	margin-right:85px;
+	width:75px; height: 75px;
+	border: 1px solid deepskyblue;
+	background: url("https://particuliers.secure.lcl.fr/v_1.0/img/decouvrezLCL/responsive-lcl.jpg") no-repeat 50% 50%;
+	background-size: cover;  
+	/* 
+	 	L'image est redimensionnée pour s'adapter à l'ensemble du conteneur; Cependant, si le format de l'image est différent, l'image sera recadrée 
+	*/
+}
+
+.transparent 
+{
+	border: 15px solid rgba(139, 0, 0, 0.5);
+	-moz-background-clip: padding-box; 
+	-webkit-background-clip: padding-box; 
+	background-clip: padding-box; 
+	width:39.5%; height:95px;
+	position:relative;
+	margin-top:-140;
+	margin-left:2.5%;
+	background-color:black;
+	color:white;
+	text-align:center;
+	padding:2px;
+	margin-bottom:30px;
+	opacity: 0.85;  
+	/* 
+	 	La valeur de la propriété d'opacité doit être un nombre compris entre 0.0 (totalement transparent) et 1.0 (totalement opaque). 
+	*/
+}
+
+.fondTexte 
+{
+	width:49.5%; height:150px;
+	background-color:white;
+}
+
+.multiBgImages 
+{
+	width: 49.5%; height: 150px;
+	position:relative;
+	margin-top:-169px;
+	margin-left:50%;
+	margin-bottom:10px;
+	background-image: url("http://www.sololearn.com/uploads/css_logo.png"), url("http://www.sololearn.com/uploads/better-code.jpg");
+	background-position: left bottom, left top;
+	background-repeat: no-repeat; 
+} 
+
+/* ==============================================
+==========|-->>>  TRANSITIONS  <<<--|========== 
+   ==============================================
+
+	Les effets de transition peuvent être appliqués à une grande variété de propriétés CSS, notamment la couleur de fond, la largeur, la hauteur, l'opacité, etc.
+    
+	Les transitions CSS3 nous permettent de passer d'une valeur de propriété à une autre sur une durée donnée.
+			--> transition-property - spécifie la propriété à transformer
+			--> transition-duration - spécifie la durée pendant laquelle les transitions doivent avoir lieu
+			--> transition-delay - spécifie un délai (en secondes) pour l'effet de transition
+			--> transition-timing-function - spécifie comment le rythme de la transition change au cours de sa durée:
+					->> ease:           L'animation commence lentement, puis accélère rapidement.
+					->> linear:         Vitesse constante, souvent préférable pour les changements de couleur ou d'opacité.  
+					->> ease-in:        Commence lentement, puis accélère et s’arrête brusquement
+					->> ease-out:       Commence rapidement, mais décélère jusqu'à un arrêt.
+					->> ease-in-out:    Semblable à "ease", mais avec une accélération et une décélération plus subtiles.
+					->> cubic-bezier:   Permet de définir vos propres valeurs dans une fonction cubic-bezier
+                                        
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_  */
+
+
+.transitionWidth 
+{ 
+	/* 
+	 	Lorsque le curseur est retiré de l'élément, il revient progressivement à son style d'origine. 
+	*/
+	text-align:center;
+	padding-left:10px;
+	border:1pt solid grey;
+	width: 25%;
+	background-size:cover;
+	background: #32CD32;
+	transition: width 5s ease;
+	-webkit-transition: width 5s ease; 
+}
+
+.transitionWidth:hover 
+{
+	padding:5; width: 98%; background:yellow; font-weight:700;
+}
+
+.transitionAnimPerso 
+{ 
+	text-align:center;
+	padding-left:10px;
+	border:1pt solid grey;
+	width: 25%;
+	background-size:cover;
+	background: #32CD32;
+	transition: width 5s cubic-bezier(0.1,0.1,0.1,0.5); 
+	/* 
+	 	P0 étant le début, P3 étant la fin, valeur de 0 à 1 selon vitesse souhaitée
+		Temps pour aller du point 1 au point 2 etc.. 
+	*/
+}
+	
+.transitionAnimPerso:hover 
+{
+	padding:5; width: 98%; background:yellow; font-weight:700;
+}
+
+.transitionBgColor 
+{ 
+	text-align:center;
+	padding-left:10px;
+	width: 25%;
+	border:1pt solid grey;
+	background: #32CD32;
+	transition: background-color 2s ease-in 1s;
+	-webkit-transition: background-color 2s ease-in 500ms; 
+	-o-transition: background-color 2s ease-in 500ms; 
+}
+
+.transitionBgColor:hover 
+{ 
+	padding:5; background:yellow; font-weight:900;
+}
+
+.transitionColor 
+{ 
+	text-align:center;
+	padding-left:10px;
+	width: 25%;
+	border:1pt solid grey;
+	background: #32CD32;
+	transition: color 2s ease-out;
+	-webkit-transition: color 2s ease-out; 
+	-o-transition: color 2s ease-out; 
+}
+
+.transitionColor:hover 
+{
+	padding:5; color:yellow; font-weight:700;
+}
+
+.transitionBorder 
+{ 
+	text-align:center;
+	padding-left:10px;
+	width: 25%;
+	border:1pt solid grey;
+	background: #32CD32;
+	transition: border 2s ease-in-out;
+	-webkit-transition: border 2s ease-in-out; 
+	-o-transition: border 2s ease-in-out; 
+}
+
+.transitionBorder:hover 
+{
+	padding:5; 
+	border:3pt groove yellow; 
+	font-weight:700;
+}
+
+.transitionPadding 
+{ 
+	text-align:center;
+	padding-left:10px;
+	width: 25%;
+	border:1pt solid grey;
+	background: #32CD32;
+	transition: padding 2s linear 500ms;
+	-webkit-transition: padding 2s linear 500ms; 
+	-o-transition: padding 2s linear 500ms; 
+}
+
+.transitionPadding:hover 
+{
+	padding:10;
+	border:yellow;
+	font-weight:700;
+	background-color:yellow;
+}
+
+.transformRotate 
+{
+	text-align:center;
+	padding-left:10px;
+	width: 25%;
+	height: 20px;
+	margin-top: 4px;
+	background-color: #32CD32;
+	transform: rotate(2deg);
+ 	/* 
+	 	Fait pivoter un élément dans le sens des aiguilles d'une montre ou dans le sens contraire, selon un degré donné.
+		Une valeur négative entraînera une rotation dans le sens inverse des aiguilles d'une montre. 
+	*/ 
+}
+
+div.empty-div 
+{
+	position: relative;
+	height: 75px;
+	width: 10%;
+	margin: 10px 10px 10px 0px;
+	padding-left:10px;
+	border: 1px solid grey;
+	background-color:brown;
+}
+
+div.rotateAndScale 
+{
+	width:100%; height:100%;
+	position: absolute;
+	background-color: orange;
+	border: 1px solid white;
+	transform: rotate(15deg) scale(0.60); 
+	/* 
+	 	rotate va faire une rotation à l'élément(de X degrés) et scale le redimensionner (de X multiplicateur) 
+	*/
+	transform-origin:25% 35%; 
+	/* 
+	 	0 0 correspond à la même valeur qu'à gauche et en haut  et 100% 100% à la même valeur qu'a droite et en bas. 
+		La propriété transform-origin doit être utilisée avec la propriété transform. 
+	*/
+}
+
+div.translate 
+{
+	padding: 50px;
+	position: absolute;
+	background-color: #00BFFF;
+	transform:translate(25px, 10px); 
+	/* 
+		La méthode translate () déplace un élément de sa position actuelle. 
+		Les valeurs positives pousseront un élément vers le bas et à droite de sa position par défaut, tandis que les valeurs négatives tireront un élément vers le haut et à gauche de sa position par défaut. 
+	*/
+}
+
+div.skew 
+{
+	margin-left: 175px; margin-top:10px;
+	padding: 50px;
+	position: absolute;
+	background-color: #DA81F5;
+	transform: skew(30deg);
+}
+
+/* =============================================
+==========|-->>>  ANIMATIONS  <<<--|========== 
+   =============================================
+ 
+	Une animation permet à un élément de changer progressivement de style. 
+	Vous pouvez modifier autant de propriétés CSS que vous le souhaitez,autant de fois que vous le souhaitez. 
+	Les images clés contiennent les styles que l'élément aura à certains moments. 
+	Lorsque vous spécifiez des styles CSS dans la règle @keyframes, l'animation passera progressivement du style actuel au nouveau style à certains moments. 
+	Pour qu'une animation fonctionne, vous devez la lier à un élément. 
+
+		--> animation-name:  Spécifie le nom de l'animation à utiliser pour l'élément.
+		--> animation-delay:  Définit le délai avant le début d'une animation (seconde(s) ou millisecondes(ms))
+		--> animation-duration:  Durée de l'anim. Si la propriété duration n'est pas spécifiée, l'animation n'aura aucun effet. (s) ou (ms)
+		--> animation-iteration-count:  Détermine le nombre de répétitions d'une animation. "infinite" correspond à la valeur infinie. Si vous utilisez 0 ou un nombre négatif, l'animation ne démarrera jamais.
+		--> animation-timing-function:  Spécifie la courbe de vitesse d'une animation. Il peut avoir les valeurs suivantes:
+				->> ease:  Début lent, puis rapide, puis une fin lente (par défaut)
+				->> linear:  Même vitesse du début à la fin
+				->> ease-in:  Démarrage lent   
+				->> ease-out:  Fin lente
+				->> ease-in-out:  Début et une fin lents
+				->> cubic-bezier:  Permet de définir vos propres valeurs dans une fonction cubic-bezier
+		--> animation-direction:  Indique comment l'image clé doit être appliquée
+				->> normal:  La lecture avance de 0% à 100%.
+				->> reverse:  La lecture avance de 100% à 0%.
+				->> alternate:  L'animation est d'abord exécutée en avant, puis en arrière, puis en avant.
+				->> reverse:  L'animation tourne d'abord en arrière, puis en avant, puis en arrière.
+	
+	Une seule propriété d'animation peut être utilisée:
+        animation: {name} {duration} {timing-function} {delay} {iteration-count} {direction}    ATTENTION A RESPECTER L'ORDRE !!!
+*/
+
+@keyframes example 
+{  
+	/* 	
+	 	'exemple' est le nom de l'animation. Vous pouvez choisir n'importe quel nom pour votre animation.  
+	*/
+	0%  { background-color: red; }
+	25%  { background-color: orange; }
+	50%  { background-color: yellow; }
+	75%  { background-color: orange; }
+	100% { background-color: #580D0D; }
+}
+
+/*
+ 	Au lieu d'utiliser des pourcentages, vous pouvez utiliser des mots clés "from" et "to"   
+*/
+
+@keyframes colorChange 
+{
+	from {  
+		background-color: grey;
+		border:yellow dashed 2pt;
+	}
+	to { 
+		background-color: yellow;
+ 		border:black dashed 2pt;
+	}    
+	/*  
+		"from" est un décalage de départ de 0%, pourrais s'écrire 0%
+	 	"to" est un décalage de fin de 100%, pourrais s'écrire 100%  
+	*/
+}
+
+.changeCouleurs 
+{
+	position:absolute;
+	margin-left: 340; margin-top:10;
+	padding: 50px;
+	animation-name: example;
+	animation-duration: 10s;
+	animation-timing-function:ease;
+	animation-iteration-count:100;
+	background-color: #580D0D;
+	animation-direction:alternate;
+}
+
+/* ===================================================
+==========|-->>> TRANSFORMATIONS 3D <<<--|==========
+   ===================================================
+
+Avec les axes x et y, les transformations 3D introduisent l'axe Z, ce qui permet des manipulations 3D. 
+Les transformations 3D sont assez similaires aux transformations 2D; rotationX (), rotationY () et rotationZ () fait pivoter un élément dans l'espace 3D autour de l'axe correspondant à un degré donné.   
+ 
+*/
+
+div.TroisDrotateZ 
+{
+	position:absolute;
+	margin-left: 355; margin-top:24;
+	width:70px; height:70px;
+	background-color: #6D5B67;
+	animation-name:colorChange;
+	animation-duration:5s;
+	text-align:center;
+	transform: rotateZ(45deg);
+}
+
+div.TroisDrotateX 
+{
+	position:absolute;
+	margin-left: 450; margin-top:3; padding-top:25;
+	width:100px; height:90px;
+	background-color: #5D744C;
+	text-align:center;
+	transform: rotateX(150deg);
+}
+
+div.TroisDrotateY 
+{
+	position:absolute;
+	margin-left: 40px; margin-top:24;
+	width:75px; height:75px;
+	background-color: #5D744C;
+	text-align:center;
+	transform: rotateY(150deg);
+}
+	/*  
+		Vous pouvez désactiver toutes les transformations appliquées à un élément à l'aide de la fonction none: transform: none; 
+		Les méthodes de traduction 3D vous permettent de déplacer l'élément horizontalement (translateX), verticalement (translateY) et dans ou hors de l'écran (translateZ), en utilisant n'importe quelle unité de longueur CSS (px, em,%, etc.). Les valeurs positives déplacent l'élément vers le spectateur, les valeurs négatives plus loin.  
+	*/
+
+div.TroisDtranslate 
+{
+	margin-top:5px; padding:5px;
+	width:90px; height:20px;
+	background-color: #C39427;
+	text-align:center;
+	transform:translate3d(25px,7em,-45px);
+	/* 
+	 	Equivaut à écrire --> transform: translateX(25px) translateY(7em) translateZ(-45px); 
+ 		
+		Il existe également scale3d () et rotate3d (), qui sont applicables à la mise à l'échelle et à la rotation d'éléments en 3D.
+		La traduction d'un élément est similaire au positionnement relatif: elle n'affecte pas le flux du document.
+		L'élément traduit conservera sa position dans le flux et semblera seulement s'être déplacé.
+	*/
+}
+
+div.CarreVide 
+{
+	position:absolute;
+	margin-left:600; margin-top:10;
+	width:98px; height:98px;
+	background-color:#58583C;
+	border:solid 1pt white;
+	perspective:100px;
+	text-align:center;
+	padding-top:5px;
+	color: yellow;
+}
+
+div.Perspective 
+{
+	padding:40px;
+	background-color: #EBE83D;
+	transform: rotateX(25deg);
+	animation: colorChange 5s ease-in-out 3s infinite alternate;
+}
+
+/* ================================================
+==========|-->>>  FILTRES CSS  <<<--|=========== 
+   ================================================ 
+
+	La propriété de filtre CSS vous permet d'appliquer des effets graphiques tels que le flou ou le changement de couleur à un élément. 
+	Les filtres sont couramment utilisés pour ajuster le rendu des images, des arrière-plans et des bordures. 
+	Le filtrage d'images est utile lorsque vous souhaitez avoir un style différent pour la même image. 
+	Au lieu de télécharger plusieurs images sur le site Web, vous pouvez télécharger une seule image, puis définir des effets visuels à l'aide de la propriété filter. 
+
+	Les fonctions de filtre incluent:
+		--> drop-shadow (w h b c):  Crée un effet d'ombre qui s'étend au-delà d'une image pour la largeur (w) et la hauteur (h), le flou (b) et la couleur (c).
+		--> blur (nb pixels):  La fonction Flou applique un effet de flou à une image.
+		--> brightness (quantité):  La fonction de luminosité ajuste la luminosité d'une image, la rendant ainsi plus lumineuse ou plus sombre.       
+		--> contrast (quantité) :  La fonction de contraste ajuste le contraste de l'image.
+		--> grayscale (0% à 100%):  La fonction Niveaux de gris convertit une image en niveaux de gris, 0% étant l'image originale
+		--> sepia (0% à 100%):  Ceci est similaire à l'utilisation de niveaux de gris mais avec une tonalité de couleur brun rougeâtre.
+		--> saturate:  La fonction saturer contrôle la saturation des couleurs pour une image.
+		--> hue-rotate (nb degré):  La fonction teinte-rotation applique une rotation de teinte (basée sur le cercle de couleur (voir cours Css)) à une image. 
+		--> invert (%):  Inverse les couleurs d'une image pour rendre les zones sombres claires et les zones lumineuses sombres.           
+		--> opacity (0% à 100%):  La fonction d'opacité définit l'opacité d'une image pour changer sa transparence.
+
+	ATTENTION... La propriété de filtre n'est pas prise en charge dans Internet Explorer, Edge 12, Safari 5.1 et versions antérieures.
+		
+	Plusieurs filtres CSS peuvent être utilisés ensemble en les séparant par des espaces.
+
+*/
+
+.flexbox
+{
+	margin-top:125;
+}
+
+.flex 
+{
+	display:flex;
+	align-items: flex-start;
+	justify-content: space-around;
+	margin:auto;
+	flex-wrap:wrap;  /* Les éléments vont à la ligne lorsqu'il n'y a plus la place  */
+	padding:10px;
+	border:double 3px gray;
+}
+
+.center 
+{
+	text-align:center;
+}
+
+.CSSfilter 
+{
+	width:112pt; height:90pt;
+	padding:5px 5px 5px 0px;
+}
+
+.ombrePortee 
+{
+	width:112pt; height:90pt;
+	padding:5px 5px 5px 0px;
+	filter: drop-shadow(2px 2px 5px red);  /*  Valeurs en pixels  */
+	-webkit- filter: drop-shadow(2px 2px 2px red);  
+	/* 
+	 	Les valeurs négatives créent l'ombre au-dessus et à gauche de l'image. 
+	*/
+}
+
+.grayScale 
+{
+	width:112pt; height:90pt;
+	padding:5px 5px 5px 0px;
+	filter: grayscale(100%);
+	-webkit- filter: grayscale(100%);
+}
+
+.sepia 
+{
+	width:112pt; height:90pt;
+	padding:5px 5px 5px 0px;
+	filter: sepia(100%);
+	-webkit- filter: sepia(100%);
+}
+
+.saturate {
+	width:112pt; height:90pt;
+	padding:5px 5px 5px 0px;
+	filter: saturate(250%); 
+	-webkit- filter: saturate(250%); 
+	/*	
+	 	0% crée une image complètement non saturée (niveaux de gris), tandis que 100% correspond à l'image d'origine. 
+	 	Le paramètre peut être un pourcentage ou un nombre, exemple (2.5) --> sur-saturé ! 
+	*/
+}
+
+.invert 
+{
+	width:112pt; height:90pt;
+	padding:5px 5px 5px 0px;
+	filter: invert(100%); 
+	-webkit- filter: invert(100%); 
+	/* 	
+	 	Le paramètre peut être un pourcentage ou un nombre. 
+	 	L'inversion à 0% laisse l'image inchangée, tandis que l'option 100% crée une image complètement inversée, similaire à un négatif photographique. 
+	*/
+}
+
+.roueTeinte 
+{
+	width:112pt; height:90pt;
+	padding:5px 5px 5px 0px;
+}  
+
+.hueRotate 
+{
+	width:112pt; height:90pt;
+	padding:5px 5px 5px 0px;
+	filter: hue-rotate(180deg); 
+	-webkit- filter: hue-rotate(180deg); 
+}
+
+.opacity 
+{
+	width:112pt; height:90pt;
+	padding:5px 5px 5px 0px;
+	filter: opacity(25%); 
+	-webkit- filter: opacity(25%); 
+	/* 
+	 	Une opacité de 0% crée une image totalement transparente, alors que 100% correspond à l'image d'origine.
+	*/
+}
+
+.brightness 
+{
+	width:112pt; height:90pt;
+	padding:5px 5px 5px 0px;
+	filter: brightness(150%); 
+	-webkit- filter: brightness(150%); 
+	/* 
+	 	0% donne une image complètement noire, 100% entraîne une image inchangée, toute quantité supérieure à 100% produit une image plus lumineuse. 
+	 	Le paramètre peut prendre un pourcentage ou un nombre (50% = 0.5). 
+	*/
+}
+
+.contrast 
+{
+	width:112pt; height:90pt;
+	padding:5px 5px 5px 0px;
+	filter: contrast(150%); 
+	-webkit- filter: contrast(150%); 
+	/* 
+	 	Une valeur inférieure à 100% diminue le contraste, tandis qu'une valeur supérieure à 100% l'augmente. 
+	 	Une valeur de 0% créera une image entièrement grise, tandis qu'une valeur de 100% laissera l'image inchangée. 
+	 	La valeur 0,5 correspond à 50%, tandis que 1 correspond à 100%. 
+	*/
+}
+
+.blur 
+{
+	width:112pt; height:90pt;
+	padding:5px 5px 5px 0px;
+	filter: blur(1px); 
+	-webkit- filter: blur(1px); 
+	/* 
+	 	La fonction flou n'a qu'un seul paramètre, le rayon, qui définit le nombre de pixels à l'écran qui se fondent l'un dans l'autre. (Une valeur plus grande crée plus de flou). 
+	*/
+}
+

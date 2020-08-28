@@ -1,0 +1,21 @@
+{
+  "name": "test-with-jest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.12",
+    "@types/jest": "^26.0.10",
+    "chai": "^4.2.0",
+    "jest": "^26.4.1",
+    "jest-mock-axios": "^4.2.1"
+  }
+}

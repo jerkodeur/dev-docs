@@ -1,0 +1,285 @@
+<!-- Lien à insérer à la page en utilisant la version en ligne : -->
+
+<!-- Assurez-vous que vos pages sont configurées avec les normes de conception et de développement les plus récentes. Cela signifie qu’il est nécessaire d’utiliser un doctype HTML5 et d’inclure une balise méta viewport pour obtenir les comportements réactifs appropriés. Rassemblez tout et vos pages devraient ressembler à ceci: 	-->
+
+	<!doctype html>
+	<html lang="en">
+	  <head>
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <!-- Pour que le rendu et le zoom tactile soient corrects pour tous les périphériques -->
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <title>Bootstrap</title>
+
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	    <link rel="stylesheet" href="Bootsrap/bootsrap.css">
+
+	  </head>
+	  <body>
+	  	
+	  	<!-- SYSTEME DE GRILLE 
+
+			Découvrez comment certains aspects du système de grille Bootstrap fonctionnent sur plusieurs périphériques:
+
+				 			Taille d'écran: 		Taille max du container 		
+				Extra small [col]  		< 576px 		None (auto)
+				Small [col-sm] 			>= 576px		540px
+				Medium [col-md] 		>= 768px		720px
+				Large [col-lg] 			>= 992px		960px
+				Extra Large [col-xl] 	>= 1200px		1140px
+
+			Nombre de colonnes: 12 
+			Taille de la gouttière: 30px (15px de chaque coté d'une colonne)      -->
+
+		<div class="container affGen" > <!-- Centre les colonnes sur la page -->
+	  		<div class="row title">
+				<div class="col-sm">class="container"</div>
+			</div>
+	  	  	<div class="row affRow">
+		  	    <div class="col-sm affCell">.col-sm (small)</div>
+		  	    <div class="col-sm affCell">.col-sm (small)</div>
+		  	    <div class="col-sm affCell">.col-sm (small)</div>
+  	  		</div>
+	  	</div>
+
+ 	<!-- 2 lignes avec un nombre de colonnes différentes -->
+	    <div class="container-fluid affGen"> <!-- Les colonnes occupent toute la page -->
+	    	<div class="row title">
+				<div class="col-sm">class="container-fluid" (Occupe toute la largeur de l'écran)</div>
+		  	</div>		
+	  	  	<div class="row affRow">
+	  	    	<div class="col-sm affCell">.col-sm</div>
+	  	    	<div class="col-sm affCell">.col-sm</div>
+	  	    	<div class="col-sm affCell">.col-sm</div>
+	  	    </div>
+		<!-- Entre 2 ligne se trouve un espace appelé 'gutter' (gouttière) -->
+	  	  	<div class="row affRow">
+		  	    <div class="col-sm affCell">.col-sm</div>
+		  	    <div class="col-sm affCell">.col-sm</div>
+	  		</div>
+	  	</div>
+
+	<!-- Avec une taille définie à une colonne -->
+	  	<div class="container affGen">
+	  		<div class="row title">
+				<div class="col">Avec un nombre de colonne défini (/12)</div>
+		  	</div>
+	  		<div class="row affRow">
+	  	    	<div class="col affCell">.col</div>	  	    
+	  	    	<div class="col-6 affCell">.col-6 (Occupe donc la moitié de l'espace)</div>
+	  	    	<div class="col affCell">.col</div>
+	  	  	</div>
+	  	</div>
+
+	<!-- Avec une cellule n'occupant que la taille de son contenu(s) -->
+	  	<div class="container-fluid affGen">
+	  		<div class="row title">
+				<div class="col">Taille en fonction du contenu d'une cellule</div>
+		  	</div>
+	  		<div class="row justify-content-md-center affRow">
+	  	    	<div class="col col-lg-4 affCell">.col-lg-4 (large - longueur 4/12)</div>
+	  	<!-- Calcule automatiquement la taille de la cellule en fonction de son contenu	-->
+	  	    	<div class="col-md-auto affCell">.col-md-auto (medium) De la taille du contenu</div>
+	  	    	<div class="col col-lg-3 affCell">.col-lg-3 (longueur 3/12)</div>
+	  	    </div>
+	  	  	<div class="row affRow">
+	  	    	<div class="col affCell">.col</div>
+	  	    	<div class="col-md-auto affCell">.col-md-auto</div>
+	  	    	<div class="col col-lg-2 affCell">.col-lg-2</div>
+	  	  	</div>
+	  	</div>
+
+	<!-- Renvoyer à la ligne certaines cellules à partir d'un certain point -->
+	 	<div class="container affGen">
+	 		<div class="row title">
+				<div class="col">Renvoyer à la ligne des cellules avec class="w-100"</div>
+		  	</div>
+			<div class="row title">
+				<div class="col subTitle">[.w-100 d-none d-md-block] forcera le retour à la ligne pour md et plus</div>
+			</div>
+	 	  	<div class="row affRow">
+		 	    <div class="col affCell">.col</div>
+		 	    <div class="col affCell">.col</div>
+		 	    <div class="w-100"></div> <!-- Renvoi à la ligne -->
+		 	    <div class="col affCell">.col</div>
+		 	    <div class="col affCell">.col</div>
+	 	  	</div>
+	 	</div> 
+
+	<!-- Afficher un nombre de colonne en fonction du périphérique -->
+	 	<div class="container-fluid affGen">
+	 		<div class="row title">
+				<div class="col">Afficher un nombre de colonne en fonction du périphérique</div>
+		 	</div>
+  		<!-- Empilez les colonnes sur le mobile en faisant l'une pleine largeur et l'autre demi-largeur -->
+  			<div class="row affRow">
+			  	<div class="col-12 col-md-8 affCell">.col-12 col-md-8</div>
+			    <div class="col-6 col-md-4 affCell">.col-6 col-md-4</div>
+			</div>
+  		<!--  Les colonnes commencent à 50% de largeur sur le mobile et atteignent 33,3% de largeur sur le bureau  -->
+			<div class="row affRow ">
+			    <div class="col-6 col-md-4 affCell">.col-6 col-md-4</div>
+			    <div class="col-6 col-md-4 affCell">.col-6 col-md-4</div>
+			    <div class="col-6 col-md-4 affCell">.col-6 col-md-4</div>
+			</div>
+  		<!-- Les colonnes ont toujours une largeur de 50%, sur mobile et sur poste de travail -->
+	  		<div class="row affRow">
+			    <div class="col-6 affCell">.col-6</div>
+			    <div class="col-6 affCell">.col-6</div>
+	  		</div>
+		</div>
+	<!-- Les gouttières peuvent être ajustées en fonction des classes de remplissage et des marges négatives spécifiques aux points d'arrêt. -->
+		<div class="container px-lg-5 affGen"><!-- px = padding width -->
+			<div class="row mx-n5 title">
+				<div class="col">Modifier l'espace intérieur des gouttières (padding) class="container px-lg-5" (padding-X: 5)</div>
+			</div>
+			<div class="row mx-n5 title">
+				<div class="col subTitle">class="row mx-lg-n5" (margin-left: -5)</div>
+			</div>
+			<div class="row mx-lg-n5 affRow"><!-- mx = margin width / n5 = -5 -->
+			    <div class="col py-3 px-lg-5 border bg-light affCell">.col py-3 (padding-Y: 3) px-lg-5 border bg-light</div><!-- py = padding height -->
+			    <div class="col py-3 px-lg-5 border bg-light affCell">.col py-3 px-lg-5 border bg-light (background light)</div>
+			</div>
+		</div>
+	<!-- Alignement vertical des lignes -->
+		<div class="container-fluid affGen" >
+			<div class="row title">
+				<div class="col">Alignement vertical des lignes</div>
+			</div>
+		  	<div class="row align-items-start affRow x3Height">
+			    <div class="col affCell">.row align-items-start</div>
+		  	</div>
+		  	<div class="row align-items-center affRow x3Height">
+			    <div class="col affCell">.row align-items-center</div>
+		  	</div>
+		  	<div class="row align-items-end affRow x3Height">
+			    <div class="col affCell">.row align-items-end</div>
+		  	</div>
+		</div>
+	<!-- Alignement vertical des cellules -->
+		<div class="container affGen" >
+			<div class="row title">
+				<div class="col">Alignement vertical des cellules</div>
+			</div>
+		  	<div class="row affRow x5Height">
+			    <div class="col align-self-start affCell">.col align-self-start</div>
+		  		<div class="col align-self-center affCell">.col align-self-center</div>
+		  		<div class="col align-self-end affCell">.col align-self-end</div>
+		  	</div>
+		</div>
+	<!-- Alignement Horizontal-->
+		<div class="container-fluid affGen" >
+			<div class="row title">
+				<div class="col">Alignement horizontal des lignes</div>
+			</div>
+		  	<div class="row justify-content-start affRow">
+    			<div class="col-8 affCell">[col-8] .row justify-content-start</div>
+    		</div>
+		  	<div class="row justify-content-center affRow">
+    			<div class="col-8 affCell">[col-8] .row justify-content-center</div>
+    		</div>
+		  	<div class="row justify-content-end affRow">
+    			<div class="col-8 affCell">[col-8] .row justify-content-end</div>
+    		</div>
+		  	<div class="row justify-content-around affRow">
+    			<div class="col-4 affCell">[col-4] .row justify-content-around</div>
+    			<div class="col-4 affCell">[col-4] .row justify-content-around</div>
+    		</div>
+		  	<div class="row justify-content-between affRow">
+    			<div class="col-4 affCell">[col-4] .row justify-content-between</div>
+    			<div class="col-4 affCell">[col-4] .row justify-content-between</div>
+    		</div>
+    	</div>
+	<!-- Retirer les gouttières -->
+		<div class="container affGen" >
+			<div class="row title">
+				<div class="col">Retirer les gouttières</div>
+			</div>
+			<div class="row title">
+				<div class="col subTitle">Avec Gouttières</div>
+			</div>
+	    	<div class="row affRow">
+	  			<div class="col-12 col-sm-6 col-md-8 affCell noCenter">.col-12 .col-sm-6 .col-md-8</div>
+	  			<div class="col-6 col-md-4 affCell noCenter">.col-6 .col-md-4</div>
+			</div>
+			<div class="row title">
+				<div class="col subTitle">[.row .no-gutters] Sans gouttières</div>
+			</div>
+	    	<div class="row no-gutters affRow">
+	  			<div class="col-12 col-sm-6 col-md-8 affCell noCenter">.col-12 .col-sm-6 .col-md-8</div>
+	  			<div class="col-6 col-md-4 affCell noCenter">.col-6 .col-md-4</div>
+			</div>
+		</div>
+	<!-- Ordonner les cellules -->
+		<div class="container-fluid affGen">
+			<div class="row title">
+				<div class="col">Trier les colonnes</div>
+			</div>
+			<div class="row affRow">
+				<div class="col-4 affCell order-12">[1/3] .col-4 .order-12</div>
+				<div class="col-4 affCell order-1">[2/3] .col-4 .order-1</div>
+				<div class="col-4 affCell order-6">[3/3] .col-4 .order-6</div>
+			</div>
+			<div class="row affRow">
+				<div class="col-4 affCell order-last">[1/3] .col-4 .order-last</div>
+				<div class="col-4 affCell">[2/3]</div>
+				<div class="col-4 affCell order-first">[3/3] .col-4 .order-first</div>
+			</div>
+		</div>
+	<!-- Décaler les colonnes -->
+		<div class="container affGen">
+			<div class="row title">
+				<div class="col">Décaler les colonnes</div>
+			</div>
+			<div class="row affRow">
+				<div class="col-md-4 affCell">.col-md-4</div>
+				<div class="col-md-4 affCell offset-md-4">.col-md-4 .offset-md-4</div>
+			</div>
+			<div class="row affRow">
+				<div class="col-md-3 affCell offset-md-3">.col-md-3 offset-md-3</div>
+				<div class="col-md-3 affCell offset-md-3">.col-md-3 offset-md-3</div>
+			</div>
+
+			<div class="row title">
+				<div class="col subTitle">Décale les cellules si md+ et retire le décalage si lg+</div>
+			</div>
+			<div class="row affRow">
+				<div class="col-sm-6 col-md-5 col-lg-6 affCell">.col-sm-6 .col-md-5 .col-lg-6</div>
+				<div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0 affCell">.col-sm-6 .col-md-5 .offset-md-2 .col-lg-6 .offset-lg-0</div>
+			</div>
+		</div>
+	<!-- Jouer avec les marges -->
+		<div class="container-fluid affGen">
+			<div class="row title">
+				<div class="col">Décaler avec les marges</div>
+			</div>
+			<div class="row affRow">
+				<div class="col-md-4 affCell">.col-md-4</div>
+				<div class="col-md-4 affCell ml-auto">.col-md-4 .ml-auto (margin-left)</div>
+			</div>
+			<div class="row affRow">
+				<div class="col-md-3 affCell ml-md-auto">.col-md-3 .ml-md-auto</div>
+				<div class="col-md-3 affCell ml-md-auto">.col-md-3 .ml-md-auto</div>
+			</div>
+			<div class="row affRow">
+				<div class="col-auto mr-auto affCell">.col-auto .mr-auto (margin-right)</div>
+				<div class="col-auto affCell">.col-auto</div>
+			</div>
+		</div>
+	<!-- Classes personnalisées -->
+		<div class="example-container affGen">
+			<div class="row title">
+				<div class="col">Utilisation de classes personnalisées</div>
+			</div>	
+		  	<div class="example-row affRow">
+		    	<div class="example-content-main affCell">Main content</div>
+		    	<div class="example-content-secondary affCell" >Secondary content</div>
+		  </div>
+		</div>
+
+	    <!-- Optional JavaScript -->
+	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	    <script src="bootstrap-4-3-1/package.js"></script>
+	  </body>
+	</html>

@@ -1,0 +1,826 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css.css" /> <!-- Définit l'emplacement de la feuille de style CSS -->
+        <title>Cours CSS</title>
+        <meta charset="utf-8" />
+        <style>
+            p { /* Permet de définir un style pour toutes les balises "p" sur la page */
+                color:pink;
+                } 
+        </style>
+    </head>
+    <body>
+        <h1 class="titre">COURS CSS: Lexique des fonctions</h1>
+        <nav>
+            <ul>
+                <li><a href="#">EXEMPLES</a></li>
+                <li><a href="#">TEXTES</a></li>
+                <li><a href="#">TABLEAUX</a></li>
+                <li><a href="#">IMAGES</a></li>
+            </ul>
+        </nav><hr />
+        <div class="center">
+            <p style="color:yellow; background-color:brown;text-align:center;width:50%; margin:auto;border:3pt double black; padding:1px"> <!-- Defini un style juste pour cette balise "p" -->
+                Voici un exemple d'un style "en ligne". </p>
+        </div>
+        <div align="center">
+            <div id="intro" title="#intro { 
+            color: #591515 ;  
+            background-color: #8E7777 ; 
+            text-align: center ;  
+            width: 50% ; 
+            padding: 1px ;  
+            border: 6pt double black ; 
+            }">
+                <h4>Ce titre est <em>stylé</em> par l'ID "intro"</h4>
+            </div>
+        </div>
+        <div class="center">
+            <p class="first">Ce paragraphe est stylé par la classe "first"</p>
+        </div><hr />
+        <h1 class="formatageTexte" title ='.formatageTexte 
+        {
+            color: orange;
+            font-size: 16pt;   
+            text-shadow: red -3px -1px 2px, orange 1px 3px 2px;
+            text-align:center;
+            letter-spacing: 4px; 
+        }'>
+            FORMATAGE DU TEXTE
+        </h1>
+        <div id="formatTexte">
+            <div class="tr">
+                <div class="attributs">color</div>
+                <div class="valeur">
+                    <div class="code">[Blue]</div>
+                    <div class="fontColor">Bleu</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[#FFFFFF]</div>
+                    <div class="fontColorHex">Blanc</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[rgb(255,0,0)]</div>
+                    <div class="fontColorRgb">Rouge</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">font-family</div>
+                <div class="valeur">
+                    <div class="code">[Times]</div>
+                    <div class="serif">Serif</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[Arial]</div>
+                    <div class="sansserif">Sans-serif</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[Courier]</div>
+                    <div class="monospace">Monospace</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[Florence]</div>
+                    <div class="cursive">Cursive</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">font-face</div>
+                <div class="valeur">
+                    <div class="code">[Antonellie]</div>
+                    <div class="fontFace">Texte ecrit grace a une police importee et chargee sur la page</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">font-size (1)</div>
+                <div class="valeur">
+                    <div class="code">[small]</div>
+                    <div class="smallSize">Petit</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[medium]</div>
+                    <div class="mediumSize">Moyen</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[large]</div>
+                    <div class="largeSize">Grand</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[x-large]</div>
+                    <div class="xLargeSize">Très grand</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">font-size (2)</div>
+                <div class="valeur">
+                    <div class="code">[12px]</div>
+                    <div class="pxSize">Pixels</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[13pt]</div>
+                    <div class="ptSize">Points</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[1.15em]</div>
+                    <div class="emSize">Taille relative</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[150%]</div>
+                    <div class="pourcSize">Pourcentage</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">font-style</div>
+                <div class="valeur">
+                    <div class="code">[italic]</div>
+                    <div class="italic">Texte en italique</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[normal]</div>
+                    <div class="normalStyle">Texte normal</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">font-weight (1)</div>
+                <div class="valeur">
+                    <div class="code">[lighter]</div>
+                    <div class="light">Plus léger</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[bold]</div>
+                    <div class="bold">Texte en gras</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[bolder]</div>
+                    <div class="bolder">Plus gras</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">font-weight (2)</div>
+                <div class="valeur">
+                    <div class="code">[100]</div>
+                    <div class="light">Plus léger</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[700]</div>
+                    <div class="bold">Texte en gras</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[900]</div>
+                    <div class="bolder">Plus gras</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">font-variant</div>
+                <div class="valeur">
+                    <div class="code">[normal]</div>
+                    <div class="normalVariant">Normal</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[small-caps]</div>
+                    <div class="smallVariant">Petites majuscules</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[inherit]</div>
+                    <div class="inheritVariant">Hérité</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">text-transform</div>
+                <div class="valeur">
+                    <div class="code">[lowercase]</div>
+                    <div class="lowercase">minuscule</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[capitalize]</div>
+                    <div class="capitalize">Début mots</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[uppercase]</div>
+                    <div class="uppercase">majuscule</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">text-decoration</div>
+                <div class="valeur">
+                    <div class="code">[overline]</div>
+                    <div class="overline">Surligné</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[underline]</div>
+                    <div class="underline">Souligné</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[line-through]</div>
+                    <div class="lineThrough">Barré</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">letter-spacing</div>
+                <div class="valeur">
+                    <div class="code"></div>
+                    <div class="letterSpacing">Les lettres sont espacées de 4 pixels</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">world-spacing</div>
+                <div class="valeur">
+                    <div class="code"></div>
+                    <div class="worldSpacing">Les mots sont espacés de 1 cm</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">text-indent</div>
+                <div class="valeur">
+                    <div class="code">[100px]</div>
+                    <div class="textIndent">Début du texte décalé de 100 pixels à partir de la gauche</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">vertical-align</div>
+                <div class="valeur">
+                    <div class="code">[sub]</div>
+                    <div class="subAlign"><sub>Texte Indice</sub></div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[super]</div>
+                    <div class="superAlign"><sup>Texte Exposant</sup></div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[pixel]</div>
+                    <div class="pixelAlign">Alignement personnalisé</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">text-align</div>
+                <div class="valeur">
+                    <div class="code">[left]</div>
+                    <div class="textAlignLeft">Gauche</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[center]</div>
+                    <div class="textAlignCenter">Centré</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[right]</div>
+                    <div class="textAlignRight">Droite</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">Liens</div>
+                <div class="valeur">
+                    <div class="code">[link]</div>
+                    <div class="aLink">Lien</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[visited]</div>
+                    <div class="aVisited">Visité</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[active]</div>
+                    <div class="aActive">Cliqué</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[focus]</div>
+                    <div class="aFocus">Sélectionné</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[hover]</div>
+                    <div class="aHover">Survolé</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">white-space (1)</div>
+                <div class="valeur">
+                    <div class="code">[nowrap]</div>
+                    <div class="nowrap">Retire à la fois les espaces et les sauts de lignes quitte à ne plus voir la suite de la ligne</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">white-space (2)</div>
+                <div class="valeur">
+                    <div class="code">[pre]</div>
+                    <div class="pre">Conserve le texte,        tel qu'il est écrit dans les lignes 
+                                                        de codes</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[pre-line]</div>
+                    <div class="preline">Supprime les             espaces, 
+                    mais garde les sauts de ligne</div>
+                </div>
+                <div class="valeur">
+                    <div class="code">[pre-wrap]</div>
+                    <div class="prewrap">Le texte    sera conservé mais le texte    retournera à la la ligne si la ligne de texte est trop longue pour être affichée sur une   seule ligne </div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">word-wrap</div>
+                <div class="valeur">
+                    <div class="wordWrap">Ceparagraphecontientunmotimpossibleàtrouverdansledictionnairecarilesttroplongmaisilaétécoupéetmisàlalignegrâceàl'optionbreak-word;break-allpermet de mettrefinatoutautreattributetainsipermettreaumotdepasseralaligne</div>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">OL / UL</div>
+                <div class="valeur">
+                    <ol class="OLdecimalAlpha"><li>decimal-alpha (défaut)</li></ol>
+                    <ol class="OLlowerAlpha"><li>lower-alpha</li></ol>
+                    <ol class="OLupperAlpha"><li>upper-alpha</li></ol>
+                    <ol class="OLupperRoman"><li>upper-roman</li></ol>
+                </div>
+                <div class="valeur">
+                    <ul class="ULdisc"><li>disc (défaut)</li></ul>
+                    <ul class="ULsquare"><li>square</li></ul>
+                    <ul class="ULcircle"><li>circle</li></ul>
+                </div>
+                <div class="valeur">
+                    <ul class="ULimage"><li>image</li></ul>
+                    <ul class="pucePositionInt"><li>inside</li></ul>
+                    <ul class="pucePerso"><li>custom</li></ul>
+                </div>
+            </div>
+            <div class="tr">
+                <div class="attributs">cursor</div>
+                <div class="valeur"><div class="cursorAuto">Auto</div></div>
+                <div class="valeur"><div class="cursorHelp">help</div></div>
+                <div class="valeur"><div class="cursorHand">pointer</div></div>
+                <div class="valeur"><div class="cursorMove">move</div></div>
+                <div class="valeur"><div class="cursorText">text</div></div>
+                <div class="valeur"><div class="cursorCrossHair">crosshair</div></div>
+                <div class="valeur"><div class="cursorWait">wait</div></div>
+                <div class="valeur"><div class="cursorDefault">default</div></div>
+                <div class="valeur"><div class="cursorNone">none</div></div>
+                <div class="valeur"><div class="cursorNotAllowed">not-allowed</div></div>
+                <div class="valeur"><div class="cursorProgress">progress</div></div>
+                <div class="valeur"><div class="cursorCell">cell</div></div>
+                <div class="valeur"><div class="cursorVerticalText">vertical-text</div></div>
+                <div class="valeur"><div class="cursorAlias">alias</div></div>
+                <div class="valeur"><div class="cursorCopy">copy</div></div>
+                <div class="valeur"><div class="cursorAllScroll">all-scroll</div></div>
+                <div class="valeur"><div class="cursorColResize">col-resize</div></div>
+                <div class="valeur"><div class="cursorRowResize">row-rezize</div></div>
+                <div class="valeur"><div class="CnResize">n-resize</div></div>
+                <div class="valeur"><div class="CeResize">e-resize</div></div>
+                <div class="valeur"><div class="CnsResize">ns-resize</div></div>
+                <div class="valeur"><div class="CewResize">ew-resize</div></div>
+                <div class="valeur"><div class="CneResize">ne-resize</div></div>
+                <div class="valeur"><div class="CnwResize">nw-resize</div></div>
+            </div>
+        </div><br />
+        <h1 class="formatageTexte">TECHNIQUES DE MISE EN FORME</h1>
+        <div class="centrageFlex">    
+            <div class="formatTech">
+                <div class="titreFormat">FLOAT</div>
+                <div class="centrageBloc">
+                    <div>
+                        <img src="http://www.universal-soundbank.com/images/rythme.jpg" alt="musique" class="floatLeft" width="100" height="100" />
+                        <span class="overflowVisible">Ce texte contient une image qui flotte à <strong> gauche</strong>. Avec CSS float, un élément peut être déplacé vers la gauche ou la droite, cela permet à d’autres éléments de s’enrouler autour de lui.
+                        </span>
+                    </div>
+                    <div class="overflowScroll">
+                        Contrairement au paragraphe précédent, des barres de défilements permettent de lire tout le texte, et ce, sans déborder des dimensions définies. Float est souvent utilisé avec des images, mais il est également utile lorsque vous travaillez avec des mises en page. Les valeurs de la propriété {float} sont left, right et none. Le texte a été justifié en transformant notre balise {span} en un type block grâce à l'attribut {display}. Plus d'informations sont disponibles plus bas dans ce chapitre. 
+                    </div>
+                    <div class="overflowHidden">
+                        Ici le texte qui dépasse des dimensions du contenant ne sera pas affiché car l'overflow est définit sur {hidden}. Il est possible de voir le contenu masqué en utilisant du JavaScript, cela peut nottament servir à créer des menus interactifs. Pour voir plus nettement le résultat des réglages d'overflow, je vous invite à réduire la largeur de la page. Ainsi, vous pourrez vous apercevoir que la suite de ce texte ne va pas apparaître à l'écran car il est trop long par rapport aux dimensions du conteneur.
+                    </div>
+                    <div>
+                        <span class="overflowAuto">L'overflow de ce texte à été définit sur {auto}. En fonction des dimensions définies du conteneur, des barres de défilement seront affichées afin de permettre à tout le texte d'être visible.</span>
+                    </div>
+                </div>
+                <div class="titreFormat">OVERFLOW</div>
+            </div>
+            <div class="formatTech">
+                <div class="titreFormat">DISPLAY</div>
+                <div class="centrageBloc">
+                    <div>
+                        <div class="borderSpan">
+                            <span class="displayInline">[span n°1]  La balise {span} est une balise de type "inline"</span>
+                            <span class="displayInline">[span n°2]  Les éléments se placent les uns à côté des autres.</span>
+                        </div>
+                        <span class="displayBlock">[span n°3] {display} est défini sur {block} et modifie donc le flux normal "inline" de cette balise ( Chaque élément sera disposé l'un en-dessous de l'autre et pourra être redimensionné, ils occuperont toute la largeur disponible, avec des sauts de ligne avant et après).</span>
+                        <span class="displayNone">[span n°4]</span>
+                        <div class="borderSpan">
+                            <span class="displayInlineBlock">[span n°5] Le {span} n°4 est caché et n'occupe pas de place sur la page. Ce {span} est défini sur {inline-block} et se positionne en ligne, mais avec les avantages de {display:block}.</span>
+                            <span class="displayInlineBlock">[span n°6] est défini sur {inline-block}: les éléments sont positionnés les uns à côté des autres (comme les inlines) mais pourront être redimensionnés (comme les blocs). </span>
+                        </div>
+                    </div>
+                    <div class="borderHidden">
+                            <span class="visibilityHidden">[span n°7]</span>
+                            <span class="displayBlock">[span n°8] Le {span} 7 est masqué avec l'attribut {visibility:hidden;}, mais il occupe tout de même de la place sur la page, juste au dessus de ce texte. Survolez-le pour l'afficher avec l'aide du JavaScript.
+                            </span>
+                    </div>
+                </div>
+                <div class="titreFormat">VISIBILITY</div>
+            </div>
+            <div class="formatTech">
+                <div class="titreFormat">POSITION</div>
+                <div class="centrageBloc">
+                    <div class="relative">
+                        <div>
+                            <span class="sansPosition">Survolez ce texte pour voir un texte avec une position fixe</span>
+                            <span class="positionStatic">La position de ce paragraphe est définit sur "statique", il suivra donc le flux normal de la page (défaut)</span>
+                            <span class="positionFixed">L'élément reste toujours visible, même si on descend plus bas dans la page.</span>
+                        </div>
+                        <div class="positionRelative">Paragraphe avec une position relative, l'élément est décalé par rapport à la position qu'il aurait dû occuper sur la page.</div>
+                        <div class="positionAbsolute">Ce paragraphe à une position absolue, il est positionné à partir de la gauche et du haut de son bloc parent définit par une position absolue, fixe ou relatif</div>
+                    </div>
+                </div>
+                <div class="titreFormat">POSITION</div>
+            </div>
+            <div class="formatTech">
+                <div class="titreFormat">FLEX</div>
+                <div class="miseEnFormeFlex">
+                    <div class="flexDirectionRow" title="flex-direction: row; (Par défaut)">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                    <div class="flexDirectionRowReverse" title="flex-direction: row-reverse;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                    <div class="flexDirectionColumn" title="flex-direction: column;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                    <div class="flexDirectionColumnReverse" title="flex-direction: column-reverse;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                </div>
+                <div class="titreFormat">DIRECTION</div>
+            </div>
+            <div class="formatTech">
+                <div class="titreFormat">FLEX-</div>
+                <div class="miseEnFormeFlex">
+                    <div class="flexNoWrap" title="flex-wrap: nowrap;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                    <div class="flexWrap" title="flex-wrap: wrap;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                    <div class="flexWrapReverse" title="flex-wrap: wrap-reverse;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                </div>
+                <div class="titreFormat">WRAP</div>
+            </div>
+            <div class="formatTech">
+                <div class="titreFormat">JUSTIFY</div>
+                <div class="miseEnFormeFlex">
+                    <div class="flexJustifyContentStart" title="justify-content: flex-start;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                    <div class="flexJustifyContentEnd" title="justify-content: flex-end;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                    <div class="flexJustifyContentCenter" title="justify-content: center;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                    <div class="flexJustifyContentBetween" title="justify-content: space-between;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                    <div class="flexJustifyContentAround" title="justify-content: space-around;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                </div>
+                <div class="titreFormat">CONTENT</div>
+            </div>
+            <div class="formatTech">
+                <div class="titreFormat">ALIGN</div>
+                <div class="miseEnFormeFlex">
+                    <div class="flexAlignItemsStart" title="align-items: flex-start;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                    <div class="flexAlignItemsCenter" title="align-items: center;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                    <div class="flexAlignItemsEnd" title="align-items: flex-end;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                </div>
+                <div class="titreFormat">ITEMS</div>
+            </div>
+            <div class="formatTech">
+                <div class="titreFormat">ALIGN</div>
+                <div class="miseEnFormeFlex">
+                    <div class="flexAlignContentStart" title="align-content: flex-start;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                    </div>
+                    <div class="flexAlignContentEnd" title="align-content: flex-end;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                    </div>
+                    <div class="flexAlignContentCenter" title="align-content: center;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                    </div>
+                    <div class="flexAlignContentBetween" title="align-content: space-between;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                    </div>
+                    <div class="flexAlignContentAround" title="align-content: space-around;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreBeige"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                    </div>
+                </div>
+                <div class="titreFormat">CONTENT</div>
+            </div>
+            <div class="formatTech">
+                <div class="titreFormat">ALIGN</div>
+                <div class="miseEnFormeFlex">
+                    <div class="flexAlignSelf" title="align-self: flex-end;">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                </div>
+                <div class="titreFormat">SELF</div>
+            </div>
+            <div class="formatTech">
+                <div class="titreFormat">ORDER</div>
+                <div class="miseEnFormeFlex">
+                    <div class="flexOrder" title=".flexOrder div:nth-child(1) { order: 3; }
+.flexOrder div:nth-child(2) { order: 1; }
+.flexOrder div:nth-child(3) { order: 2; }">
+                        <div class="carreBordeaux">1</div>
+                        <div class="carreOrange">2</div>
+                        <div class="carreBeige">3</div>
+                    </div>
+                </div>
+                <div class="titreFormat">ORDER</div>
+            </div>
+            <div class="formatTech">
+                <div class="titreFormat">FLEX</div>
+                <div class="miseEnFormeFlex">
+                    <div class="flexFlex1" title=".flexFlex1 div:nth-child(2) { flex: 1; }">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                    <div class="flexFlex2" title=".flexFlex2 div:nth-child(1) { flex: 3; }
+.flexFlex2 div:nth-child(2) { flex: 1.5; }
+.flexFlex2 div:nth-child(3) { flex: 1; }">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+
+                    <div class="flexFlex3" title=".flexFlex3 div:nth-child(1) { flex: 2; }
+.flexFlex3 div:nth-child(2) { flex: 1; }
+.flexFlex3 div:nth-child(3) { flex: 2; }">
+                        <div class="carreBordeaux"></div>
+                        <div class="carreOrange"></div>
+                        <div class="carreBeige"></div>
+                    </div>
+                </div>
+                <div class="titreFormat">FLEX</div>
+            </div>
+            <div class="formatTech">
+                <div class="titreFormat">TABLE</div>
+                <div class="miseEnFormeFlex">
+                    <table class="tableauBase" title="border-collapse: separate; border-spacing:5px; ">
+                        <caption>Bordures séparées</caption>
+                        <tr>
+                            <th class="borderSolid">1</th>
+                            <th class="borderSolid">2</th>
+                            <th class="borderSolid">3</th>
+                        </tr> 
+                        <tr>
+                            <td class="borderSolid" title="empty-cells: hide;"></td>
+                            <td class="borderSolid">5</td>
+                            <td class="borderSolid">6</td>
+                        </tr>
+                        <tr>
+                            <td class="borderSolid">7</td>
+                            <td class="borderSolid">8</td>
+                            <td class="borderSolid">9</td>
+                        </tr>
+                    </table>
+                    <table class="tableauBase" title="border-collapse: collapse;" >
+                        <caption>Bordures fusionnées</caption>
+                        <tr>
+                            <th class="borderSolid">1</th>
+                            <th class="borderSolid">2</th>
+                            <th class="borderSolid">3</th>
+                        </tr> 
+                        <tr>
+                            <td class="borderSolid">4</td>
+                            <td class="borderSolid">5</td>
+                            <td class="borderSolid">6</td>
+                        </tr>
+                        <tr>
+                            <td class="borderSolid">7</td>
+                            <td class="borderSolid">8</td>
+                            <td class="borderSolid">9</td>
+                        </tr>
+                    </table>
+                    <table class="tableauNomBordure">
+                        <caption>Nom des bordures</caption>
+                        <tr>
+                            <th class="borderDashed">dashed</th>
+                            <th class="borderDouble">double</th>
+                            <th class="borderDotted">dotted</th>
+                        </tr> 
+                        <tr>
+                            <td class="borderGroove">groove</td>
+                            <td class="borderSolid">solid</td>
+                            <td class="borderRidge">ridge</td>
+                        </tr>
+                        <tr>
+                            <td class="borderOutset">outset</td>
+                            <td class="borderHidden">hidden</td>
+                            <td class="borderInset">inset</td>
+                        </tr>
+                    </table>
+                    <table class="tableauBase">
+                        <caption>Cellules fusionnées</caption>
+                        <tr>
+                            <th colspan="3" class="borderSolid">colspan</th>
+                        </tr> 
+                        <tr>
+                            <td class="borderSolid">2</td>
+                            <td rowspan="2" class="borderSolid">rowspan</td>
+                            <td class="borderSolid">4</td>
+                        </tr>
+                        <tr>
+                            <td class="borderSolid">5</td>
+                            <td class="borderSolid">6</td>
+                        </tr>
+                    </table>
+                    <table class="tableauBase">
+                        <caption>Alignement Texte</caption>
+                        <tr>
+                            <th class="borderSolid" >1</th>
+                            <th rowspan="3" class="borderSolid">2</th>
+                            <th class="borderSolid">3</th>
+                        </tr> 
+                        <tr>
+                            <td rowspan="2" class="borderSolid">4</td>
+                            <td rowspan="2" class="borderSolid">5</td>
+                        </tr>
+                        <tr>
+                        </tr>
+                    </table>
+                </div>
+                <div class="titreFormat">TABLE</div>
+            </div>
+            <div class="formatTech">
+                <div class="tr">
+                    <div class="attributs">Pseudos Classes</div>
+                    <div class="valeur">
+                        <p>Paragraphe N°1 modifié grâce à la pseudo classe "first"</p>
+                        <p>Paragraphe N°2</p>
+                        <p>Paragraphe N°3 modifié grâce à la pseudo classe "last"</p>
+                    </div>
+                    <div class="valeur">
+                        <p>Ce paragraphe est composé de plusieurs lignes<br /> et il est possible de styliser<br /> certaines parties du paragraphe <br /> et d'y ajouter des élément avant et après ce dernier</p>
+                    </div>
+                </div>      
+            </div>
+        </div>
+
+        <hr />
+        <hr class="clearBoth" />  
+        <div class="blue"></div>
+        <div class="red"></div>
+        <div class="blue2"></div>
+        <div class="red2"></div>
+        <div class="boxShadow"></div>
+        <div class="shadowInset"></div>
+        <div class="shadowMulti"></div>
+        <div class="shadowMulti2"></div>
+        <div class="gradientLinear"></div>
+        <div class="colorStop"></div>
+        <div class="colorStop2"></div>
+        <div class="gradientRepeat"></div>
+        <div class="radialGradient"></div>
+        <div class="radialGradient2"></div>
+        <div class="backgroundSize"></div>
+        <div class="backgroundContain"></div>
+        <div class="backgroundCover"></div>
+        <hr class="clearBoth" />
+        <div class="fondTexte">Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text
+        Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text
+        Some text Some text Some text Some text Some text Some text Some text Some text text Some text Some text Some text</div>
+        <div class="transparent">Dans la capture d'écran, nous définissons le clip d'arrière-plan sur padding-box. Le fond blanc se termine avant la bordure et la transparence recouvre le contenu. <br />L'opacity du fond est réglée sur 0.85</div>
+        <div class="multiBgImages"></div>
+        <hr class="clearBoth" />
+       <hr />
+        <div class="transitionWidth">Taille de fond</div>
+        <div class="transitionAnimPerso">Taille de fond perso</div>
+        <div class="transitionBgColor">Couleur de fond</div>
+        <div class="transitionColor">Couleur du texte</div>
+        <div class="transitionBorder">Bordure</div>
+        <div class="transitionPadding">Marge intérieure</div>
+        <div class="transformRotate">Inclinaison</div>
+        <div class="empty-div">
+            <div class="rotateAndScale"></div>
+        </div>
+        <div class="translate"></div>
+        <div class="skew"></div>
+        <div class="changeCouleurs"></div>
+        <div class="TroisDrotateZ">Rotation<br />3D<br />Z</div>
+        <div class="TroisDrotateX">Rotation<br />3D<br />X</div>
+        <div class="TroisDrotateY">Rotation<br />3D<br />Y</div>
+        <div class="CarreVide">Perspective
+            <div class="Perspective"></div>
+        </div>
+        <div class="TroisDtranslate">Translate Y</div>
+        <hr class="flexbox" />
+        <h3>Filtre CSS5 Mis en forme grâce à Flexbox !</h3>
+        <div class="flex">
+            <img src="https://www.sololearn.com/images/tree.jpg" alt="" class="CSSfilter" />
+            <img src="https://www.sololearn.com/images/tree.jpg" alt="" class="ombrePortee" />
+            <img src="https://www.sololearn.com/images/tree.jpg" alt="" class="grayScale" />
+            <img src="https://www.sololearn.com/images/tree.jpg" alt="" class="sepia" />
+            <img src="https://www.sololearn.com/images/tree.jpg" alt="" class="saturate" />
+            <img src="https://www.sololearn.com/images/tree.jpg" alt="" class="invert" />
+            <img src="https://api.sololearn.com/DownloadFile?id=3295" alt="" width="112" height="90" class="roueTeinte" />
+            <img src="https://www.sololearn.com/images/tree.jpg" alt="" class="hueRotate" />
+            <img src="https://www.sololearn.com/images/tree.jpg" alt="" class="opacity" />
+            <img src="https://www.sololearn.com/images/tree.jpg" alt="" class="brightness" />
+            <img src="https://www.sololearn.com/images/tree.jpg" alt="" class="contrast" />
+            <img src="https://www.sololearn.com/images/tree.jpg" alt="" class="blur" />
+        </div>
+</html>
+
+-15
+-
+
+-15
