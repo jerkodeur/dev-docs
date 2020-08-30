@@ -23,6 +23,7 @@ let spaceship = {
   }
 }
 //TODO for...in
+//* renvoi les objets contenus dans un objet
 for (let crewMember in spaceship.crew) {
   console.log(`${ crewMember }: ${ spaceship.crew[crewMember].name }`)
 }
