@@ -1,0 +1,12 @@
+.table {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.table-test-style {
+  color: blue;
+}
+.td-test-style, .th-test-style {
+  text-align: center;
+}
+
