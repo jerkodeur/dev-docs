@@ -27,11 +27,11 @@ echo $chaine[0] . $line;
 echo $chaine[-1]; //* Dernier caractère de la chaîne
 // echo $chaine[-50] . '<br /><br />'; //! returne une erreur car le caractère n'existe pas
 
-//TODO Nombre de caractères d'une chaîne
+//TODO [strlen] Nombre de caractères d'une chaîne
 echo $paragraph;
 echo strlen($chaine);
 
-//TODO Retirer les espaces blancs
+//TODO [trim] Retirer les espaces blancs
 echo $paragraph;
 $chaine = ' Hello World ';
 
@@ -48,7 +48,7 @@ echo strtolower($chaine) . $line; //* En minuscule
 echo ucfirst($chaine) . $line; //* Première lettre de la chaîne
 echo ucwords($chaine); //* Première lettre de chaque mot
 
-//TODO Remplacer une partie de la chaîne
+//TODO [str_replace] Remplacer une partie de la chaîne
 echo $paragraph;
 $chaine = 'Indiana Jones est un aventurier';
 
@@ -59,7 +59,13 @@ echo str_replace('touriste', 'archéologue', $chaine) . $line; //! Retourne la c
 //? Sans tenir compte de la casse
 echo str_ireplace('AVENTURIER', 'archéologue', $chaine);
 
-//TODO Convertir une chaîne en tableau
+//TODO [substr] Sélectionner une partie de la chaîne
+//? substr($chaine, $debut, $longueur)
+echo $paragraph;
+$chaine = 'Coucou c\'est moi';
+echo substr($chaine, 0, 6);
+
+//TODO [explode] Convertir une chaîne en tableau
 echo $paragraph;
 $chaine = 'Hello, here is my world';
 
@@ -67,16 +73,21 @@ $worlds = explode(' ', $chaine); //* Tranforme la chaîne en tableau avec comme 
 
 echo $worlds[4]; //? retourne 'world'
 
-//TODO Convertir un tableau en chaîne de caractères
+//TODO [implode] Convertir un tableau en chaîne de caractères
 echo $paragraph;
 $wordsArray = ['Harisson', 'Ford'];
 
 echo implode(' + ', $wordsArray) . $line;
 echo implode(($wordsArray)); //* Retourne le tableau sans espace
 
-//TODO Gérer les caractères accentués ou étrangers
+//TODO [mb_] Gérer les caractères accentués ou étrangers
 echo $paragraph;
 $special = 'é';
 
 echo strlen($special) . $line; //! Retourne 2 !!!
 echo mb_strlen($special); //* Résout le problème !
+
+//TODO [strrev] Inverser l'ordre d'un chaine
+echo $paragraph;
+
+echo strrev('Hello World');

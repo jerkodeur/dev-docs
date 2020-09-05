@@ -8,7 +8,14 @@ $message3 = 'aopi?sgnirts@#?sedhtg+p9l!';
 
 $resolve = function($message) {
   $len = strlen($message) / 2;
-  echo $len;
+  $newString = substr($message, 5, $len);
+  $newString= str_replace('?', ' ', $newString);
+  $newString= str_replace('@', ' ', $newString);
+  $newString = str_replace('#', ' ', $newString);
+  $reverseString = strrev($newString);
+  echo $reverseString . '<br />';
 };
 
 $resolve($message1);
+$resolve($message2);
+$resolve($message3);
