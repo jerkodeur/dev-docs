@@ -1,29 +1,47 @@
 import React, { useState } from 'react'
+import { Form, Container } from 'react-bootstrap'
+
+import BtpInput from '../components/Input'
+import RenderTodo from './RenderTodos'
+import Textarea from '../components/Textarea'
 
 const TodoList = () => {
 
   const [todolist, setTodolist] = useState([])
-  const [newTodo, setNewTodo] = useState('')
-  const [inputError, setInputError] = useState(false)
+  const [newTodo, setNewTodo] = useState({
+    title: '',
+    description: ''
+  })
+  const [validate, setValidate] = useState({
+    title: true,
+    description: true
+  })
 
   const handleChange = (e) => {
-    setInputError(false)
-    setNewTodo(e.target.value)
+    setValidate({...validate, [e.target.id]: true})
+    setNewTodo({...newTodo, [e.target.id]: e.target.value })
   }
 
   const addTodo = (e) => {
-    if (newTodo.length === 0) {
-      return setInputError(true)
+    if (newTodo.title.length === 0) {
+      return setValidate({...validate, title: false})
+    } else if (newTodo.description.length === 0) {
+      return setValidate({ ...validate, description: false })
     } else {
+      console.log('ok');
       e.preventDefault()
       let index = 0
       todolist.map(todo => {
         if (todo.id > index) { index = todo.id }
         return index
       })
-      const thisTodo = { id: index + 1, value: newTodo }
+      const thisTodo = { id: index + 1, ...newTodo }
+      console.log(thisTodo);
       setTodolist([...todolist, thisTodo])
-      setNewTodo('')
+      setNewTodo({
+        title: '',
+        description: ''
+      })
     }
   }
 
@@ -35,32 +53,15 @@ const TodoList = () => {
     setTodolist(tempArray)
   }
 
-  const renderTodo = () => (
-    <dl className="list-group list-group-flush">
-      {
-        todolist.map((todo => (
-          <dt key={ todo.id } id={ todo.id } className="dtst-group-item">
-            <button
-              className='btn btn-sm btn-outline-secondary mr-2 p-1'
-              onClick={ () => deleteTodo(todo.id) }>
-              X
-            </button>{ todo.value }
-          </dt>
-        )))
-      }
-    </dl>
-  )
-
   return (
-    <div>
+    <Container>
       <h1 align='center'>Ma todo liste</h1>
-      <form className="needs-validation" novalidate>
+      <Form noValidate>
         <div className='form-group'>
-          <div className='text-center text-md-left ml-md-2'>
-          <label htmlFor='addTodo' className='text-muted mb-n3'>Ajouter une tâche</label>
-          </div>
           <div>
-            <input
+            <BtpInput id='title' label='Nouvelle tâche' onchange={handleChange} value={newTodo.title} required />
+            <Textarea id='description' label='Description' onchange={handleChange} value={newTodo.description} required />
+            {/* <input
               type="text"
               id='addTodo'
               onChange={ handleChange }
@@ -72,7 +73,7 @@ const TodoList = () => {
               <div className="invalid-feedback">
                 Remplissez-moi !
               </div>
-            }
+            } */}
           </div>
           <div className='mt-3 text-md-right text-center'>
             <input
@@ -83,11 +84,11 @@ const TodoList = () => {
             />
           </div>
         </div>
-      </form>
+      </Form>
       <article className='mt-5 ml-5'>
-        { renderTodo() }
+        <RenderTodo todos={todolist} deleteTodo={deleteTodo} />
       </article>
-    </div>
+    </Container>
   )
 }
 
