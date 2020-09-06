@@ -6,6 +6,11 @@ const object = {
   cinq: 5
 }
 
+//TODO delete property
+delete object.cinq
+delete object['quatre']
+console.log(object)
+
 //TODO values()
 //! Retourne les valeurs de l'objet dans un tableau
 
