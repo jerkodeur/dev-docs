@@ -2,4 +2,4 @@
 
 include('sections/functions.php');
 
-exploredir('files');
+$dirs = explore('files');
