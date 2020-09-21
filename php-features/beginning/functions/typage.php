@@ -1,5 +1,7 @@
 <?php
 
+//TODO gettype() | Récupérer le type d'une variable
+
 //TODO Type de paramètres
 // string, array, bool, iterable, int, float
 //* Objets, classes: self, callable

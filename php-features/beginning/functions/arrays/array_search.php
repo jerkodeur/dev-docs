@@ -1,6 +1,5 @@
 <?php
-$paragraph = '<br /><br />';
-$line = '<br />';
+include('service/variables.php');
 
 //TODO in_array() | Vérifier la présence d'une valeur dans un tableau
 echo "<b>----- Vérifier la présence d'une valeur dans un tableau -----</b>" . $paragraph;
