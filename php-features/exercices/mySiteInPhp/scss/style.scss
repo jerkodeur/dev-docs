@@ -40,6 +40,28 @@ html {
         }
     }
 }
+.row {
+    &.path-panel {
+        border: 3pt ridge $bluemint;
+        border-bottom: none;
+        padding-left: .5em;
+        background-color: $lightmint;
+        .nav-item {
+            .nav-link {
+                padding: .1rem .25rem;
+                color: $greygreen;
+                &:hover {
+                    font-weight: 600;
+                }
+                &.disabled{
+                    font-weight: 600;
+                    color: $darkblue;
+                }
+            }
+        }
+    }
+}
+
 
 h1 {
     font-size: 5rem;
