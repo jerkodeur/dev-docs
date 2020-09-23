@@ -35,7 +35,7 @@ function explore(string $location){
         echo "<div class=\"file\">";
         echo '<a href="?page=' . $file['page'] . '">' . $file['file'] . ' </a>';
         echo "<img class=\"icon-small\" alt=\"Effacer\" src=\"/images/red_cross.png\" /><br />";
-        echo "</div>"
+        echo "</div>";
     }
 }
 

@@ -11,8 +11,8 @@
 
 
 <body>
-    <?php include('inc/head.php'); ?>
     <div class="container-fluid">
+        <?php include('inc/head.php'); ?>
         <div class='row'>
             <div class='col-auto explore-container p-3 ml-0'><?php include('sections/explore.php') ?></div>
             <div class='col text-center main-container'><?php include('sections/content.php') ?></div>
