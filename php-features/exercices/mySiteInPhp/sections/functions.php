@@ -9,6 +9,12 @@ function detect_ext(string $file) :string {
     return $type;
 }
 
+// Return the name of the file
+function return_filename(string $location){
+    return explode('/', $location)[-1];
+}
+
+
 function folder_up(string $location) {
     $array = explode('/', $location);
     array_pop($array);
@@ -28,12 +34,18 @@ function explore(string $location){
         if(is_dir($page)){
             echo '<a href="?page=' . $page . '" class="folder">' . $item . '</a></br>';
         } else {
-            $files[] = ['page' => $page, 'file' => $item];
+            $files[] = ['page' => $location, 'file' => $item];
         }
     }
     foreach($files as $file){
-        echo "<div class=\"file\">";
-        echo '<a href="?page=' . $file['page'] . '">' . $file['file'] . ' </a>';
+        $page = $file['page'];
+        $filename = $file['file'];
+        // echo $filename;
+        // echo $page . " " . $filename;
+        echo '<div class="file">';
+        echo "<a href='?page=$page";
+        echo "&file=$filename'>";
+        echo $filename . "</a>";
         echo "<img class=\"icon-small\" alt=\"Effacer\" src=\"/images/red_cross.png\" /><br />";
         echo "</div>";
     }
