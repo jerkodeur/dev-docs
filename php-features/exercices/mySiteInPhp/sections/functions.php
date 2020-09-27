@@ -1,17 +1,13 @@
 <?php
 
-// detect the file extension
-function detect_ext(string $file) :string {
+// detect type of the file
+function detect_ext(string $file) :array {
     $mime_type = mime_content_type($file);
-    $type= explode('/', $mime_type)[0];
-    switch($type){
-        case('text'):
-            return 'text';
-        case ('image'):
-            return 'image';
-        default:
-            return 'type not known';
-    }
+    $filetype = [
+        'type' => explode('/', $mime_type)[0],
+        'ext' => explode('/', $mime_type)[1]
+    ];
+    return $filetype;
 }
 
 // return the name of the file

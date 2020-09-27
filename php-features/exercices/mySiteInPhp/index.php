@@ -17,9 +17,9 @@
 <body>
     <div class="container-fluid">
         <?php include('inc/head.php'); ?>
-        <div class='row'>
-            <div class='col-auto explore-container p-3 ml-0'><?php include('sections/explore.php') ?></div>
-            <div class='col text-center main-container'><?php include('sections/content.php') ?></div>
+        <div class='row container-explorer'>
+            <div class='col-3 explore-container p-3 ml-0'><?php include('sections/explore.php') ?></div>
+            <div class='col-9 text-center main-container'><?php include('sections/content.php') ?></div>
         </div>
     </div>
 

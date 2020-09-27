@@ -15,15 +15,22 @@ html {
 
 .container-fluid {
     width: 85% !important;
+    margin-bottom: 2rem;
 }
 
 .main-container {
     border: 5pt ridge $bluemint;
     background-color: $greenwhite;
+    max-width: 95%;
 
     .form-bottom {
         height: 3em;
         background-color: $greenwhite;
+    }
+
+    img {
+        vertical-align: middle;
+        width: 100%;
     }
 }
 
@@ -37,6 +44,24 @@ html {
             width: 1.25rem;
             height: 1rem;
             margin-left: 0.5em;
+        }
+    }
+}
+
+.form-container {
+    .form-group{
+        text-align: left;
+        label {
+            color: #145b4f;
+            font-weight: 600;
+            border: 1pt solid #d3d0d0;
+            border-bottom: none;
+            padding: .25em .5em;
+            background-color: #f6f6f6;
+            margin-top: 1em;
+            margin-bottom: 0;
+            font-variant: small-caps;
+            letter-spacing: .15rem;
         }
     }
 }

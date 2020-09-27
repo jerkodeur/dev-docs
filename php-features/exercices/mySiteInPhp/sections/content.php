@@ -1,21 +1,39 @@
 <?php
-    if(isset($_GET["page"]) && isset($_GET["file"])) {
-        $file_type = detect_ext(return_file_path($_GET["page"], $_GET["file"]));
-    }
+
+if (isset($_GET["page"])) $page = $_GET["page"];
+if (isset($_GET["file"]))  $file = $_GET["file"];
+if (isset($page) && isset($file)) {
+    $file_path = return_file_path($page, $file);
+    $type = detect_ext($file_path);
+    $file_type = $type['type'];
+    $file_ext = $type['ext'];
+}
 ?>
 
-<div id="container-fluid form-container">
+<div class="container-fluid form-container">
     <form method="POST" action="index.php">
         <div class="form-group">
-            <strong><label for="editor-area" class="text-uppercase">Edition du fichier $file</label></strong>
-            <textarea id="editor-area" class="form-control" rows="20">
+            <?php
+            if (isset($file_type)) {
+                echo '<div><label for="editor-area">' . $file . '</label></div>';
+            }
+            ?>
                 <?php
-                    echo $file_type;
+                    if (isset($file_type) && $file_type === 'text') {
+                        echo '<textarea id="editor-area" class="form-control" rows="20">';
+                        echo file_get_contents($file_path);
+                        echo '</textarea>';
+                    } elseif(isset($file_type) && $file_type === 'image') {
+                        echo "<div><img src=$file_path alt=$file /></div>";
+                    } else {
+                        echo '<center><strong style="color:red"> File format is not valid for editing </strong></center>';
+                    }
                 ?>
-            </textarea>
         </div>
+        <?php if(isset($file_type) && $file_type === 'text'){ ?>
         <div class="form-group form-bottom">
-            <input type="submit" value="Envoyer" class="btn btn-blue" />
+            <input type="submit" value="Envoyer" class="btn btn-blue" disabled=<?php !isset($file_type) && true ?> />
         </div>
+        <?php } ?>
     </form>
 </div>
