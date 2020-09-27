@@ -33,7 +33,7 @@ function folder_up(string $location) {
     $array = explode('/', $location);
     array_pop($array);
     $up = implode('/', $array);
-    return count($array) !== 0 ? $up : '';
+    return count($array) !== 0 ? $up : null;
 }
 
 // Explore a location and return the index tree of folders and files
@@ -43,7 +43,7 @@ function explore(string $location){
     if(isset($page)) $location = $page;
     $dir = items_in_location($location);
     $folder_up = folder_up(($location));
-    if($folder_up !== '') "<a href=\"?page=$folder_up\" class='link-up'>...</a><br>";
+    if($folder_up !== null) echo "<a href=\"?page=$folder_up\" class='link-up'>...</a><br>";
     foreach($dir as $item){
         $page = $location . '/' . $item;
         if(is_dir($page)){
@@ -58,8 +58,7 @@ function explore(string $location){
         echo '<div class="file">';
         echo "<a href='?page=$page";
         echo "&file=$filename'>";
-        echo $filename . "</a
-        echo 'coucou';>";
+        echo $filename . "</a>";
         echo "<img class=\"icon-small\" alt=\"Effacer\" src=\"/images/red_cross.png\" /><br />";
         echo "</div>";
     }

@@ -18,8 +18,8 @@
     <div class="container-fluid">
         <?php include('inc/head.php'); ?>
         <div class='row container-explorer'>
-            <div class='col-3 explore-container p-3 ml-0'><?php include('sections/explore.php') ?></div>
-            <div class='col-9 text-center main-container'><?php include('sections/content.php') ?></div>
+            <div class='col-6 col-sm-5 col-md-4 col-xl-2 explore-container ml-0'><?php include('sections/explore.php') ?></div>
+            <div class='col-6 col-sm-7 col-md-8 col-xl-10 text-center main-container'><?php include('sections/content.php') ?></div>
         </div>
     </div>
 

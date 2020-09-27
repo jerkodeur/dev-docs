@@ -86,11 +86,37 @@ html {
     color: $lightmint;
     border: 5pt outset $bluemint;
     min-width: 10rem;
+    padding: 1em;
+    .link-up{
+        font-weight: bold;
+        color: red;
+        font-size: 2em;
+        text-decoration: none;
+        &:hover{
+            color:white;
+        }
+    }
+    &:hover {
+        color: red;
+    }
     .file {
         .icon-small {
             width: 1.25rem;
             height: 1rem;
             margin-left: 0.5em;
+        }
+    }
+    a {
+        &.folder{
+            &:hover{
+                color: red;
+            }
+        }
+        color: $bluemint;
+        &:hover{
+            white-space: nowrap;
+            color: $greenwhite;
+            font-weight: bold;
         }
     }
 }
