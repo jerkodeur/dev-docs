@@ -19,18 +19,65 @@ html {
 }
 
 .main-container {
+    padding: 0;
     border: 5pt ridge $bluemint;
     background-color: $greenwhite;
     max-width: 95%;
-
+    .row {
+    padding-top: 2rem;
+    }
     .form-bottom {
         height: 3em;
         background-color: $greenwhite;
     }
 
-    img {
-        vertical-align: middle;
-        width: 100%;
+    .form-group{
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        label {
+            color: #145b4f;
+            font-weight: 600;
+            border: 1pt solid #d3d0d0;
+            border-bottom: none;
+            padding: .25em .5em;
+            background-color: #f6f6f6;
+            margin-top: 1em;
+            margin-bottom: 0;
+            font-variant: small-caps;
+            letter-spacing: .15rem;
+        }
+        ul {
+            display: inline !important;
+            li {
+                list-style-type: none;
+            }
+        }
+        .img{
+            margin-bottom: 1em;
+            img {
+                vertical-align: middle;
+                width: 100%;
+            }
+        }
+
+        .explorer {
+            .file-img {
+                width: 128px;
+                text-align: center;
+                padding: .5em;
+                padding-bottom: 0;
+            }
+            div {
+                max-width: 128px;
+                text-align: center;
+            }
+            a {
+                text-align: center;
+                width: 128px;
+                padding: 0.5em;
+            }
+        }
     }
 }
 
@@ -48,23 +95,6 @@ html {
     }
 }
 
-.form-container {
-    .form-group{
-        text-align: left;
-        label {
-            color: #145b4f;
-            font-weight: 600;
-            border: 1pt solid #d3d0d0;
-            border-bottom: none;
-            padding: .25em .5em;
-            background-color: #f6f6f6;
-            margin-top: 1em;
-            margin-bottom: 0;
-            font-variant: small-caps;
-            letter-spacing: .15rem;
-        }
-    }
-}
 .row {
     &.path-panel {
         border: 3pt ridge $bluemint;
