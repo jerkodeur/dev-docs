@@ -3,18 +3,28 @@
 // detect the file extension
 function detect_ext(string $file) :string {
     $mime_type = mime_content_type($file);
-    if(strpos('image', $mime_type)){
-        $type = 'image';
+    $type= explode('/', $mime_type)[0];
+    switch($type){
+        case('text'):
+            return 'text';
+        case ('image'):
+            return 'image';
+        default:
+            return 'type not known';
     }
-    return $type;
 }
 
-// Return the name of the file
-function return_filename(string $location){
+// return the name of the file
+function return_filename(string $location) :string{
     return explode('/', $location)[-1];
 }
 
+// return the full path of a file
+function return_file_path(string $location, string $file) :string{
+    return  $location . '/' . $file;
+}
 
+// return the parent folder of the current location
 function folder_up(string $location) {
     $array = explode('/', $location);
     array_pop($array);
@@ -23,6 +33,7 @@ function folder_up(string $location) {
     return count($array) !== 0 ? $up_link : '';
 }
 
+// Explore a location and return the index tree of folders and files
 function explore(string $location){
     $files = [];
     $page = !isset($_GET['page']) ? $location : $_GET['page'];
