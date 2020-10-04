@@ -1,13 +1,11 @@
 {
     "env": {
         "browser": true,
-        "es6": true,
-        "node": true
+        "es2021": true
     },
     "extends": [
-        "airbnb",
-        "airbnb/hooks",
         "plugin:react/recommended",
+        "airbnb",
         "prettier"
     ],
     "parserOptions": {
@@ -25,8 +23,8 @@
         "prettier/prettier": [
             "error"
         ],
-        "radix": "off",
-        "react/jsx-filename-extension": [
+        "radix": "off", // Disabled checking of the second parseint paramater
+        "react/jsx-filename-extension": [ // Allow jsx components in .js files
             1,
             {
                 "extensions": [
