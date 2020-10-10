@@ -1,6 +1,6 @@
 <?php
 
-class formatting {
+class Formatting {
 
     /**
      * BR
@@ -19,39 +19,28 @@ class formatting {
     }
 
     /**
-     * Return the value, then go to the next line
+     * Return line break or an empty line depending of the index
      *
-     * @param mixed $value datas to display
+     * @param number $number {1: line break, 2: insert empty line}
+     * @return null
      */
-    public static function goToLine($value = null){
-        return $value . self::BR;
+    protected static function define_format_line($number){
+        if ($number === 1) echo self::BR;
+        elseif ($number === 2) echo self::BRBR;
     }
 
     /**
-     * Go to next line, then return the value
+     * Insert line break or empty line depending of the context
      *
-     * @param mixed $value datas to display
+     * @param mixed $value formatted value to return
+     * @param int $line_up formatting before value {0: none, 1: line break, 2: insert empty line}
+     * @param int $line_bottom formatting after value {0: none, 1: line break, 2: insert empty line}
+     * @return void return display formatted value
      */
-    public static function goToLineBefore($value = null){
-        return self::BR . $value;
-    }
-
-    /**
-     * Return the value, then insert an empty line
-     *
-     * @param mixed $value datas to display
-     */
-    public static function insertEmptyLine($value = null){
-        return $value . self::BRBR;
-    }
-
-    /**
-     * Insert an empty line, then return the value
-     *
-     * @param mixed $value datas to display
-     */
-    public static function insertLineBefore($value = null){
-        return self::BRBR . $value;
+    public static function format_line($value, $line_up, $line_bottom){
+        if($line_up !== 0) self::define_format_line($line_up);
+        echo $value;
+        if($line_bottom !== 0) self::define_format_line($line_bottom);
     }
 
     /**

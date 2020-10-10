@@ -1,5 +1,4 @@
 <?php
-include("service/classes/display_examples.php");
 
 /**
  * Class Character
@@ -8,24 +7,28 @@ include("service/classes/display_examples.php");
 
 class Character {
 
-    const FULL_LIFE = 100;
+    /**
+     * @var int $life Initial points of life
+     */
+    protected $initial_life = 100;
 
     /**
-     * @var int Damage points of the character
+     * @var int $damage Points of damage
      */
-
-    public $damage = 20;
+    protected $damage = 5;
 
     /**
      * Public parameters required for characters creation
-     * @param string $name Name of the character
-     * @param int $life Number of the initial life points of the character
+     * @param string $name
+     * @param string $sexe
+     * @param int $life
      */
 
-    public function __construct($name, $life)
+    public function __construct($name, $sexe)
     {
         $this->name = $name;
-        $this->life = $life;
+        $this->sexe = $sexe;
+        $this->life = $this->initial_life;
     }
 
     /**
@@ -50,9 +53,8 @@ class Character {
      * Method for avoid points life over 100
      * @param object $character
      */
-
-    protected static function prevent_fulllife($character){
-        if($character->life > 100) $character->life = 100;
+    protected static function prevent_full_life($character){
+        if($character->life > $character->initial_life) $character->life = $character->initial_life;
     }
 
     /**
@@ -60,21 +62,32 @@ class Character {
      * @param object|null
      * @return object this or defined target
      */
-
-    protected function defineTarget($target = null){
+    protected function define_target($target = null){
         return isset($target) ? $target : $this;
     }
 
     /**
-     * Method which handle life regenerate
-     * @param int|null $reg_points Number of life points to regenerate
-     * @param object|null $character Target to regenerate
+     * Return number of life points restored
+     *
+     * @param class $target
+     * @param integrer $previous_life_points number of life points before care
      */
+    protected function render_health_points($target, $previous_life_points){
+        return $target->life - $previous_life_points;
+    }
 
-    public function regenerate($reg_points = null, $target = null) {
-        $target = $this->defineTarget($target);
+    /**
+     * Method which handle life care
+     * @param integrer|null $reg_points Number of life points to care
+     * @param class|null $character Target to care
+     */
+    public function care($reg_points = null, $target = null) {
+        $target = $this->define_target($target);
+        $remainingBefore = $target->life;
         $target->life = !isset($reg_points) ? $this::FULL_LIFE : $target->life += $reg_points;
-        self::prevent_fulllife($target);
+        self::prevent_full_life($target);
+        $points_restore = $this->render_health_points($target, $remainingBefore);
+        return $this->name . " soigne " . $target->name . " et lui rend " . $points_restore . " points de vie !";
     }
 
     /**
@@ -82,7 +95,6 @@ class Character {
      * @param object $target Target of the attack
      * @return string message with attack action and number of damage points suffered
      */
-
     public function attack($target) {
         $target->life -= $this->damage;
         self::prevent_nolife($target);
@@ -96,21 +108,8 @@ class Character {
      */
 
     public function getRemainingLife($target = null){
-        $target = $this->defineTarget($target);
+        $target = $this->define_target($target);
         return "Il reste à " . $target->name . " " . $target->life . " points de vie";
     }
 }
-
-$merlin = new Character("Merlin", 100);
-$harry = new Character("Harry", 25);
-
-echo formatting::insertEmptyLine($merlin->attack($harry));
-if($harry->getIsDead()){
-    echo $harry->name . " est mort :(";
-} else {
-    echo $harry->getRemainingLife();
-}
-
-echo formatting::goToLine($merlin->regenerate(50, $harry));
-echo formatting::goToLine($harry->getRemainingLife());
 ?>
