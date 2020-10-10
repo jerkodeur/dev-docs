@@ -1,14 +1,27 @@
 <?php
 
+//TODO Documenter la classe
+/**
+ * class Person
+ * Ceci va documenter notre classe (c'est une convention)
+ * Classe permettant de créer une personne
+ */
 class Person {
 
-    //TODO Attributs
-    //* Peut être considéré comme une variable
-
+    //TODO Attributs de classe
+    //* Peuvent être considérés comme des variables
+    //TODO Portée 'public'
+    //* Signifie que la varible est accessible par l'extérieur de la classe, mais aussi à l'intérieur grâce à l'utilisation du mot clé 'this'
     public $firstname;
-    public $lastname;
-    public $age;
-    public $sexe; //? initialisé à NULL
+    public $lastname; //? initialisé à NULL
+
+    //TODO Portée 'protected'
+    //* Variable uniquement accessible via l'intérieur de la classe ou par héritage.
+    protected $age;
+
+    //TODO Portée 'private'
+    //* Signifie que la variable ne sera accessible uniquement à l'intérieur de la function
+    private $sexe;
 
     //TODO Constantes
     //* Constantes propres à la classe
