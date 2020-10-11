@@ -1,14 +1,15 @@
-import React from 'react';
-import './sass/app.scss';
+import React from 'react'
 
 import TodoList from './Todo/Todolist'
+
+import './sass/app.scss'
 
 function App() {
   return (
     <div>
       <TodoList />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
