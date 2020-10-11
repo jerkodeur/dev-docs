@@ -1,5 +1,7 @@
 <?php
 
+namespace php_training\poo\roles;
+
     //TODO Utiliser l'héritage de classe
     //* Permet d'utiliser les variables et méthodes d'une classe parente, de les modifier, et même d'en créer des nouvelles
 

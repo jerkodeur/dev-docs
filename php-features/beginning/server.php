@@ -9,4 +9,4 @@ if($url != '/' && file_exists(__DIR__ . '/public' . $url)) {
 }
 
 /* Si l'url n'existe pas sur le serveur */
-require_once __DIR__ . '/exercices/poo/morpg.php';
+require_once __DIR__ . '/exercices/poo-training-classes/morpg.php';

@@ -1,9 +1,18 @@
 <?php
 
-require 'service/AutoLoader.php';
-include("exercices/poo/includeRoles.php");
+use php_training\AutoLoader;
 
-AutoLoader::getMainClass();
+use php_training\main\Debug;
+use php_training\main\Formatting;
+
+use php_training\poo\roles\Character;
+use php_training\poo\roles\Hunter;
+use php_training\poo\roles\Wizard;
+
+
+require 'classes/AutoLoader.php';
+
+AutoLoader::register();
 
 $merlin = new Character("Merlin", 'male');
 $harry = new Wizard("Harry", 'male');

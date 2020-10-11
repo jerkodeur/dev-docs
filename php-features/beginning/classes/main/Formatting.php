@@ -1,5 +1,7 @@
 <?php
 
+namespace php_training\main;
+
 class Formatting {
 
     /**

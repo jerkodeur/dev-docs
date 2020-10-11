@@ -1,5 +1,7 @@
 <?php
 
+namespace php_training\poo\roles;
+
 /**
  * Class Character
  * Create and handle character features
@@ -84,7 +86,7 @@ class Character {
     public function care($reg_points = null, $target = null) {
         $target = $this->define_target($target);
         $remainingBefore = $target->life;
-        $target->life = !isset($reg_points) ? $this::FULL_LIFE : $target->life += $reg_points;
+        $target->life = !isset($reg_points) ? $this->initial_life : $target->life += $reg_points;
         self::prevent_full_life($target);
         $points_restore = $this->render_health_points($target, $remainingBefore);
         return $this->name . " soigne " . $target->name . " et lui rend " . $points_restore . " points de vie !";

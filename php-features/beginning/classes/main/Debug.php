@@ -1,5 +1,6 @@
 <?php
 
+    namespace php_training\main;
     /**
      * Some options to simplify php files debug
      */
