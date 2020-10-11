@@ -7,3 +7,4 @@ node_modules/
 .env*
 .VSCODE
 .DS_store
+.vscode/
