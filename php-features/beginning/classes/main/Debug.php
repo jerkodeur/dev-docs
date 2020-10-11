@@ -8,9 +8,9 @@
     class Debug {
 
         /**
-         * Return var_dump command
+         * Return var_dump command with style
          *
-         * @param array $element
+         * @param array $element to debug
          */
         public static function inspectElement($elements){
             echo "<div style='border: 2pt ridge #a3a4a8; padding: .5em; width: max-content; background-color: #f0f0f0'>";
