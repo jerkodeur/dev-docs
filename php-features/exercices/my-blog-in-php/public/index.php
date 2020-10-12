@@ -13,6 +13,7 @@ if(isset($_GET['p']) && file_exists("pages/" . $_GET['p'] . '.php')){
 //? The datas would not displayed...
 
 ob_start();
+require "app/connect.php";
 require "pages/$p.php";
 
 //TODO Fetch the store datas of ob_start
