@@ -23,6 +23,7 @@ class AutoLoader{
          * @param string $class Name path of the class to load
          */
         static function autoload($class){
+            echo var_dump($class);
             // apply only if the current namespace is called
             if(strpos($class, __NAMESPACE__ . '\\') === 0){
                 $class = str_replace(__NAMESPACE__ . '\\', '', $class);

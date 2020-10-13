@@ -1,7 +1,14 @@
 <?php
 
-require 'app/Autoloader.php';
+use App\Database;
+use App\main\Debug;
+
+require 'app/classes/Autoloader.php';
 App\AutoLoader::register();
+
+$db = new Database('blog_php');
+$query = $db->query('SELECT * FROM articles');
+Debug::inspectElement($query);
 
 if(isset($_GET['p']) && file_exists("pages/" . $_GET['p'] . '.php')){
     $p = $_GET['p'];
@@ -13,7 +20,7 @@ if(isset($_GET['p']) && file_exists("pages/" . $_GET['p'] . '.php')){
 //? The datas would not displayed...
 
 ob_start();
-require "app/connect.php";
+
 require "pages/$p.php";
 
 //TODO Fetch the store datas of ob_start
