@@ -6,9 +6,7 @@ use App\main\Debug;
 require 'app/classes/Autoloader.php';
 App\AutoLoader::register();
 
-$db = new Database('blog_php');
-$query = $db->query('SELECT * FROM articles');
-Debug::inspectElement($query);
+$db = new Database('blog_php', 'localhost', 'jerkoder', 'JP93@s12RT77');
 
 if(isset($_GET['p']) && file_exists("pages/" . $_GET['p'] . '.php')){
     $p = $_GET['p'];
