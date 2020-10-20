@@ -1,9 +1,9 @@
 <?php
 
 use App\Database;
-use App\main\Debug;
+use App\Main\Debug;
 
-require 'app/classes/Autoloader.php';
+require 'classes/AutoLoader.php';
 App\AutoLoader::register();
 
 $db = new Database('blog_php', 'localhost', 'jerkoder', 'JP93@s12RT77');
