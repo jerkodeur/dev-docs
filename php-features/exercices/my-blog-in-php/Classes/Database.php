@@ -54,6 +54,29 @@ class Database {
         return $datas;
     }
 
+    /**
+     * Prepare a query to avoid inject sql (security)
+     *
+     * @param query $statement
+     * @param string|array $params
+     * @param class $class path of the called class
+     * @param boolean $one Return one or many results
+     * @return string|array Depending of the number of result expected
+     */
+
+    public function prepare($statement, $params, $class, $one = true){
+        $req = $this->getPDO()->prepare($statement); // Avoid inject html
+        $req->execute($params); // joins the params to the query
+        $req->setFetchMode(PDO::FETCH_CLASS, $class); // Allow assigning a class to the PDO request
+        Debug::inspectElement($req);
+        // Define the expect number of results
+        if($one){
+            return $req->fetch();
+        } else {
+            return $req->fetchAll();
+        }
+    }
+
 }
 
 ?>
