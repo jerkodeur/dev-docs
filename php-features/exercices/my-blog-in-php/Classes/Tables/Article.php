@@ -3,28 +3,18 @@
 namespace App\Tables;
 
 use App\Main\Debug;
+use App\Tables\Table;
 
-class Article {
+class Article extends Table{
 
-    /**
-     * recover unknown class property and redirect to the appropriate method
-     *
-     * @param string $name property name
-     * @return mixed
-     */
-    public function __get($name = '')
-    {
-        $method = 'get' . ucfirst($name);
-        $this->key = $this->$method(); // To return the function once, if doesn't exist
-        return  $this->key;
-    }
+    public $table = 'blog';
 
     /**
      * Return intern url of an article
      * @return string
      */
     public function getUrl(){
-        return 'index.php?p=articles&post=' . $this->id;
+        return "index.php?p=$this->table&post= . $this->id";
     }
 
     /**
@@ -41,10 +31,6 @@ class Article {
      */
     public function getLink(){
         return $this->link;
-    }
-
-    public function getAll(){
-        return $this;
     }
 
     /**
