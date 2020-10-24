@@ -1,12 +1,14 @@
 <?php
 
-namespace APP\Tables;
+namespace App\Tables;
 
-use App\Connection;
+use App\Database;
+use App\Main\Debug;
+use App\SqlRequest;
 
 class Table{
 
-    protected $table;
+    protected static $table;
 
     /**
      * recover unknown class property and redirect to the appropriate method
@@ -20,41 +22,32 @@ class Table{
         return $this->key;
     }
 
-    static function sqlColumns($columns){
-        $string_columns = '';
-        foreach($columns as $column){
-            $string_columns .= $column . ',';
-        }
-        return $string_columns;
-    }
-
-    static function sqlWhere($conditions){
-        if(isset($conditions)){
-            $where = ' WHERE';
-            foreach($conditions as $condition){
-                $where .= " $$condition = $condition";
-            }
-            return $where;
-        }
+    /**
+     * Return table name depending of the class name
+     * @return string table name
+     */
+    protected static function getTable(){
+        $class_name = explode('\\',get_called_class());
+        return static::$table = strtolower(end($class_name)) . 's';
     }
 
     /**
-     * Handle and return sql request
-     * @param string $table Table to run db query
-     * @param array $columns Selected columns
-     * @param array $where query conditions
-     * @return string  db statement
+     * Fetch all datas table from selected table
+     * @return object
      */
-    public function sqlGet($table, $columns = null, $where = null){
-        $columns = null !== $columns ? static::sqlColumns($columns) : '*';
-        $where = static::sqlWhere($where);
-        return "SELECT $columns from $table $where";
+    public static function getAll(){
+        return Database::query("SELECT * FROM " . static::getTable(), get_called_class());
     }
 
-    // public static function getAll($table, $class){
-    //     return Connection::query("SELECT * FROM $table", get_called_class($class));
-    // }
-
+    /**
+     * Fetch all datas table from selected table
+     * @param string $params sql condition field (field1, field2, ...)
+     * @param array $values corresponding values
+     * @return object result of the request
+     */
+    public static function find($params, $values){
+        return Database::prepare(SqlRequest::sqlGet(static::getTable(), null, $params), $values, get_called_class(), true);
+    }
 }
 
 ?>

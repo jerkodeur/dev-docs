@@ -2,35 +2,18 @@
 
 namespace App\Tables;
 
-use App\Main\Debug;
+use App\Database;
 use App\Tables\Table;
 
 class Article extends Table{
 
-    public $table = 'blog';
-
-    /**
-     * Return intern url of an article
-     * @return string
-     */
-    public function getUrl(){
-        return "index.php?p=$this->table&post= . $this->id";
-    }
-
-    /**
-     * Return the content of an article
-     * @return string
-     */
-    public function getContent(){
-        return $this->content;
-    }
-
-    /**
-     * Return extern url of an article
-     * @return string
-     */
-    public function getLink(){
-        return $this->link;
+    static function getLabel($label){
+        $sql = "SELECT a.id as id, a.title as title, a.content as content, a.link as link
+                FROM articles a
+                JOIN articles_labels al ON al.article_id = a.id
+                JOIN labels l ON l.id = al.label_id
+                WHERE l.name = ?";
+        return Database::prepare($sql, $label, get_called_class(), false);
     }
 
     /**
@@ -43,7 +26,6 @@ class Article extends Table{
      * @return null
      */
     public function newArticle($title , $content, $link, $date, $rest){
-        Debug::inspectElement([$title , $content, $link, $date, $rest]);
         // $sql="INSERT INTO articles DATA($title, $content, $link, $date)"
 
     }

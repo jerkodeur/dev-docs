@@ -1,8 +1,8 @@
 <?php
 
-use App\Main\Debug;
+use App\Tables\Article;
 
-$query = $db->prepare('SELECT * FROM articles WHERE id = ?', [$_GET['id']], 'App\Tables\Article', true);
+$query = Article::find('id', [$_GET['id']]);
 ?>
 <h1><?= $query->title ?></h1>
 <p><?= $query->content ?></p>

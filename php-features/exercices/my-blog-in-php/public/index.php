@@ -1,13 +1,13 @@
 <?php
 
-use App\Connection;
+use App\Database;
 
 require 'Classes/AutoLoader.php';
 App\AutoLoader::register();
 
 include "autoload_env.php"; // Load the Environment variables
 
-$db = new Connection('blog_php');
+$db = new Database();
 
 if(isset($_GET['p']) && file_exists("Pages/" . $_GET['p'] . '.php')){
     $p = $_GET['p'];
