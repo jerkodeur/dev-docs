@@ -1,10 +1,10 @@
 <h1>Coucou, here is the home page !</h1>
 <?php
 
-use App\Tables\Article;
+use App\App;
 
-$db = new Article();
-$query = $db->getAll();
+$articles = App::getTable('articles');
+$query = $articles->getAll();
     foreach($query as $article):
 ?>
 <h2><a href=<?= $article->link; ?> target="_blank"><?= $article->title ?></a></h2>

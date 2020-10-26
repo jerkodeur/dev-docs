@@ -5,7 +5,7 @@ namespace App\Tables;
 use App\Database;
 use App\Tables\Table;
 
-class Article extends Table{
+class Table_Articles extends Table{
 
     static function getLabel($label){
         $sql = "SELECT a.id as id, a.title as title, a.content as content, a.link as link

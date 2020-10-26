@@ -1,12 +1,10 @@
 <?php
 
+use App\App;
 use App\Main\Formatting;
-use App\Tables\Article;
-use App\Tables\Label;
 
-$table_label = new Label();
-$table_article = new Article();
-$categories = $table_label->getAll();
+$labels = App::getTable('labels');
+$articles = App::getTable('articles');
 
 ?>
 
@@ -17,7 +15,7 @@ $categories = $table_label->getAll();
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-        <?php foreach($categories as $category): ?>
+        <?php foreach($labels->getAll() as $category): ?>
             <li class="nav-item active">
                 <?php echo Formatting::wrapInHtmlTag($category->name, 'a', [['class', 'nav-link'], ['href', "/?p=label&label=$category->name"]]); ?>
             </li>
@@ -28,9 +26,9 @@ $categories = $table_label->getAll();
 <div>
     <?php
         if($_GET['label'] !== ''){
-            $articles = Article::getLabel([$_GET['label']]);
+            $articles = $articles->getLabel([$_GET['label']]);
         } else {
-            $articles = $table_article->getAll();
+            $articles = $articles->getAll();
         }
         foreach($articles as $article):
     ?>

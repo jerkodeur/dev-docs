@@ -52,7 +52,7 @@ class Database {
     /**
      * Manage queries to the bdd
      * @param string $statement Database statement
-     * @param class $class Class to load the datas
+     * @param string $class Class to load the datas
      */
     public static function query($statement, $class, $one = false){
         $req = self::getPDO()->query($statement);
@@ -62,9 +62,9 @@ class Database {
 
     /**
      * Prepare a query to avoid inject sql (security)
-     * @param query $statement
+     * @param string $statement
      * @param string|array $params
-     * @param class $class path of the called class
+     * @param string $class path of the called class
      * @param boolean $one Return one or many results
      * @return string|array Depending of the number of result expected
      */
@@ -76,5 +76,3 @@ class Database {
         return self::defineIfOne($req, $one);
     }
 }
-
-?>

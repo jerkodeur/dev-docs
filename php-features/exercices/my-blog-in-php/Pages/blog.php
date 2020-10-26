@@ -1,9 +1,9 @@
 <?php
 
-use App\Tables\Article;
+use App\App;
 
-$table = new Article();
-$query = $table->find('id', [$_GET['id']]);
+$article = App::getTable('articles');
+$query = $article->find('id', [$_GET['id']]);
 ?>
 <h1><?= $query->title ?></h1>
 <p><?= $query->content ?></p>
