@@ -2,7 +2,8 @@
 
 use App\Tables\Article;
 
-$query = Article::find('id', [$_GET['id']]);
+$table = new Article();
+$query = $table->find('id', [$_GET['id']]);
 ?>
 <h1><?= $query->title ?></h1>
 <p><?= $query->content ?></p>

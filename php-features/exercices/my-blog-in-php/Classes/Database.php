@@ -13,18 +13,23 @@ use PDO;
 class Database {
 
     static private $pdo;
+    static private $_connection;
 
+    public function __construct()
+    {
+        if(is_null(self::$_connection)){
+            self::$_connection = new Config();
+        }
+    }
     /**
      * Open connection to database with PDO
      * @return pdo object
      */
     static private function getPDO(){
-        $DB_NAME = env('DB_NAME');
-        $DB_HOST = env('DB_HOST');
-        $DB_USER = env('DB_USERNAME');
-        $DB_PASS = env('DB_PASSWORD');
+        $settings = Config::getInstance();
+        $dsn= "mysql:host=".$settings['DB_HOST'].";dbname=".$settings['DB_NAME'];
         if(self::$pdo === null){
-            $pdo = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_USER, $DB_PASS);
+            $pdo = new PDO($dsn, $settings['DB_USERNAME'], $settings['DB_PASSWORD']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$pdo = $pdo;
         }
@@ -52,7 +57,7 @@ class Database {
     public static function query($statement, $class, $one = false){
         $req = self::getPDO()->query($statement);
         $req->setFetchMode(PDO::FETCH_CLASS, $class);
-        return static::defineIfOne($req, $one);
+        return self::defineIfOne($req, $one);
     }
 
     /**
@@ -68,7 +73,7 @@ class Database {
         $req->execute($params); // joins the params to the query
         $req->setFetchMode(PDO::FETCH_CLASS, $class); // Allow assigning a class to the PDO request
         // Define the expect number of results
-        return static::defineIfOne($req, $one);
+        return self::defineIfOne($req, $one);
     }
 }
 

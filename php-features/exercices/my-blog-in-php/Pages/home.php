@@ -3,7 +3,8 @@
 
 use App\Tables\Article;
 
-$query = Article::getAll();
+$db = new Article();
+$query = $db->getAll();
     foreach($query as $article):
 ?>
 <h2><a href=<?= $article->link; ?> target="_blank"><?= $article->title ?></a></h2>

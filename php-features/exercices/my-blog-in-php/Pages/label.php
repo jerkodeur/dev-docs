@@ -4,7 +4,9 @@ use App\Main\Formatting;
 use App\Tables\Article;
 use App\Tables\Label;
 
-$categories = Label::getAll();
+$table_label = new Label();
+$table_article = new Article();
+$categories = $table_label->getAll();
 
 ?>
 
@@ -28,7 +30,7 @@ $categories = Label::getAll();
         if($_GET['label'] !== ''){
             $articles = Article::getLabel([$_GET['label']]);
         } else {
-            $articles = Article::getAll();
+            $articles = $table_article->getAll();
         }
         foreach($articles as $article):
     ?>
