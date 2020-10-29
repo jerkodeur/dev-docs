@@ -19,11 +19,9 @@ class CreateTableOffers extends Migration
             $table->string('slug');
             $table->longText('content');
             $table->boolean('active');
-            $table->bigInteger('users_id')->unsigned();
-            $table->bigInteger('categories_id')->unsigned();
             $table->timestamps();
-            $table->foreign('users_id')->references('id')->on('users');
-            $table->foreign('categories_id')->references('id')->on('categories');
+            $table->foreignId('users_id')->references('id')->on('users');
+            $table->foreignId('categories_id')->references('id')->on('categories');
         });
     }
 
