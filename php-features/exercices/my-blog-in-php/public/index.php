@@ -1,9 +1,15 @@
 <?php
 
-require 'app/Autoloader.php';
+use App\Database;
+
+require 'Classes/AutoLoader.php';
 App\AutoLoader::register();
 
-if(isset($_GET['p']) && file_exists("pages/" . $_GET['p'] . '.php')){
+include "autoload_env.php"; // Load the Environment variables
+
+$db = new Database();
+
+if(isset($_GET['p']) && file_exists("Pages/" . $_GET['p'] . '.php')){
     $p = $_GET['p'];
 } else {
     $p = "home";
@@ -13,11 +19,12 @@ if(isset($_GET['p']) && file_exists("pages/" . $_GET['p'] . '.php')){
 //? The datas would not displayed...
 
 ob_start();
-require "pages/$p.php";
+
+require "Pages/$p.php";
 
 //TODO Fetch the store datas of ob_start
 $content = ob_get_clean();
 
-require 'pages/templates/default.php';
+require 'Pages/templates/default.php';
 
 ?>
