@@ -15,10 +15,8 @@ class CreateTableOffersUsers extends Migration
     public function up()
     {
         Schema::create('offers_users', function (Blueprint $table) {
-            $table->bigInteger('offers_id')->unsigned();
-            $table->bigInteger('users_id')->unsigned();
-            $table->foreign('offers_id')->references('id')->on('offers');
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreignId('offers_id')->references('id')->on('offers');
+            $table->foreignId('users_id')->references('id')->on('users');
             $table->primary(['offers_id', 'users_id']);
         });
     }
