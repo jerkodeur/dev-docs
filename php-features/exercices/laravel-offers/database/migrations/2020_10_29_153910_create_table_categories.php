@@ -18,7 +18,7 @@ class CreateTableCategories extends Migration
             $table->string('name');
             $table->string('slug');
             $table->timestamps(); // created_at and updated_at field in database
-            $table->foreignId('parent_id')->references('id')->on('categories'); // create intern foreign key
+            $table->foreignId('parent_id')->nullable()->references('id')->on('categories'); // create intern foreign key
         });
     }
 
