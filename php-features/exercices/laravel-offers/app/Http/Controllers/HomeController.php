@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categories;
-use App\Models\offers;
+use App\Models\Categories;
+use App\Models\Offers;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,14 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = categories::all();
-
-        return view('home', compact('categories'));
-        /**
-        * ===
-        *  return view('home', [
-        *  'categories' => $categories
-        *  ]);
-        */
+        //
     }
 }
