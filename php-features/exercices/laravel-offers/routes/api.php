@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
-use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Auth::routes();
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('/categories', CategoriesController::class);
 

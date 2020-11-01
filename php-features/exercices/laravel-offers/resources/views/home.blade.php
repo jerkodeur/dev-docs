@@ -5,13 +5,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <ul>
-            @foreach($categories as $category)
-            <li>
-                {{ $category->name }}
-            </li>
-            @endforeach
-        </ul>
+        {{ $message }}
     </div>
 </div>
 @endsection

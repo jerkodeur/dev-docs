@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home/{name?}', [MainController::class, 'welcome']);
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/categories', [CategoriesController::class, 'index'])->name('categories');
+Route::get('/', [MainController::class, 'home'])->name('home');
+Route::get('/home/{name?}', [MainController::class, 'home'])->name('home');
+// Route::apiResource('/categories', CategoriesController::class);
+// Route::get('/categories/{category}', [CategoriesController::class, 'show']);
+// Route::post('/categories', [CategoriesController::class, 'store']);

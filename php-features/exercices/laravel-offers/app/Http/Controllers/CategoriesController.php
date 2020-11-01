@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Http\Resources\CategoryCollection;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -14,18 +15,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Categories::all();
-        return view('home', compact('categories'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $categories = CategoryCollection::collection(Category::orderByDesc('created_at')->get());
+        return view('categories', compact('categories'));
     }
 
     /**
@@ -36,51 +27,47 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return  Category::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Categories  $categories
+     * @param  \App\Models\Category  $categories
      * @return \Illuminate\Http\Response
      */
-    public function show(Categories $categories)
+    public function show(Category $category)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Categories  $categories
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Categories $categories)
-    {
-        //
+        return new CategoryCollection($category);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Categories  $categories
+     * @param  \App\Models\Category  $categories
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categories $categories)
+    public function update(Request $request, Category $category)
     {
-        //
+        $category = $category->update($request->all());
+        if($category){
+            $response = response()->json([
+                'message' => 'La catégorie a bien mise à jour',
+                'datas' => $request->all()
+            ]);
+        }
+        return $response;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Categories  $categories
+     * @param  \App\Models\Category  $categories
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categories $categories)
+    public function destroy(Category $category)
     {
-        //
+        return $category->delete();
     }
 }
