@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class dbcreate extends Command
 {
@@ -11,14 +12,14 @@ class dbcreate extends Command
      *
      * @var string
      */
-    protected $signature = 'create:db';
+    protected $signature = 'db:create {name?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Create a new database based on the config file or with the provided parameter';
 
     /**
      * Create a new command instance.
@@ -37,6 +38,21 @@ class dbcreate extends Command
      */
     public function handle()
     {
-        return 0;
+        // Configure the database
+        $schemaName = $this->argument('name') ?: config('database.connections.mysql.database');
+
+        $charset  = config('database.connections.mysql.charset', 'utf8mb4');
+
+        $collation  = config('database.connections.mysql.collation', 'utf8mb4_general_ci');
+
+        config(['database.connections.mysql.database' => null]); // empty the database
+
+        // Launch database requests
+        DB::statement("DROP DATABASE IF EXISTS $schemaName;");
+        DB::statement("CREATE DATABASE IF NOT EXISTS $schemaName CHARACTER SET $charset COLLATE $collation;");
+
+        echo "Database $schemaName created successfully";
+
+        config(['database.connections.mysql.database' => $schemaName]);
     }
 }
