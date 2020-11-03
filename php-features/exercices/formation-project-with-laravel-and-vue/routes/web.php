@@ -1,5 +1,6 @@
 <?php
 
+use Inertia\Inertia;
 use App\Http\Controllers\CoursesController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
-})->name('dashboard');
-
 Route::get('/courses', [CoursesController::class, 'index'])->name('courses.index');
+
+Route::group(['auth:sanctum', 'verified'], function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+    Route::get('/course/{course_id}', [CoursesController::class, 'show'])->name('course.show');
+});
