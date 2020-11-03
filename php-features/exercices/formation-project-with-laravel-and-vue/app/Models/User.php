@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Course;
+
 
 class User extends Authenticatable
 {
@@ -18,6 +20,9 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function course() {
+        return $this->hasMany(Course::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
