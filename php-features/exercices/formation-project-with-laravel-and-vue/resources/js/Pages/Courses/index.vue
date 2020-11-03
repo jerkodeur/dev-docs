@@ -5,16 +5,17 @@
         </template>
         <div
             v-for="course in this.courseList"  v-bind:key="course.id"
-            class="p-3 border-solid border-gray-300 border-2 my-6 mx-3 bg-white rounded shadow"
+            class="border-solid border-gray-300 border-2 my-6 mx-3 bg-white rounded shadow"
             >
-            <div class="flex justify-between items-center">
-                <div class="text-xl">{{ course.title }}</div>
-                <div class="text-xs text-gray-400">25 épisodes</div>
+            <div class="text-xs text-gray-500 text-center bg-green-50 shadow py-1 mb-2 rounded">Mis en ligne par {{ course.user.name }}</div>
+            <div class="flex justify-between items-center p-3">
+                <div class="text-xl py-0">{{ course.title }}</div>
+                <div class="text-xs text-gray-400">{{ course.episodes_count }} épisodes</div>
             </div>
-            <article class="text-sm text-gray-700 mb-3">{{ course.description }}</article>
-            <a href=""
+            <article class="text-sm text-gray-700 px-3">{{ course.description }}</article>
+            <a :href="`course/${course.id}`"
                 class="bg-indigo-700 text-white py-1 px-2 text-sm rounded uppercase
-                hover:bg-indigo-200 hover:text-indigo-900 hover:font-bold">
+                hover:bg-indigo-200 hover:text-indigo-900 hover:font-bold inline-block m-3">
                 Voir la formation
             </a>
         </div>
@@ -34,7 +35,7 @@ export default {
 
     data() {
         return {
-            courseList: this.courses
+            courseList: this.courses,
         }
     },
 
