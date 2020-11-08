@@ -24,8 +24,11 @@
                 class="border-solid border-gray-300 border-2 my-6 mx-3 bg-white rounded shadow"
                 >
                 <div class="flex justify-between">
-                    <h3 class="text-xl py-1 px-3">{{ currentKey+1 + '. ' + episode.title }}</h3>
-                    <a @click="switchEpisode(currentKey)" class="hover:underline p-2 text-sm text-gray-500 hover:text-black" href="#">Voir la vidéo</a>
+                    <div class="flex justify-start">
+                        <h3 class="text-xl py-1 px-3">{{ currentKey+1 + '. ' + episode.title }}</h3>
+                        <a @click="switchEpisode(currentKey)" class="hover:underline p-2 text-sm text-gray-500 hover:text-black" href="#">Voir la vidéo</a>
+                    </div>
+                    <progress-button :episodeId="episode.id" :watched="watched" />
                 </div>
                 <p class="text-sm text-gray-700 px-3">{{ episode.description }}</p>
             </article>
@@ -36,17 +39,18 @@
 <script>
 
 import AppLayout from '../../Layouts/AppLayout'
+import ProgressButton from '../Components/ProgressButton';
 
 export default {
     components: {
-        AppLayout
+        AppLayout,
+        ProgressButton
     },
 
-    props: ['course'],
+    props: ['course', 'watched'],
 
     data() {
         return {
-            episode: 0,
             currentEpisode: this.course.episodes[0],
             episodeList: this.course.episodes
         }

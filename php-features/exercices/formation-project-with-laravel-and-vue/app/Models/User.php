@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Course;
+use App\Models\Episode;
 
 
 class User extends Authenticatable
@@ -23,6 +24,11 @@ class User extends Authenticatable
     public function course() {
         return $this->hasMany(Course::class);
     }
+
+    public function episodes(){
+        return $this->belongsToMany(Episode::class, 'completions', 'user_id', 'episode_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -63,4 +69,5 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
 }

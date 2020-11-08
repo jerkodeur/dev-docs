@@ -3408,6 +3408,65 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Components/ProgressButton.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Components/ProgressButton.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['episodeId', 'watched'],
+  data: function data() {
+    return {
+      epId: this.episodeId,
+      epWatched: this.watched,
+      isWatched: null
+    };
+  },
+  methods: {
+    toggleProgress: function toggleProgress() {
+      axios.post('/courseProgress', {
+        'episode': this.epId
+      }).then(function (response) {
+        return console.log('ok');
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    },
+    formatDate: function formatDate(date) {
+      var newDate = new Date(date);
+      return newDate.toLocaleString();
+    },
+    verifyIfWatched: function verifyIfWatched() {
+      var _this = this;
+
+      return this.epWatched.filter(function (episode) {
+        return episode.id === _this.episodeId;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.isWatched = this.verifyIfWatched()[0];
+    console.log(this.isWatched, this.episodeId);
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/index.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/index.vue?vue&type=script&lang=js& ***!
@@ -3470,6 +3529,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Components_ProgressButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Components/ProgressButton */ "./resources/js/Pages/Components/ProgressButton.vue");
+//
+//
+//
 //
 //
 //
@@ -3506,14 +3569,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
+    ProgressButton: _Components_ProgressButton__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['course'],
+  props: ['course', 'watched'],
   data: function data() {
     return {
-      episode: 0,
       currentEpisode: this.course.episodes[0],
       episodeList: this.course.episodes
     };
@@ -26119,6 +26183,54 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Components/ProgressButton.vue?vue&type=template&id=0681a29f&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Components/ProgressButton.vue?vue&type=template&id=0681a29f& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "button",
+      {
+        staticClass:
+          "bg-purple-50 text-sm rounded-lg m-2 px-3 py-1 border-dashed border-2 border-indigo-200 hover:bg-purple-200",
+        on: {
+          click: function($event) {
+            return _vm.toggleProgress()
+          }
+        }
+      },
+      [
+        _vm._v(
+          "\n        " +
+            _vm._s(
+              this.isWatched
+                ? " Terminé le " + this.formatDate(this.isWatched.updated_at)
+                : "Pas terminé"
+            ) +
+            "\n    "
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/index.vue?vue&type=template&id=5d989362&":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/index.vue?vue&type=template&id=5d989362& ***!
@@ -26312,26 +26424,37 @@ var render = function() {
                   "border-solid border-gray-300 border-2 my-6 mx-3 bg-white rounded shadow"
               },
               [
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("h3", { staticClass: "text-xl py-1 px-3" }, [
-                    _vm._v(_vm._s(currentKey + 1 + ". " + episode.title))
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "hover:underline p-2 text-sm text-gray-500 hover:text-black",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          return _vm.switchEpisode(currentKey)
-                        }
-                      }
-                    },
-                    [_vm._v("Voir la vidéo")]
-                  )
-                ]),
+                _c(
+                  "div",
+                  { staticClass: "flex justify-between" },
+                  [
+                    _c("div", { staticClass: "flex justify-start" }, [
+                      _c("h3", { staticClass: "text-xl py-1 px-3" }, [
+                        _vm._v(_vm._s(currentKey + 1 + ". " + episode.title))
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "hover:underline p-2 text-sm text-gray-500 hover:text-black",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.switchEpisode(currentKey)
+                            }
+                          }
+                        },
+                        [_vm._v("Voir la vidéo")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("progress-button", {
+                      attrs: { episodeId: episode.id, watched: _vm.watched }
+                    })
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c("p", { staticClass: "text-sm text-gray-700 px-3" }, [
                   _vm._v(_vm._s(episode.description))
@@ -41377,6 +41500,8 @@ var map = {
 	"./API/ApiTokenManager.vue": "./resources/js/Pages/API/ApiTokenManager.vue",
 	"./API/Index": "./resources/js/Pages/API/Index.vue",
 	"./API/Index.vue": "./resources/js/Pages/API/Index.vue",
+	"./Components/ProgressButton": "./resources/js/Pages/Components/ProgressButton.vue",
+	"./Components/ProgressButton.vue": "./resources/js/Pages/Components/ProgressButton.vue",
 	"./Courses": "./resources/js/Pages/Courses/index.vue",
 	"./Courses/": "./resources/js/Pages/Courses/index.vue",
 	"./Courses/index": "./resources/js/Pages/Courses/index.vue",
@@ -41554,6 +41679,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_df56dab8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_df56dab8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Components/ProgressButton.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/Pages/Components/ProgressButton.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ProgressButton_vue_vue_type_template_id_0681a29f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProgressButton.vue?vue&type=template&id=0681a29f& */ "./resources/js/Pages/Components/ProgressButton.vue?vue&type=template&id=0681a29f&");
+/* harmony import */ var _ProgressButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProgressButton.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Components/ProgressButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ProgressButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ProgressButton_vue_vue_type_template_id_0681a29f___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ProgressButton_vue_vue_type_template_id_0681a29f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Components/ProgressButton.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Components/ProgressButton.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/Pages/Components/ProgressButton.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProgressButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ProgressButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Components/ProgressButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProgressButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Components/ProgressButton.vue?vue&type=template&id=0681a29f&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/Pages/Components/ProgressButton.vue?vue&type=template&id=0681a29f& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProgressButton_vue_vue_type_template_id_0681a29f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ProgressButton.vue?vue&type=template&id=0681a29f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Components/ProgressButton.vue?vue&type=template&id=0681a29f&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProgressButton_vue_vue_type_template_id_0681a29f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProgressButton_vue_vue_type_template_id_0681a29f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
