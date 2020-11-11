@@ -3429,39 +3429,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['episodeId', 'watched'],
+  props: ['episode', 'watched'],
   data: function data() {
     return {
-      epId: this.episodeId,
       epWatched: this.watched,
-      isWatched: null
+      isWatched: false,
+      updatedDate: null,
+      epId: this.episode.id
     };
+  },
+  computed: {
+    date: function date() {
+      return new Date(this.updatedDate).toLocaleString();
+    }
   },
   methods: {
     toggleProgress: function toggleProgress() {
+      var _this = this;
+
       axios.post('/courseProgress', {
         'episode': this.epId
       }).then(function (response) {
-        return console.log('ok');
+        _this.epWatched = response.data;
+        return _this.verifyIfWatched();
       })["catch"](function (error) {
         return console.log(error);
       });
     },
-    formatDate: function formatDate(date) {
-      var newDate = new Date(date);
-      return newDate.toLocaleString();
-    },
     verifyIfWatched: function verifyIfWatched() {
-      var _this = this;
+      var _this2 = this;
 
-      return this.epWatched.filter(function (episode) {
-        return episode.id === _this.episodeId;
+      var searchWatched = this.epWatched.filter(function (episode) {
+        return episode.id === _this2.epId;
       });
+
+      if (searchWatched.length > 0) {
+        this.updatedDate = searchWatched[0].pivot.modified_at;
+        this.isWatched = true;
+      } else {
+        this.isWatched = false;
+      }
     }
   },
   mounted: function mounted() {
-    this.isWatched = this.verifyIfWatched()[0];
-    console.log(this.isWatched, this.episodeId);
+    this.verifyIfWatched();
   }
 });
 
@@ -26203,7 +26214,7 @@ var render = function() {
       "button",
       {
         staticClass:
-          "bg-purple-50 text-sm rounded-lg m-2 px-3 py-1 border-dashed border-2 border-indigo-200 hover:bg-purple-200",
+          "bg-purple-50 text-xs px-2 hover:bg-purple-200 shadow-lg text-gray-600 font-serif m-2 rounded-md focus:outline-none outline-none",
         on: {
           click: function($event) {
             return _vm.toggleProgress()
@@ -26215,8 +26226,8 @@ var render = function() {
           "\n        " +
             _vm._s(
               this.isWatched
-                ? " Terminé le " + this.formatDate(this.isWatched.updated_at)
-                : "Pas terminé"
+                ? " Terminé le " + this.date
+                : "Indiquer comme terminé"
             ) +
             "\n    "
         )
@@ -26400,19 +26411,20 @@ var render = function() {
       _vm._v(" "),
       _c(
         "section",
+        { staticClass: "flex items-center flex-col flex-wrap" },
         [
           _c(
             "h2",
             {
               staticClass:
-                "text-center my-8 bg-purple-200 max-w-5xl m-auto rounded shadow-lg p-2 text-lg font-bold cursor-pointer hover:bg-purple-400",
+                "text-center my-8 bg-purple-200 w-6/12 m-auto rounded shadow-lg p-2 text-lg font-bold cursor-pointer hover:bg-purple-400",
               on: {
                 click: function($event) {
                   return _vm.goToDown()
                 }
               }
             },
-            [_vm._v("Découvrir les autres formations...")]
+            [_vm._v("Découvrir les autres vidéos...")]
           ),
           _vm._v(" "),
           _vm._l(this.episodeList, function(episode, currentKey) {
@@ -26421,12 +26433,12 @@ var render = function() {
               {
                 key: episode.id,
                 staticClass:
-                  "border-solid border-gray-300 border-2 my-6 mx-3 bg-white rounded shadow"
+                  "border-solid border-gray-300 border-2 my-3 p-2 w-10/12 lg:w-8/12 bg-white rounded-lg shadow-md flex flex-col"
               },
               [
                 _c(
                   "div",
-                  { staticClass: "flex justify-between" },
+                  { staticClass: "flex justify-between flex-wrap-reverse" },
                   [
                     _c("div", { staticClass: "flex justify-start" }, [
                       _c("h3", { staticClass: "text-xl py-1 px-3" }, [
@@ -26450,7 +26462,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("progress-button", {
-                      attrs: { episodeId: episode.id, watched: _vm.watched }
+                      attrs: { episode: episode, watched: _vm.watched }
                     })
                   ],
                   1
