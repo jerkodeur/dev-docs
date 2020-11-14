@@ -20,7 +20,7 @@ class CoursesController extends Controller
         ))
         ->withCount('episodes')->latest()->get();
 
-        return Inertia::render('Courses/index', [
+        return Inertia::render('Courses/Index', [
             'courses' => $courses
         ]);
     }
@@ -29,10 +29,14 @@ class CoursesController extends Controller
         $course = Course::where('id', $course)->with('episodes')->first();
         $watched = auth()->user()->episodes;
 
-        return Inertia::render('Courses/show', [
+        return Inertia::render('Courses/Show', [
             'course' => $course,
             'watched' => $watched
         ]);
+    }
+
+    protected function new() {
+        return Inertia::render('Courses/Create');
     }
 
     protected function progress(Request $request){
