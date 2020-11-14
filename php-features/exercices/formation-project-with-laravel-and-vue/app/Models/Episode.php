@@ -11,6 +11,10 @@ class Episode extends Model
     use HasFactory;
 
     public function course() {
-        $this->belongsTo(Course::class);
+        return $this->belongsTo(Course::class);
+    }
+
+    public function users() {
+        return $this->belongsToMany(USER::class, 'completions', 'episode_id', 'user_id');
     }
 }

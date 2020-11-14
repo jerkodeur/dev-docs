@@ -17,7 +17,7 @@
                             <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                 Dashboard
                             </jet-nav-link>
-                            <jet-nav-link :href="route('courses.index')" :active="route().current('courses.index')">
+                            <jet-nav-link :href="route('courses.index')" :active="route().current('courses.index') || route().current('course.show') || route().current('course.new') ">
                                 Mes formations
                             </jet-nav-link>
                         </div>

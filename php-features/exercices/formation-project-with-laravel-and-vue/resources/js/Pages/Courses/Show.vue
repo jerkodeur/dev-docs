@@ -17,15 +17,18 @@
                 </div>
             </article>
         </section>
-        <section>
-            <h2 class="text-center my-8 bg-purple-200 max-w-5xl m-auto rounded shadow-lg p-2 text-lg font-bold cursor-pointer hover:bg-purple-400" @click="goToDown()">Découvrir les autres formations...</h2>
+        <section class="flex items-center flex-col flex-wrap">
+            <h2 class="text-center my-8 bg-purple-200 w-6/12 m-auto rounded shadow-lg p-2 text-lg font-bold cursor-pointer hover:bg-purple-400" @click="goToDown()">Découvrir les autres vidéos...</h2>
             <article
                 v-for="(episode, currentKey) in this.episodeList"  v-bind:key="episode.id"
-                class="border-solid border-gray-300 border-2 my-6 mx-3 bg-white rounded shadow"
+                class="border-solid border-gray-300 border-2 my-3 p-2 w-10/12 lg:w-8/12 bg-white rounded-lg shadow-md flex flex-col"
                 >
-                <div class="flex justify-between">
-                    <h3 class="text-xl py-1 px-3">{{ currentKey+1 + '. ' + episode.title }}</h3>
-                    <a @click="switchEpisode(currentKey)" class="hover:underline p-2 text-sm text-gray-500 hover:text-black" href="#">Voir la vidéo</a>
+                <div class="flex justify-between flex-wrap-reverse">
+                    <div class="flex justify-start">
+                        <h3 class="text-xl py-1 px-3">{{ currentKey+1 + '. ' + episode.title }}</h3>
+                        <a @click="switchEpisode(currentKey)" class="hover:underline p-2 text-sm text-gray-500 hover:text-black" href="#">Voir la vidéo</a>
+                    </div>
+                    <progress-button :episode="episode" :watched="watched" />
                 </div>
                 <p class="text-sm text-gray-700 px-3">{{ episode.description }}</p>
             </article>
@@ -36,22 +39,22 @@
 <script>
 
 import AppLayout from '../../Layouts/AppLayout'
+import ProgressButton from '../Components/ProgressButton';
 
 export default {
     components: {
-        AppLayout
+        AppLayout,
+        ProgressButton
     },
 
-    props: ['course'],
+    props: ['course', 'watched'],
 
     data() {
         return {
-            episode: 0,
             currentEpisode: this.course.episodes[0],
             episodeList: this.course.episodes
         }
     },
-
     methods: {
         switchEpisode(key){
             this.currentEpisode = this.course.episodes[key];
