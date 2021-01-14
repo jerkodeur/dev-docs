@@ -9,10 +9,39 @@ Vue.filter('UcFirst', (value, prefix = '', suffix = '') => {
     return prefix + transform.join(' ').trimEnd() + suffix
 })
 
+//TODO VUE: Create a component
+// or just declare a variable and called it on the vue instance ex: const monComposant = {props:{}, ...
+Vue.component('monComposant', {
+    props: {
+        message: String,
+        showName: Boolean
+    },
+    template: `
+    <div class="bg-gray-100 p-2" >
+        <div> {{this.message}} </div>
+        <input type='checkbox' checked="showName" @change="toogleName()" />
+        <span v-if="showName">Cacher</span><span v-else>Montrer</span> les informations personnelles
+    </div>
+    `,
+    methods: {
+        toogleName() {
+            console.log(this.$emit('toggleName'));
+            this.$emit('toggleName')
+        }
+    },
+    mounted () {
+        // console.log(this);
+    },
+})
+
 //TODO VUE: Create a new vue
 let vm = new Vue({
     //TODO VUE: Bind an HTML element on a vue instance
     el: '#app',
+    //TODO VUE: Call a composent in the instance
+    // components: {
+    //     monComposant,
+    // },
     //TODO VUE: Declare datas
     data: {
         title: 'Hello vue !',
@@ -21,7 +50,8 @@ let vm = new Vue({
         showActions: false,
         time:5,
         firstname: 'Jérôme',
-        lastname: 'Potié'
+        lastname: 'Potié',
+        showName: true
     },
     //TODO VUE: Declare computed values
     computed: { // These are only getters, its can't be redefined, just for display datas
@@ -43,6 +73,13 @@ let vm = new Vue({
             }
         },
     },
+    //TODO VUE: methods
+    methods: {
+        toggleShowName() {
+            console.log('show');
+            this.showName =  !this.showName
+        }
+    },
     //TODO VUE: mounted
     mounted() {
         this.$timer = setInterval(() => {
@@ -60,5 +97,5 @@ let vm = new Vue({
     },
     //TODO VUE: Apply locally filters or directives to the componant
     filters: { /* filters to apply only on this vue */},
-    directives: { /* directives to apply only on this vue */}
+    directives: { /* directives to apply only on this vue */},
 })
