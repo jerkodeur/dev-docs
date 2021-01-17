@@ -35,7 +35,7 @@
         </ul>
         <div class="mt-3 m-auto" v-show="time" > {{ time }} </div>
         <hr class="mb-2 border-gray-600" />
-        <mon-composant message="Bienvenue dans un autre composant" @toggleName="console.log('coucou')" :showName="showName" />
+        <my-component :message="message" :showName="showName" @toggle="toggleName" />
     </div>
     <!--TODO import a vue instance -->
     <script src='./app.js'></script>

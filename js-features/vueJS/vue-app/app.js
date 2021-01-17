@@ -11,26 +11,28 @@ Vue.filter('UcFirst', (value, prefix = '', suffix = '') => {
 
 //TODO VUE: Create a component
 // or just declare a variable and called it on the vue instance ex: const monComposant = {props:{}, ...
-Vue.component('monComposant', {
+Vue.component ('myComponent', {
     props: {
         message: String,
         showName: Boolean
     },
+    data () {
+        return {
+            show: this.showName
+        }
+    },
     template: `
     <div class="bg-gray-100 p-2" >
         <div> {{this.message}} </div>
-        <input type='checkbox' checked="showName" @change="toogleName()" />
-        <span v-if="showName">Cacher</span><span v-else>Montrer</span> les informations personnelles
+        <input type='checkbox' @click="toggle" v-model="show" />
+        <span v-if="show">Cacher</span><span v-else>Montrer</span> les informations personnelles
     </div>
     `,
     methods: {
-        toogleName() {
-            console.log(this.$emit('toggleName'));
-            this.$emit('toggleName')
+        //TODO use $emit to bind parent and child components
+        toggle() {
+            this.$emit('toggle')
         }
-    },
-    mounted () {
-        // console.log(this);
     },
 })
 
@@ -40,7 +42,7 @@ let vm = new Vue({
     el: '#app',
     //TODO VUE: Call a composent in the instance
     // components: {
-    //     monComposant,
+    //     myComponent,
     // },
     //TODO VUE: Declare datas
     data: {
@@ -51,7 +53,8 @@ let vm = new Vue({
         time:5,
         firstname: 'Jérôme',
         lastname: 'Potié',
-        showName: true
+        showName: true,
+        message: "Bienvenue dans un autre composant"
     },
     //TODO VUE: Declare computed values
     computed: { // These are only getters, its can't be redefined, just for display datas
@@ -73,12 +76,11 @@ let vm = new Vue({
             }
         },
     },
-    //TODO VUE: methods
     methods: {
-        toggleShowName() {
-            console.log('show');
-            this.showName =  !this.showName
-        }
+        toggleName() {
+            console.log('toggle');
+            this.showName = !this.showName
+        },
     },
     //TODO VUE: mounted
     mounted() {
@@ -98,4 +100,11 @@ let vm = new Vue({
     //TODO VUE: Apply locally filters or directives to the componant
     filters: { /* filters to apply only on this vue */},
     directives: { /* directives to apply only on this vue */},
+    watch: {
+        'showName': {
+            handler() {
+                console.log(this.showName);
+            }
+        }
+    },
 })
