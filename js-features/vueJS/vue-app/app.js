@@ -78,7 +78,6 @@ let vm = new Vue({
     },
     methods: {
         toggleName() {
-            console.log('toggle');
             this.showName = !this.showName
         },
     },
@@ -99,12 +98,5 @@ let vm = new Vue({
     },
     //TODO VUE: Apply locally filters or directives to the componant
     filters: { /* filters to apply only on this vue */},
-    directives: { /* directives to apply only on this vue */},
-    watch: {
-        'showName': {
-            handler() {
-                console.log(this.showName);
-            }
-        }
-    },
+    directives: { /* directives to apply only on this vue */}
 })
