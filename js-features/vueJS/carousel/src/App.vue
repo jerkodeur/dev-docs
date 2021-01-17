@@ -1,11 +1,11 @@
 <template>
-  <div id="app">
+  <div id="app" class="w-full flex justify-center mt-4">
     <carousel>
       <carousel-slide>
-        Bonjour les gens
+        <img src="https://picsum.photos/id/1022/600/350" alt="" />
       </carousel-slide>
       <carousel-slide>
-        Au revoir les gens
+        <img src="https://picsum.photos/id/1039/600/350" alt="">
       </carousel-slide>
     </carousel>
   </div>
@@ -20,6 +20,9 @@ export default {
   components: {
     Carousel,
     CarouselSlide,
-  }
+  },
+  mounted() {
+    console.log(this);
+  },
 }
 </script>

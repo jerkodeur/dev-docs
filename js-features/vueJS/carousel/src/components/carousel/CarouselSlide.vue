@@ -1,7 +1,6 @@
 <template>
   <div v-show="visible">
     <slot></slot>
-    index: {{ index }}
   </div>
 </template>
 
