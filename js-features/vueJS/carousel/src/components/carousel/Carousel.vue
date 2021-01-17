@@ -57,7 +57,7 @@ export default {
     defineSlide (index) {
       this.index = index - 1
     }
-  },
+  }
 }
 </script>
 

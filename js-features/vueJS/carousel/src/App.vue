@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import Carousel from "./components/carousel/Carousel";
-import CarouselSlide from "./components/carousel/CarouselSlide";
+import Carousel from './components/carousel/Carousel'
+import CarouselSlide from './components/carousel/CarouselSlide'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Carousel,
-    CarouselSlide,
-  },
-};
+    CarouselSlide
+  }
+}
 </script>

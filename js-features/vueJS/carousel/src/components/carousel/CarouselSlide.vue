@@ -10,21 +10,18 @@
 export default {
   data () {
     return {
-      index: 0,
-    };
+      index: 0
+    }
   },
   computed: {
     visible () {
-      return this.index === this.$parent.index;
+      return this.index === this.$parent.index
     },
     direction () {
       return 'slide_' + this.$parent.direction
     }
-  },
-  mounted () {
-    console.log(this.direction);
-  },
-};
+  }
+}
 </script>
 
 <style>
@@ -88,5 +85,4 @@ export default {
       transform: translateX(200%);
     }
   }
-
 </style>
