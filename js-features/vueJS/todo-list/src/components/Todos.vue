@@ -27,6 +27,7 @@
             <button class="destroy" @click.prevent="deleteTodo(todo)"></button>
           </div>
           <!--TODO Declare a custom directive -->
+          <!--TODO @blur @keyup -->
           <input type="text" class="edit" v-model="todo.name" @keyup.enter="updateTodo" v-focus="todo === isEditTodo" @blur="updateTodo" @keyup.esc="exitEditTodo" />
         </li>
       </ul>
@@ -119,6 +120,7 @@ export default {
   //TODO Create a custom directive
   directives : {
     focus (el, value) {
+      // Will be excute when the DOM is update
       Vue.nextTick(() => el.focus())
     }
   }
