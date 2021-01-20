@@ -1,28 +1,33 @@
 <template>
-  <div id="app" class="w-full flex justify-center mt-4">
-    <carousel>
-      <carousel-slide>
-          <img src="https://picsum.photos/id/1022/850/500" alt="" />
+  <div id="app" class="w-full flex justify-center mt-4 flex-col items-center">
+    <carousel :nbSlides="nbSlides">
+      <carousel-slide v-for="n in nbSlides" :key="n" :index="n -1 ">
+        <img :src="randomImage()" alt="" />
       </carousel-slide>
-        <carousel-slide>
-          <img src="https://picsum.photos/id/1039/850/500" alt="" />
-        </carousel-slide>
-        <carousel-slide>
-          <img src="https://picsum.photos/id/110/850/500" alt="" />
-        </carousel-slide>
     </carousel>
   </div>
 </template>
 
 <script>
-import Carousel from './components/carousel/Carousel'
-import CarouselSlide from './components/carousel/CarouselSlide'
+import Carousel from "./components/carousel/Carousel";
+import CarouselSlide from "./components/carousel/CarouselSlide";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Carousel,
-    CarouselSlide
-  }
-}
+    CarouselSlide,
+  },
+  data() {
+    return {
+      nbSlides: 10,
+    };
+  },
+  methods: {
+    randomImage () {
+      const number = Math.round(Math.random() * 1000);
+      return `https://picsum.photos/id/${number}/850/500`;
+    }
+  },
+};
 </script>

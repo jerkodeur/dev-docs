@@ -10,10 +10,16 @@
         </div>
       </div>
       <div class="flex w-full justify-center">
-        <Button @click="prevSlide" :class="index">
+        <Button @click="prevSlide">
           Précédente
         </Button>
-        <Button @click="nextSlide" :class="index">
+        <Button @click="removeSlide">
+          -
+        </Button>
+        <Button @click="addSlide">
+          +
+        </Button>
+        <Button @click="nextSlide">
           Suivante
         </Button>
       </div>
@@ -30,20 +36,21 @@ export default {
   components: {
     Button
   },
+  props: {
+    nbSlides: {
+      type: Number,
+      required: true
+    }
+  },
   data () {
     return {
       index: 0,
-      direction: null,
+      direction: 'right',
       slides: [],
-      nbSlides: 0
     }
   },
   mounted () {
     this.slides = this.$children
-    this.slides.forEach((slide, index) => {
-      slide.index = index
-    })
-    this.nbSlides = this.slides.length - 2
   },
   methods: {
     prevSlide () {
@@ -56,8 +63,21 @@ export default {
     },
     defineSlide (index) {
       this.index = index - 1
+    },
+    addSlide () {
+      this.$parent.nbSlides++
+    },
+    removeSlide () {
+      this.$parent.nbSlides--
     }
-  }
+  },
+  watch: {
+    "nbSlides": function(){
+      if(this.index >= this.nbSlides){
+        this.index = this.nbSlides - 1
+      }
+    }
+  },
 }
 </script>
 
