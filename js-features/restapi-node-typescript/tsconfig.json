@@ -1,0 +1,21 @@
+{
+  //* Options de typescript
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "ES6",
+    "strict": true, // Forcer à typer certains paramètres, permet d'avoir un code plus propre
+    "outDir": "./dist" // Destination des fichiers compilés
+
+  },
+  //* Fichiers à compiler
+  "include": [
+    "app.ts",
+    "common/**/*",
+    "users/**/*"
+  ],
+  //* Fichiers à exclure de la compilation
+  "exclude": [
+    "node_modules"
+  ]
+}
