@@ -20,7 +20,7 @@ class Person {
     protected $age;
 
     //TODO Portée 'private'
-    //* Signifie que la variable ne sera accessible uniquement à l'intérieur de la function
+    //* Signifie que la variable ne sera accessible uniquement à l'intérieur de la classe
     private $sexe;
 
     //TODO Constantes

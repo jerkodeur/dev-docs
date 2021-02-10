@@ -70,7 +70,7 @@ echo filesize("resources/webdictionary.txt");
 
 //TODO copy() | Copier un fichier
 //? copy($source, $destination) : bool
-//! Avertissement Si le fichier de destination dest existe déjà, il sera écrasé.
+//! Avertissement Si le fichier de destination existe déjà, il sera écrasé.
 
 
 //TODO rename | Déplace ou renomme un fichier / dossier
