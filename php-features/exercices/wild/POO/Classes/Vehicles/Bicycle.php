@@ -1,6 +1,6 @@
 <?php
 
-require_once('Vehicle.php');
+namespace POO\Vehicles;
 
 class Bicycle extends Vehicle
 {

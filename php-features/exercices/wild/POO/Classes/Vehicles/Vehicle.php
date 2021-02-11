@@ -1,10 +1,12 @@
 <?php
 
+namespace POO\Vehicles;
+
 /**
  * Generic Vehicle Class
  */
 
-class Vehicle {
+abstract class Vehicle {
 
     /**
      * Color of the vehicle
@@ -67,16 +69,6 @@ class Vehicle {
         return $sentence;
     }
 
-    public function start ()
-    {
-
-    }
-
-    public function stop ()
-    {
-
-    }
-
     /**
      * Get the number of wheels of the vehicle
      * @return int Number of wheels
@@ -130,5 +122,6 @@ class Vehicle {
     {
         return $this->_currentSpeed;
     }
+
 
 }
