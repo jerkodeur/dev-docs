@@ -1,10 +1,10 @@
 <?php
 
-namespace POO\Way;
+namespace Main\POO\Way;
 
-use POO\Vehicles\Bicycle;
-use POO\Vehicles\Skate;
-use POO\Vehicles\Vehicle;
+use Main\POO\Vehicles\Bicycle;
+use Main\POO\Vehicles\Skate;
+use Main\POO\Vehicles\Vehicle;
 
 final class PedestrianWay extends Highway {
 

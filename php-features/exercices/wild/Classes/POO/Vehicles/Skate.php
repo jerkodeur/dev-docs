@@ -1,8 +1,8 @@
 <?php
 
-namespace POO\Vehicles;
+namespace Main\POO\Vehicles;
 
-class Bicycle extends Vehicle
+class Skate extends Vehicle
 {
     public function __construct(string $color)
     {

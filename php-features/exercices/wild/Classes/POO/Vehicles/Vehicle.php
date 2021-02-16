@@ -1,6 +1,6 @@
 <?php
 
-namespace POO\Vehicles;
+namespace Main\POO\Vehicles;
 
 /**
  * Generic Vehicle Class

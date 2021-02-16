@@ -1,6 +1,6 @@
 <?php
 
-namespace POO\Service;
+namespace Main\Service;
 
 class Formatting {
 
@@ -11,38 +11,31 @@ class Formatting {
     const BR = "<br />";
 
     /**
-     * BRBR
-     * @var string insert an empty line
-     */
-    const BRBR = "<br /><br />";
-
-    public function return_exemple(){
-
-    }
-
-    /**
-     * Return line break or an empty line depending of the index
+     * Return line break or empty line(s) depending of the index
      *
-     * @param number $number {1: line break, 2: insert empty line}
-     * @return null
+     * @param number $number {0: none, 1: line break, more: number of lines to insert}
+     * @return string
      */
     protected static function define_format_line($number){
-        if ($number === 1) echo self::BR;
-        elseif ($number === 2) echo self::BRBR;
+        $format = '';
+        for ($i=0;$i<$number;$i++) {
+            $format .= self::BR;
+        }
+        return $format;
     }
 
     /**
      * Insert line break or empty line depending of the context
      *
-     * @param mixed $value formatted value to return
-     * @param int $line_up formatting before value {0: none, 1: line break, 2: insert empty line}
-     * @param int $line_bottom formatting after value {0: none, 1: line break, 2: insert empty line}
+     * @param string $value formatted value to return
+     * @param int $line_up formatting before value {0: none, 1: line break, more: number of lines to insert}
+     * @param int $line_bottom formatting after value {0: none, 1: line break, more: number of lines to insert}
      * @return void return display formatted value
      */
-    public static function format_line($value, $line_up, $line_bottom){
-        if($line_up !== 0) self::define_format_line($line_up);
+    public static function format_line($value, $line_up = 0, $line_bottom = 1){
+        echo self::define_format_line($line_up);
         echo $value;
-        if($line_bottom !== 0) self::define_format_line($line_bottom);
+        echo self::define_format_line($line_bottom);
     }
 
     /**

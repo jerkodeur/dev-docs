@@ -1,10 +1,10 @@
 <?php
 
-namespace POO\Way;
+namespace Main\POO\Way;
 
-use POO\Vehicles\Car;
-use POO\Vehicles\Truck;
-use POO\Vehicles\Vehicle;
+use Main\POO\Vehicles\Car;
+use Main\POO\Vehicles\Truck;
+use Main\POO\Vehicles\Vehicle;
 
 final class ResidentialWay extends Highway {
 

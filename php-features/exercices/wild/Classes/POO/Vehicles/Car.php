@@ -1,6 +1,9 @@
 <?php
 
-namespace POO\Vehicles;
+namespace Main\POO\Vehicles;
+
+use Exception;
+use Main\Service\Formatting;
 
 class Car extends Vehicle{
     /**
@@ -16,6 +19,8 @@ class Car extends Vehicle{
      */
     private $_energyLevel;
 
+    private bool $_hasParkBrake = true;
+
     CONST ALLOWED_ENERGIES = [
         'electric',
         'fuel'
@@ -27,6 +32,35 @@ class Car extends Vehicle{
         //TODO get parent constructor variables
         parent::__construct($color);
         $this->setEnergyType($energyType);
+    }
+
+    /**
+     * Switch park brake
+     */
+    public function toggleParkBrake() :void
+    {
+        $this->_hasParkBrake = !$this->_hasParkBrake;
+    }
+
+    /**
+     * Start the car
+     */
+    public function start()
+    {
+        try
+        {
+            if($this->_hasParkBrake === true ){throw new Exception('Le frein à main est actif');}
+        }
+        catch (Exception $e)
+        {
+            Formatting::format_line('Exception:' . $e->getMessage(),1,2);
+            $this->toggleParkBrake();
+        }
+        finally
+        {
+            Formatting::format_line("Ma voiture roule comme un donut");
+            Formatting::format_line($this->forward());
+        }
     }
 
     /**

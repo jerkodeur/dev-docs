@@ -1,6 +1,8 @@
 <?php
 
-namespace POO;
+namespace Main;
+
+use Main\Service\Debug;
 
 /**
  * Use for automatically load classes into specific namespace
@@ -24,6 +26,7 @@ class AutoLoader{
          */
         static function autoload($class){
             // apply only if the current namespace is called
+            // var_dump($class);
             if(strpos($class, __NAMESPACE__ . '\\') === 0){
                 $class = str_replace(__NAMESPACE__ . '\\', '', $class);
                 $class = str_replace('\\', '/', $class);

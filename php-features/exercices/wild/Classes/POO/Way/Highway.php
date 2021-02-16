@@ -1,8 +1,8 @@
 <?php
 
-namespace POO\Way;
+namespace Main\POO\Way;
 
-use POO\Vehicles\Vehicle;
+use Main\POO\Vehicles\Vehicle;
 
 abstract class HighWay {
 
