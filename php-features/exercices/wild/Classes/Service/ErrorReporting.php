@@ -4,12 +4,22 @@ namespace Main\Service;
 
 use Error;
 use Exception;
+use function Main\Service\Formatting;
 
 /**
  * Define error display options for the current application
  */
 
 class ErrorReporting {
+
+    private static $_instance = null;
+
+    public static function getInstance() {
+        if (is_null(self::$_instance)) {
+            self::$_instance = new ErrorReporting();
+        }
+        return self::$_instance;
+    }
 
     /**
      * All types of error levels to define the PHP errorReporting option
@@ -76,7 +86,15 @@ class ErrorReporting {
         return $list;
     }
 
-    public function setErrorsActive(array $errors, bool $active = true) :mixed
+    /**
+     * Define which error messages will be displayed by PHP
+     *
+     * @param array $errors Type of errors to display
+     * @param boolean $active Active or inactive the selected type of errors
+     *
+     * @return string Succes or error message
+     */
+    public function setErrorsActive(array $errors, bool $active = true) :string
     {
         var_dump($active);
         $catchErrors = [];
@@ -94,12 +112,12 @@ class ErrorReporting {
                 $errors = implode(", ", $catchErrors);
                 throw new Exception("ERROR: Invalid options => $errors <br />");
             } else {
-                return 'SUCCES: Error reporting options have been update ! <br />';
+                return Formatting::formatSuccess('SUCCES: Error reporting options have been update ! <br />');
             }
         }
         catch(Exception $e)
         {
-            return $e->getMessage();
+            return Formatting::formatError($e->getMessage());
         }
     }
 
@@ -107,16 +125,5 @@ class ErrorReporting {
     {
         $index = array_search($error,array_keys($this->_errorsActive));
         return $this->_errorsActive[$error][1] = $active;
-    }
-
-    /**
-     * Define the error levels which allow PHP displaying messages
-     * The value must be either E_ALL or one or more following options
-     *
-     * @param array $params [E_ALL || E_USER_ERROR, E_USER_NOTICE, E_USER_WARNING]
-     */
-    public function setErrorReporting (int $code) :void
-    {
-        $this->_code = $this->defineErrorCode();
     }
 }

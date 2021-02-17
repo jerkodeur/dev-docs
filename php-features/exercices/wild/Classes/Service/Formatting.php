@@ -4,11 +4,22 @@ namespace Main\Service;
 
 class Formatting {
 
-    /**
-     * BR
-     * @var string go to line
-     */
-    const BR = "<br />";
+    private static $_instance = null;
+    private static $_errorColor;
+    private static $_successColor;
+
+    private function __construct(string $errorColor, string $succesColor)
+    {
+        self::$_errorColor = $errorColor;
+        self::$_successColor = $succesColor;
+    }
+
+    public static function getInstance(string $errorColor, string $succesColor) {
+        if (is_null(self::$_instance)) {
+            self::$_instance = new Formatting($errorColor, $succesColor);
+        }
+        return self::$_instance;
+    }
 
     /**
      * Return line break or empty line(s) depending of the index
@@ -16,10 +27,11 @@ class Formatting {
      * @param number $number {0: none, 1: line break, more: number of lines to insert}
      * @return string
      */
-    protected static function define_format_line($number){
+    protected static function define_format_line($number)
+    {
         $format = '';
         for ($i=0;$i<$number;$i++) {
-            $format .= self::BR;
+            $format .= '<br />';
         }
         return $format;
     }
@@ -32,7 +44,8 @@ class Formatting {
      * @param int $line_bottom formatting after value {0: none, 1: line break, more: number of lines to insert}
      * @return void return display formatted value
      */
-    public static function format_line($value, $line_up = 0, $line_bottom = 1){
+    public static function format_line($value, $line_up = 0, $line_bottom = 1)
+    {
         echo self::define_format_line($line_up);
         echo $value;
         echo self::define_format_line($line_bottom);
@@ -44,7 +57,8 @@ class Formatting {
      * @param array|null $attributes array [[$attibute, $value] [,...]]
      * @return string
      */
-    protected static function defineAttributes($attributes){
+    protected static function defineAttributes($attributes)
+    {
         $display_attributes = '';
         if(isset($attributes)){
             foreach($attributes as $attribute){
@@ -62,9 +76,21 @@ class Formatting {
      * @param string $wrapper html tag name
      * @param array|null $attributes tag infos to add [[$attribute, $value] [,[$,$]...]]
      */
-    public static function wrapInHtmlTag($element, $wrapper, $attributes = null){
+    public static function wrapInHtmlTag($element, $wrapper, $attributes = null)
+    {
         $attributes = self::defineAttributes($attributes);
         return "<$wrapper $attributes>" . $element . "</$wrapper>";
+    }
+
+    public static function formatError($message)
+    {
+        return self::wrapInHtmlTag($message, 'strong', [['style', 'color:' . self::$_errorColor]]);
+    }
+
+    public static function formatSuccess($message)
+    {
+        Debug::show($message);
+        return self::wrapInHtmlTag($message, 'strong', [['style', 'color:' . self::$_successColor]]);
     }
 }
 ?>
