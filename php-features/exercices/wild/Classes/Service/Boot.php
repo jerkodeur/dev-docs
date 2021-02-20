@@ -14,9 +14,9 @@ class Boot {
 
     public function __construct()
     {
+        $this->_setErrorReporting();
         $this->_setDebug();
         $this->_setFormatting();
-        $this->_setErrorReporting();
     }
 
     private function _setDebug() :void

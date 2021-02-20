@@ -27,7 +27,7 @@ class Formatting {
      * @param number $number {0: none, 1: line break, more: number of lines to insert}
      * @return string
      */
-    protected static function define_format_line($number)
+    protected static function define_format_line($number) :string
     {
         $format = '';
         for ($i=0;$i<$number;$i++) {
@@ -42,13 +42,13 @@ class Formatting {
      * @param string $value formatted value to return
      * @param int $line_up formatting before value {0: none, 1: line break, more: number of lines to insert}
      * @param int $line_bottom formatting after value {0: none, 1: line break, more: number of lines to insert}
-     * @return void return display formatted value
+     * @return return display formatted value
      */
-    public static function format_line($value, $line_up = 0, $line_bottom = 1)
+    public static final function format_line($value, $line_up = 0, $line_bottom = 1) :string
     {
-        echo self::define_format_line($line_up);
-        echo $value;
-        echo self::define_format_line($line_bottom);
+        $el = self::define_format_line($line_up) . $value . self::define_format_line($line_bottom);
+        echo $el;
+        return $el;
     }
 
     /**
@@ -82,15 +82,14 @@ class Formatting {
         return "<$wrapper $attributes>" . $element . "</$wrapper>";
     }
 
-    public static function formatError($message)
+    public static function formatError(string $message) :string
     {
-        return self::wrapInHtmlTag($message, 'strong', [['style', 'color:' . self::$_errorColor]]);
+        return self::format_line(self::wrapInHtmlTag($message, 'strong', [['style', 'color:' . self::$_errorColor]]));
     }
 
-    public static function formatSuccess($message)
+    public static function formatSuccess(string $message) :string
     {
-        Debug::show($message);
-        return self::wrapInHtmlTag($message, 'strong', [['style', 'color:' . self::$_successColor]]);
+        return self::format_line(self::wrapInHtmlTag($message, 'strong', [['style', 'color:' . self::$_successColor]]),1,1);
     }
 }
 ?>

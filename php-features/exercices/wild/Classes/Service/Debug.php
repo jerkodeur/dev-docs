@@ -47,7 +47,7 @@
          */
         public static function show($elements){
             echo "<div style='border: 2pt ridge" . self::$_dumpBorderColor . "; padding: .5em; width: max-content; margin: .5em 0;background-color:" . self::$_dumpBgColor . '\'>';
-            echo $elements;
+            var_dump($elements);
             echo "</div>";
         }
     }

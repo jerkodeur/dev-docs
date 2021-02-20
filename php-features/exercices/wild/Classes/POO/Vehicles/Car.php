@@ -53,7 +53,7 @@ class Car extends Vehicle{
         }
         catch (Exception $e)
         {
-            Formatting::format_line('Exception:' . $e->getMessage(),1,2);
+            Formatting::formatError($e->getMessage());
             $this->toggleParkBrake();
         }
         finally

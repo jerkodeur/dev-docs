@@ -101,7 +101,7 @@ class ErrorReporting {
         foreach ($errors as $error) {
             $error = strtoupper(strtoupper($error));
             if (in_array($error, array_keys($this->_errorsActive))) {
-                $this->toggleErrors($error, $active);
+                $this->_toggleErrors($error, $active);
             } else {
                 $catchErrors[] = $error;
             }
@@ -112,7 +112,7 @@ class ErrorReporting {
                 $errors = implode(", ", $catchErrors);
                 throw new Exception("ERROR: Invalid options => $errors <br />");
             } else {
-                return Formatting::formatSuccess('SUCCES: Error reporting options have been update ! <br />');
+                return Formatting::formatSuccess('SUCCES: Error reporting options have been update !');
             }
         }
         catch(Exception $e)
@@ -121,7 +121,7 @@ class ErrorReporting {
         }
     }
 
-    private function toggleErrors(string $error, $active)
+    private function _toggleErrors(string $error, $active)
     {
         $index = array_search($error,array_keys($this->_errorsActive));
         return $this->_errorsActive[$error][1] = $active;

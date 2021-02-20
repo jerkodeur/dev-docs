@@ -11,6 +11,7 @@ use Main\POO\Way\{MotorWay, PedestrianWay, ResidentialWay};
 use Main\Service\{Boot};
 
 $boot = new Boot();
+$formatting = $boot->getFormatting();
 
 $myCar = new Car('blue', 'fuel');
 $myBicycle = new Bicycle('Red');
