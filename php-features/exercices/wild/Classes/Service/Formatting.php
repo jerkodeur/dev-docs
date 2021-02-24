@@ -44,7 +44,7 @@ class Formatting {
      * @param int $line_bottom formatting after value {0: none, 1: line break, more: number of lines to insert}
      * @return return display formatted value
      */
-    public static final function format_line($value, $line_up = 0, $line_bottom = 1) :string
+    public static final function format_line($value = '', $line_up = 0, $line_bottom = 1) :string
     {
         $el = self::define_format_line($line_up) . $value . self::define_format_line($line_bottom);
         echo $el;

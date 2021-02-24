@@ -61,7 +61,7 @@ class ErrorReporting {
      *
      * @return integer
      */
-    private final function defineErrorCode() :int
+    private function defineErrorCode() :int
     {
         $code = [];
         foreach($this->_errorsActive as $error) {
@@ -91,12 +91,12 @@ class ErrorReporting {
      *
      * @param array $errors Type of errors to display
      * @param boolean $active Active or inactive the selected type of errors
+     * @example errors description [E_ERROR, E_WARNING, E_NOTICE, E_USER_ERROR, E_ALL]
      *
      * @return string Succes or error message
      */
     public function setErrorsActive(array $errors, bool $active = true) :string
     {
-        var_dump($active);
         $catchErrors = [];
         foreach ($errors as $error) {
             $error = strtoupper(strtoupper($error));
@@ -121,9 +121,16 @@ class ErrorReporting {
         }
     }
 
-    private function _toggleErrors(string $error, $active)
+    /**
+     * Set the state of the given error
+     *
+     * @param string $error
+     * @param boolean $active
+     *
+     * @return string
+     */
+    private function _toggleErrors(string $error, bool $active) :string
     {
-        $index = array_search($error,array_keys($this->_errorsActive));
         return $this->_errorsActive[$error][1] = $active;
     }
 }
