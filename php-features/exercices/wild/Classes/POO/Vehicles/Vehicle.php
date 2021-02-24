@@ -31,7 +31,7 @@ abstract class Vehicle {
      *
      * @var int
      */
-    protected $_currentSpeed;
+    protected $_currentSpeed = 0;
 
     /**
      * Get a new instance of the vehicle
@@ -49,7 +49,7 @@ abstract class Vehicle {
      */
     public function forward ()
     {
-        $this->_currentSpeed = 15;
+        $this->_currentSpeed += 15;
         return "Go !";
     }
 
@@ -64,7 +64,6 @@ abstract class Vehicle {
             $this->_currentSpeed--;
             $sentence .= "Brake !!!";
         }
-
         $sentence .= "I'm stopped !";
         return $sentence;
     }

@@ -3,9 +3,14 @@
 namespace Main\POO\Vehicles;
 
 use Exception;
+use Main\POO\Vehicles\Traits\LightableTrait;
+use Main\POO\Vehicles\Interfaces\ManualLightableInterface;
 use Main\Service\Formatting;
 
-class Car extends Vehicle{
+class Car extends Vehicle implements ManualLightableInterface{
+
+    use LightableTrait;
+
     /**
      * Car energy Type
      *
@@ -103,6 +108,16 @@ class Car extends Vehicle{
     public function setEnergyLevel ($energyLevel)
     {
         $this->_energyLevel = $energyLevel;
+    }
+
+    public function setLightState (bool $lightState) : string
+    {
+        $state = $this->_lightState === true ? 'on' : 'off';
+        if ($this->_lightState === $lightState) {
+            return Formatting::formatError("The light was already $state");
+        } else {
+            return Formatting::formatSuccess("The light is now $state");
+        }
     }
 
 }
