@@ -135,3 +135,10 @@ echo $domain . $line; // Affiche : @example.com
 
 $user = strstr($email, '@', true); // Depuis PHP 5.3.0
 echo $user; // Affiche : name
+
+paragraph();
+//TODO lcfirst | Transforme la première lettre d'un mot en minuscule
+// lcfirst ( string $string ) : string
+//? https://www.php.net/manual/fr/function.lcfirst
+
+echo lcfirst('jérôme');

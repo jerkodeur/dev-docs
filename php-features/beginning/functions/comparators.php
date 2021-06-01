@@ -13,5 +13,6 @@ $a || $b    //* ou
 $a && $b    //* et
 
 $a != $b    //* différent
+$a !== $b    //* différent et de même type
 $a . $b     //* concaténation
 */
